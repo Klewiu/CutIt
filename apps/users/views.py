@@ -1,3 +1,9 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+#USERS VIEW#
+def users(request):
+    context = {
+        'title':'Lista użytkowników',
+      }
+    return render (request,'users/users_list.html', context )
