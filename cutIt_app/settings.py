@@ -39,9 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #custom apps for subfolder apps
     'apps.orders',
     'apps.users',
     'apps.reports',
+     #3rd party apps
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [

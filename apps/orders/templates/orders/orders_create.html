@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content%}
+<div>
+    {% comment %} Jak nie ma wpisanego enctype to wtedy nie doda nam zdjęcia {% endcomment %}
+    <form method="POST" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset="form-group">
+            <div class="col-sm-5">
+                <legend class="boarder-bottom mb-2">Tworzenie nowego zlecenia</legend>
+                {{form|crispy}}
+            </div>
+        </fieldset>
+            <div class="form-group">
+                <br>
+                <button class="btn btn-info" type="submit">Dodaj</button>
+                <a class="btn btn-secondary" href="{% url 'page-orders-list' %}">Przejdź do listy zleceń</a>
+            </div>
+    </form>
+    <br>
+</div>
+<br>
+{% endblock content %}
