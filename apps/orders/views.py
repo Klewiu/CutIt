@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView
-from .models import Order
+from django.views.generic import CreateView, ListView, DeleteView
+from .models import Order, Item
 
 # Create your views here.
 
 # CLASS - ORDER CREATE VIEW#
 class OrderCreateView (CreateView):
   model = Order
-  fields = ['orderName', 'orderQuantity', 'orderManager','orderStatus','orderNotes']
+  fields = ['orderNumber','orderName', 'orderQuantity', 'orderManager','orderNotes']
   template_name = 'orders/orders_create.html'
 
   def form_valid(self, form):
@@ -15,11 +15,16 @@ class OrderCreateView (CreateView):
     return super().form_valid(form)
 
 # CLASS - ORDER LIST VIEW#
-
 class OrderListView (ListView):
   model = Order
   template_name = 'orders/orders_list.html'
   ordering = ['-orderDate']
+
+#CLASS - ORDER DELETE VIEW
+class OrderDeleteView(DeleteView):
+  model=Order
+  template_name = 'orders/orders_delete.html'
+  success_url = '/orders_list/'
 
 #HOME VIEW#
 def home(request):

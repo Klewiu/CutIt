@@ -62,6 +62,11 @@ a {
     overflow: hidden
 }
 
+.header_menu{
+    position: absolute;
+    margin-left: 50px;
+}
+
 .header_img img {
     width: 40px
 }

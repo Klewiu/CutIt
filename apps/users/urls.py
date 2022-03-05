@@ -8,7 +8,7 @@ urlpatterns = [
     path("users_list/", views.users, name="page-users-list"),
     path("login/", views.login_view, name="page-login"),
     path("adminpage/register/", views.register, name="page-register"),
-    path("adminpage/", views.admin_page, name="page-admin"),
+    path("adminagep/", views.admin_page, name="page-admin"),
 ]
 
 if settings.DEBUG:

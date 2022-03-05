@@ -19,22 +19,22 @@
           {% comment %}  Zlecenia do realizacji  {% endcomment %}
           <a class="nav_link {% if request.path == ordersList %} active {% endif %}" 
           href="{% url 'page-orders-list' %}"><i class='bx bx-table nav_icon'></i>
-          <span class="nav_name">Zlecenia do realizacji</span>
+          <span class="nav_name">DO WYKONANIA</span>
           </a> 
           {% comment %}  Zlecenia wykonane {% endcomment %}
           <a class="nav_link {% if request.path == completedOrdersList %} active {% endif %}" 
           href="{% url 'page-completed-orders-list' %}" ><i class='bx bxs-select-multiple nav_icon'></i>
-          <span class="nav_name">Zlecenie wykonane</span> 
+          <span class="nav_name">ZAKOŃCZONE</span> 
           </a>
           {% comment %} Użytkownicy {% endcomment %}
           <a class="nav_link {% if request.path == usersList %} active {% endif %}" 
           href="{% url 'page-users-list' %}" ><i class='bx bxs-user nav_icon'></i>
-          <span class="nav_name">Użytkownicy</span>
+          <span class="nav_name">UŻYTKOWNICY</span>
           </a>
           {% comment %} Raporty {% endcomment %}
           <a class="nav_link {% if request.path == reportsList %} active {% endif %}"
           href="{% url 'page-reports-list' %}" ><i class='bx bx-bar-chart-alt-2 nav_icon'></i>
-          <span class="nav_name">Raporty</span> 
+          <span class="nav_name">RAPORTY</span> 
           </a> 
 
         </div>
