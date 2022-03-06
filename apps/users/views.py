@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
@@ -12,11 +12,6 @@ def users(request):
     return render(request, "users/users_list.html", context)
 
 
-def login_view(request):
-    context = {
-        "title": "Login Page",
-    }
-    return render(request, "users/login.html", context)
 
 
 def register(request):
