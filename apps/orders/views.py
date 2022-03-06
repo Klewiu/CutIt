@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DeleteView
 from .models import Order, Item
 from django.shortcuts import  get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 # CLASS - ORDER CREATE VIEW#
@@ -29,6 +30,7 @@ class OrderDeleteView(DeleteView):
   success_url = '/orders_list/'
 
 #HOME VIEW#
+@login_required
 def home(request):
     context = {
         'title':'Strona startowa programu',
