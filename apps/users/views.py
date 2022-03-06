@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import SignUpForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # USERS VIEW#
