@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import redirect
 from django.urls import reverse
 
 # Create your models here.
@@ -14,12 +15,12 @@ class Order(models.Model):
     orderQuantity = models.IntegerField(verbose_name='Nakład')
     orderManager = models.CharField(max_length=200, verbose_name='Kierownik zlecenia')
     orderDate = models.DateTimeField(auto_now=True, verbose_name='Data dodania')
-    orderStatus = models.CharField(max_length=50, verbose_name='Status wykonania', default= 'NOWE ZLECENIE', null=False, choices=orderStatus_choices)
+    isDone = models.BooleanField(default=False, verbose_name='Zrealizowane')
     orderNotes = models.CharField(max_length=200, verbose_name='Uwagi')
 
     def get_absolute_url(self):
         return reverse('page-orders-list')
-
+       
 class Item(models.Model):
     itemMaterial= models.CharField(max_length=200, verbose_name='Materiał')
     itemQuantity = models.IntegerField(verbose_name='Ilość sztuk')

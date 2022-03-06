@@ -1,4 +1,43 @@
 {% extends 'base.html' %} 
 {% block content %}
 <h1> Lista zleceń zakończonych </h1>
+
+<div>
+    <table class="table table-bordered">
+      <thead class="table-active">
+        <tr>
+          <th scope="col">Lp</th>
+          <th scope="col">Numer zlecenia</th>
+          <th scope="col">Nazwa zlecenia</th>
+          <th scope="col">Nakład</th>
+          <th scope="col">Manager</th>
+          <th scope="col">Data zlecenia</th>
+          <th scope="col">Uwagi</th>
+          <th scope="col">Akcje</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        {% for order in object_list %}
+        {% if order.isDone == True %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ order.orderNumber }}</td>
+            <td>{{ order.orderName }}</td>
+            <td>{{ order.orderQuantity }}</td>
+            <td>{{ order.orderManager }}</td>
+            <td>{{ order.orderDate |date:"M d, Y"}}</td>
+            <td>{{ order.orderNotes }}</td>
+            <td>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">Szczegóły</button>
+             
+              <a class="btn btn-danger adminButton" href="{% url 'page-order-delete' order.id %}">Usuń</a>
+            </td>
+          </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
 {% endblock %}

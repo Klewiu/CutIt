@@ -1,7 +1,8 @@
+from this import d
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DeleteView
 from .models import Order, Item
-
+from django.shortcuts import  get_object_or_404, redirect
 # Create your views here.
 
 # CLASS - ORDER CREATE VIEW#
@@ -19,6 +20,7 @@ class OrderListView (ListView):
   model = Order
   template_name = 'orders/orders_list.html'
   ordering = ['-orderDate']
+
 
 #CLASS - ORDER DELETE VIEW
 class OrderDeleteView(DeleteView):
@@ -41,8 +43,5 @@ def home(request):
 #     return render (request,'orders/orders_list.html', context )
 
 #COMPLETED ORDERS VIEW#
-def completed_orders_list(request):
-    context = {
-        'title':'Lista wykonanych zleceń',
-      }
-    return render (request,'orders/completed_orders_list.html', context )
+class OrderCompletedListView (OrderListView):
+  template_name = 'orders/completed_orders_list.html'
