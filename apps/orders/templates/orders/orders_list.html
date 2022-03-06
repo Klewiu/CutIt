@@ -31,11 +31,11 @@
             <td>
               <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">Szczegóły</button>
               
-              
-              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">Wykonaj</button>
+              <a class="btn btn-danger" href="{% url 'page-order-finish' order.id %}">Finish</a>
               
               {% comment %} Delete the order {% endcomment %}
-              <a class="btn btn-danger adminButton" href="{% url 'page-order-delete' order.id %}">Usuń</a>
+              
+              <a class="btn btn-danger" href="{% url 'page-order-delete' order.id %}">Usuń</a>
             </td>
           </tr>
           {% endif %}
