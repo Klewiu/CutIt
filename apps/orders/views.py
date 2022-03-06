@@ -1,4 +1,3 @@
-from this import d
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DeleteView, RedirectView
 from .models import Order, Item
