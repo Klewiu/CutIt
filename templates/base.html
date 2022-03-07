@@ -28,6 +28,18 @@
     <header class="header" id="header">
       <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i></div>
       <div class="header_menu"> <a class="btn btn-info" href="{% url 'page-order-create' %}">Nowe zlecenie</a></div>
+      
+      <!--Messages DIV-->
+      <div class="message_div">
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{message.tags}}" style="text-align:center; font-size:large;">
+                {{message}}
+            </div>
+        {% endfor %}
+        {% endif %}
+      </div class="message_div">
+
       <div class="header_img"> <img src="media\login-bgnd.jpg" alt=""> </div>
     </header>
     
