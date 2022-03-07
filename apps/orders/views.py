@@ -4,6 +4,7 @@ from django.views.generic import CreateView, ListView, DeleteView, RedirectView
 from .models import Order, Item
 from django.shortcuts import  get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 # CLASS - ORDER CREATE VIEW#
