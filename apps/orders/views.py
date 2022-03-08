@@ -1,9 +1,9 @@
-from this import d
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DeleteView, RedirectView
 from .models import Order, Item
 from django.shortcuts import  get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 
@@ -19,36 +19,36 @@ class OrderCreateView (CreateView):
 
 # CLASS - ORDER LIST VIEW#
 class OrderListView (ListView):
-  model = Order
+  model = Order # model to be used
   template_name = 'orders/orders_list.html'
   ordering = ['-orderDate']
 
 #CLASS - ORDER FINISH VIEW#
 class OrderFinishView(RedirectView):
-  success_url = "/orders_list/" # After finishing the order, where do you want to redirect the user?
+  success_url = "/orders_list/" # Redirect user to the list of orders
 
   def get(self, request, *args, **kwargs):
-      order_id = self.kwargs['pk_order']  # pk_order must be in your URL
-      order = get_object_or_404(Order, pk=order_id)
-      order.isDone = True
-      order.save()
-      return redirect(self.success_url)
+      order_id = self.kwargs['pk_order']  # pk_order is the name of the argument in the URL
+      order = get_object_or_404(Order, pk=order_id) # Get the order object
+      order.isDone = True # Set the order to done
+      order.save() # Save the order
+      messages.success(request, 'POTWIERDZENIE - Zlecenie #{} {} zostało wykonane.'.format(order.orderNumber, order.orderName)) # show a success message
+      return redirect(self.success_url) #Redirect to the list of orders
 
-  # def get(self, request, *args, **kwargs):
-  #    order_id = self.kwargs['pk_order'] # Get the order id from the url
-  #    order= get_object_or_404(Order, pk=order_id) # Get the order object
-  #    order.isDone = True # Set the order to done
-  #    order.save() # Save the order
-  #    return super().get(request, *args, **kwargs)
+#CLASS - ORDER RESTORE VIEW#
+class OrderRestoreView(RedirectView):
+  success_url = "/completed_orders_list/" # Redirect user to the list of completed orders
 
-  # def get_redirect_url(self, *args, **kwargs):
-  #       order = get_object_or_404(Order, pk=kwargs['pk'])
-  #       order.isDone = True
-  #       order.save()
-  #       return super().get_redirect_url(*args, **kwargs)
-
-
-  # success_url = 'orders/home.html' # Where do you want to redirect the user?
+  def get(self, request, *args, **kwargs):
+      order_id = self.kwargs['pk_order']  # pk_order is the name of the argument in the URL
+      order = get_object_or_404(Order, pk=order_id) # Get the order object
+      order.isDone = False # Set the order to not done
+      order.save() # Save the order
+      messages.warning(
+        request,
+        f'UWAGA - Zlecenie # {order.orderNumber} {order.orderName} zostało przywrócone do planu cięcia.'
+        ) # show a warning message using f-string
+      return redirect(self.success_url) #Redirect to the list of completed orders
 
 #CLASS - ORDER DELETE VIEW
 class OrderDeleteView(DeleteView):

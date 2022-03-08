@@ -1,10 +1,10 @@
 from django.urls import path
 from . import views
-from .views import OrderCreateView, OrderListView, OrderDeleteView, OrderCompletedListView, OrderFinishView
+from .views import OrderCreateView, OrderListView, OrderDeleteView, OrderCompletedListView, OrderFinishView, OrderRestoreView
 from cutIt_app import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.views.generic.base import RedirectView
+
 
 urlpatterns = [
     path('', views.home, name='page-home'),
@@ -13,6 +13,7 @@ urlpatterns = [
     path('orders/order_create/', OrderCreateView.as_view(), name='page-order-create'),
     path('orders/<int:pk>/delete/', OrderDeleteView.as_view(), name='page-order-delete'),
     path('orders/<int:pk_order>/finish', OrderFinishView.as_view(), name='page-order-finish'),
+    path('orders/<int:pk_order>/restore', OrderRestoreView.as_view(), name='page-order-restore'), 
 ]
 
 if settings.DEBUG:

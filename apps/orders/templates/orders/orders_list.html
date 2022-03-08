@@ -6,7 +6,7 @@
     <table class="table table-bordered">
       <thead class="table-active">
         <tr>
-          <th scope="col">Lp</th>
+          {% comment %} <th scope="col">Lp</th> {% endcomment %}
           <th scope="col">Numer zlecenia</th>
           <th scope="col">Nazwa zlecenia</th>
           <th scope="col">Nakład</th>
@@ -21,7 +21,7 @@
         {% for order in object_list %}
           {% if order.isDone == False %}
           <tr>
-            <td>{{ forloop.counter }}</td>
+            {% comment %} <td>{{ forloop.counter }}</td> {% endcomment %}
             <td>{{ order.orderNumber }}</td>
             <td>{{ order.orderName }}</td>
             <td>{{ order.orderQuantity }}</td>
@@ -30,11 +30,9 @@
             <td>{{ order.orderNotes }}</td>
             <td>
               <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">Szczegóły</button>
-              
-              <a class="btn btn-danger" href="{% url 'page-order-finish' order.id %}">Finish</a>
-              
+              {% comment %} Complete the order button {% endcomment %}
+              <a class="btn btn-success" href="{% url 'page-order-finish' order.id %}">Zrealizuj</a>
               {% comment %} Delete the order {% endcomment %}
-              
               <a class="btn btn-danger" href="{% url 'page-order-delete' order.id %}">Usuń</a>
             </td>
           </tr>
