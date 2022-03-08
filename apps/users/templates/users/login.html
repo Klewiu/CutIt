@@ -27,14 +27,14 @@
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group" autocomplete="off">
-            <div class="col-md">
-                <legend class="boarder-bottom mb-4">Logowanie</legend>
+            <div class="col-md-2">
+                <legend class="boarder-bottom mb-4 p-2">Logowanie</legend>
                 {{form|crispy}}
             </div>
         </fieldset>
         <br>
         <div class="form-group">
-            <div class="col-md">
+            <div class="col-md-2">
             <button class="btn btn-info btn-lg adminButton text-white"  type="submit">Login</button>
             <br>
             <br>

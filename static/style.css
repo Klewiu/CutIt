@@ -214,11 +214,8 @@ a {
     outline-style: solid;
     border-radius: 6px;
     outline-color: #eeeeee;
-    color: #fffffff;
+    color: #eeeeee;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
-    
-    
-    
   }

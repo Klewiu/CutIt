@@ -56,6 +56,14 @@ class OrderDeleteView(DeleteView):
   template_name = 'orders/orders_delete.html'
   success_url = '/orders_list/'
 
+#CLASS - ITEM LIST VIEW
+class ItemListView (ListView):
+  model = Item # model to be used
+  template_name = 'orders/orders_list.html'
+  ordering = ['-orderDate']
+  
+
+
 #HOME VIEW#
 @login_required
 def home(request):

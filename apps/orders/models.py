@@ -11,16 +11,24 @@ orderStatus_choices = (
 )
 
 class Order(models.Model):
-    orderNumber= models.CharField(max_length=200, verbose_name='Numer zlecenia')
-    orderName= models.CharField(max_length=200, verbose_name='Nazwa zlecenia')
+    orderNumber= models.CharField(max_length=30, verbose_name='Numer zlecenia')
+    orderName= models.CharField(max_length=30, verbose_name='Nazwa zlecenia')
     orderQuantity = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100000)], verbose_name='Nakład')
-    orderManager = models.CharField(max_length=200, verbose_name='Kierownik zlecenia')
+    orderManager = models.CharField(max_length=30, verbose_name='Kierownik zlecenia')
     orderDate = models.DateTimeField(auto_now=True, verbose_name='Data dodania')
     isDone = models.BooleanField(default=False, verbose_name='Zrealizowane')
-    orderNotes = models.CharField(max_length=200, verbose_name='Uwagi', blank=True, default='Brak')
+    orderNotes = models.CharField(max_length=30, verbose_name='Uwagi', blank=True, default='Brak')
+    
+    class Meta:
+        verbose_name = ("Zlecenie")
+        verbose_name_plural = ("Zlecenia")
+    
+    def __str__(self):
+        return f'Zlecenie {self.orderNumber}  {self.orderName}'
     
     def get_absolute_url(self):
         return reverse('page-orders-list')
+
        
 class Item(models.Model):
     itemMaterial= models.CharField(max_length=200, verbose_name='Materiał')
@@ -29,5 +37,15 @@ class Item(models.Model):
     itemBander= models.CharField(max_length=200, verbose_name='Oklejanie 1')
     itemDimmension2= models.CharField(max_length=200, verbose_name='Wymiar 2')
     itemBander2= models.CharField(max_length=200, verbose_name='Oklejanie 2')
-    itemPartName= models.CharField(max_length=200, verbose_name='Nazwa części')
+    itemName= models.CharField(max_length=200, verbose_name='Nazwa części')
     itemOrder = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Zlecenie')
+
+    class Meta:
+        verbose_name = ("Element do cięcia")
+        verbose_name_plural = ("Elementy do cięcia")
+    
+    def __str__(self):
+        return f'Element {self.itemName} z zlecenia {self.itemOrder.orderNumber}'
+    
+    def get_absolute_url(self):
+        return reverse('page-items-list', kwargs={'pk_order': self.itemOrder.pk})
