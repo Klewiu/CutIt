@@ -1,12 +1,16 @@
 {% extends 'base.html' %} 
 {% block content %}
-<h1> Lista pozycji wybranego zlecenia</h1>
+
+<h1> Plan cięcia wybranego zlecenia </h1>
+<h3 style="color:#997207;">{{order.orderNumber}} {{order.orderName}}</h3>
+<h4> Nakład: {{order.orderQuantity}} szt </h4>
+<a class="btn btn-info" href="#">Dodaj cięcie</a>
+<p></p>
 
 <div>
     <table class="table table-bordered">
       <thead class="table-active">
         <tr>
-          {% comment %} <th scope="col">Lp</th> {% endcomment %}
           <th scope="col">Nazwa materiału</th>
           <th scope="col">Ilość</th>
           <th scope="col">Wymiar</th>
@@ -15,26 +19,28 @@
           <th scope="col">Oklejanie</th>
           <th scope="col">Nazwa części</th>
           <th scope="col">Zlecenie numer</th>
-
+          <th scope="col">Akcje</th>
         </tr>
       </thead>
-  
+      
       <tbody>
         {% for item in object_list %}
-          <tr>
-            <th scope="row">{{ loop.index }}</th> 
-            <td>{{ item.itemMaterial }}</td>
-            <td>{{ item.itemQuantity }}</td>
-            <td>{{ item.itemDimmension1 }}</td>
-            <td>{{ item.itemBander }}</td>
-            <td>{{ item.itemDimmension2 }}</td>
-            <td>{{ item.itemBander2 }}</td>
-            <td>{{ item.itemName }}</td>
-            <td>
-              <a class="btn btn-success" href="#">Btn1</a>
-              <a class="btn btn-danger" href="#">Btn2</a>
-            </td>
-          </tr>
+            {% if item.itemOrder.orderNumber == order.orderNumber%}
+              <tr>
+                  <td>{{ item.itemMaterial }}</td>
+                  <td>{{ item.itemQuantity }}</td>
+                  <td>{{ item.itemDimmension1}}</td>
+                  <td>{{ item.itemBander }}</td>
+                  <td>{{ item.itemDimmension2 }}</td>
+                  <td>{{ item.itemBander2 }}</td>
+                  <td>{{ item.itemName }}</td>
+                  <td>{{ item.itemOrder.orderNumber }}</td>
+                  <td>
+                    <a class="btn btn-success" href="#">Btn1</a>
+                    <a class="btn btn-danger" href="#">Btn2</a>
+                  </td>
+                </tr>
+            {% endif %}
         {% endfor %}
       </tbody>
     </table>

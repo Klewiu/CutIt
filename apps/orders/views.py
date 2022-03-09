@@ -59,8 +59,13 @@ class OrderDeleteView(DeleteView):
 #CLASS - ITEM LIST VIEW
 class ItemListView (ListView):
   model = Item # model to be used
-  template_name = 'orders/orders_list.html'
-  ordering = ['-orderDate']
+  template_name = 'orders/items_list.html' # template to be used
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs) # Get the context from the super class
+    context['order'] = get_object_or_404(Order, pk=self.kwargs['pk_order']) # Get the order object
+    return context # Return the context
+    
   
 
 
