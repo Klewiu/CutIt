@@ -4,7 +4,7 @@
 <h1> Plan cięcia wybranego zlecenia </h1>
 <h3 style="color:#997207;">{{order.orderNumber}} {{order.orderName}}</h3>
 <h4> Nakład: {{order.orderQuantity}} szt </h4>
-<a class="btn btn-info" href="#">Dodaj cięcie</a>
+<a class="btn btn-info" href="{% url 'page-item-create' order.id %}">Dodaj cięcie</a>
 <p></p>
 
 <div>

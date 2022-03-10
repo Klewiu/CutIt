@@ -65,8 +65,17 @@ class ItemListView (ListView):
     context = super().get_context_data(**kwargs) # Get the context from the super class
     context['order'] = get_object_or_404(Order, pk=self.kwargs['pk_order']) # Get the order object
     return context # Return the context
-    
+
+#CLASS - ITEM CREATE VIEW
+class ItemCreateView (CreateView):
+  model=Item
+  template_name = 'orders/items_create.html'
+  fields = ['itemMaterial', 'itemName', 'itemQuantity', 'itemDimmension1', 'itemBander', 'itemDimmension2', 'itemBander2']
   
+  def form_valid(self, form):
+      form.instance.itemOrder = get_object_or_404(Order, pk=self.kwargs['pk_order']) # Get the order object
+      return super(ItemCreateView, self).form_valid(form)
+
 
 
 #HOME VIEW#
