@@ -95,11 +95,6 @@ class ItemDeleteView(DeleteView):
   template_name = 'orders/items_delete.html'
   success_url = '/orders_list/'
 
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs) # Get the context from the super class
-    context['order'] = get_object_or_404(Order) # Get the order object
-    return context # Return the context
-
 
 
 
