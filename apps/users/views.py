@@ -14,7 +14,6 @@ from .models import User
 #     return render(request, "users/users_list.html", context)
 
 
-
 @login_required
 @admin_required
 def register(request):

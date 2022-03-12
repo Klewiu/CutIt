@@ -21,15 +21,26 @@
       </thead>
   
       <tbody>
-        {% for user in users %}
-          {% comment %} {% if order.isDone == False %} {% endcomment %}
+       {% for user in users %}
+         
           <tr>
-            {% comment %} <td>{{ forloop.counter }}</td> {% endcomment %}
             <td>{{ user.id }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.last_login}}</td>
-            <td>{{ user. }} </td>
+            <td>
+               {% if user.is_admin == True %}
+               Admin
+               {% elif user.is_manager == True %}
+               Manager
+               {% elif user.is_operator == True %}
+               Operator
+               {% else %}
+                IT
+               {% endif %}
+
+                
+            </td>
             <td>
             <a class="btn btn-danger" href="#">Usuń</a>
             </td>
