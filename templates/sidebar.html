@@ -3,6 +3,8 @@
 {% url 'page-completed-orders-list' as completedOrdersList %}
 {% url 'page-users-list' as usersList %}
 {% url 'page-reports-list' as reportsList %}
+{% url 'page-admin' as adminList %}
+{% url 'logout' as logout %}
 
 
 
@@ -26,22 +28,30 @@
           href="{% url 'page-completed-orders-list' %}" ><i class='bx bxs-select-multiple nav_icon'></i>
           <span class="nav_name">ZAKOŃCZONE</span> 
           </a>
+
           {% comment %} Użytkownicy {% endcomment %}
-          <a class="nav_link {% if request.path == usersList %} active {% endif %}" 
+          {% comment %} <a class="nav_link {% if request.path == usersList %} active {% endif %}" 
           href="{% url 'page-users-list' %}" ><i class='bx bxs-user nav_icon'></i>
           <span class="nav_name">UŻYTKOWNICY</span>
-          </a>
+          </a> {% endcomment %}
+
           {% comment %} Raporty {% endcomment %}
           <a class="nav_link {% if request.path == reportsList %} active {% endif %}"
           href="{% url 'page-reports-list' %}" ><i class='bx bx-bar-chart-alt-2 nav_icon'></i>
           <span class="nav_name">RAPORTY</span> 
           </a> 
+          {% comment %} Zarządzanie Użytkownikami dla Admina{% endcomment %}
+          <a class="nav_link {% if request.path == adminList %} active {% endif %}"
+          href="{% url 'page-admin' %}" ><i class='bx bxs-user nav_icon'></i>
+          <span class="nav_name">UŻYTKOWNICY</span> 
+          </a> 
 
         </div>
       
       {% comment %} SIDEBAR BOTTOM SECTION - SIGNOUT {% endcomment %}
-      </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
-          class="nav_name">SignOut</span> </a>
+      <a class="nav_link {% if request.path == logout %} active {% endif %}"
+      </div> <a href="{% url 'logout' %}" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
+          class="nav_name">WYLOGUJ</span> </a>
 
     </nav>
   </div>
