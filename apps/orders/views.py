@@ -1,11 +1,18 @@
+from urllib import request
+from django.http import HttpRequest
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DeleteView, RedirectView
+
+from apps import orders
 from .models import Order, Item
 from django.shortcuts import  get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 # Create your views here.
+
+###ORDER VIEWS####
 
 # CLASS - ORDER CREATE VIEW#
 class OrderCreateView (CreateView):
@@ -56,6 +63,12 @@ class OrderDeleteView(DeleteView):
   template_name = 'orders/orders_delete.html'
   success_url = '/orders_list/'
 
+#COMPLETED ORDERS VIEW#
+class OrderCompletedListView (OrderListView):
+  template_name = 'orders/completed_orders_list.html'
+
+###ITEM VIEWS####
+
 #CLASS - ITEM LIST VIEW
 class ItemListView (ListView):
   model = Item # model to be used
@@ -76,6 +89,18 @@ class ItemCreateView (CreateView):
       form.instance.itemOrder = get_object_or_404(Order, pk=self.kwargs['pk_order']) # Get the order object
       return super(ItemCreateView, self).form_valid(form)
 
+#CLASS - ITEM DELETE VIEW
+class ItemDeleteView(DeleteView):
+  model=Item
+  template_name = 'orders/items_delete.html'
+  success_url = '/orders_list/'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs) # Get the context from the super class
+    context['order'] = get_object_or_404(Order) # Get the order object
+    return context # Return the context
+
+
 
 
 #HOME VIEW#
@@ -93,6 +118,3 @@ def home(request):
 #       }
 #     return render (request,'orders/orders_list.html', context )
 
-#COMPLETED ORDERS VIEW#
-class OrderCompletedListView (OrderListView):
-  template_name = 'orders/completed_orders_list.html'

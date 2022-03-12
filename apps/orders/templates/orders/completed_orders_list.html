@@ -29,8 +29,8 @@
             <td>{{ order.orderDate |date:"M d, Y"}}</td>
             <td>{{ order.orderNotes }}</td>
             <td>
-              
-              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">Szczegóły</button>
+              {% comment %} Order detail with items {% endcomment %}
+              <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Szczegóły</a>
               {% comment %} Restore the order button {% endcomment %}
               <a class="btn btn-warning" href="{% url 'page-order-restore' order.id %}">Przywróć</a>
               {% comment %} Delete the order {% endcomment %}

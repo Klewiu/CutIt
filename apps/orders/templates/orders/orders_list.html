@@ -29,6 +29,7 @@
             <td>{{ order.orderDate |date:"M d, Y"}}</td>
             <td>{{ order.orderNotes }}</td>
             <td>
+              {% comment %} Order detail with items {% endcomment %}
               <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Szczegóły</a>
               {% comment %} Complete the order button {% endcomment %}
               <a class="btn btn-success" href="{% url 'page-order-finish' order.id %}">Zrealizuj</a>

@@ -4,7 +4,9 @@
 <h1> Plan cięcia wybranego zlecenia </h1>
 <h3 style="color:#997207;">{{order.orderNumber}} {{order.orderName}}</h3>
 <h4> Nakład: {{order.orderQuantity}} szt </h4>
-<a class="btn btn-info" href="{% url 'page-item-create' order.id %}">Dodaj cięcie</a>
+{% if order.isDone == False %}
+  <a class="btn btn-info" href="{% url 'page-item-create' order.id %}">Dodaj cięcie</a>
+{% endif %}
 <p></p>
 
 <div>
@@ -36,8 +38,12 @@
                   <td>{{ item.itemName }}</td>
                   <td>{{ item.itemOrder.orderNumber }}</td>
                   <td>
-                    <a class="btn btn-success" href="#">Btn1</a>
-                    <a class="btn btn-danger" href="#">Btn2</a>
+                    {% if order.isDone == False %}
+                      {% comment %} Delete the item {% endcomment %}
+                      <a class="btn btn-danger" href="{% url 'page-items-delete' item.id %}">Usuń pozycję</a>
+                    {% else %}
+                      X
+                    {% endif %}
                   </td>
                 </tr>
             {% endif %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="boarder-bottom mb-4">Potwierdzenie skasowania pozycji cięcia</legend>
+            {{form|crispy}}
+        </fieldset>
+        <div class="form-group">
+            <p>Element {{item.itemName}} z zlecenie {{order.orderNumber}} zostanie skasowany. Czy na pewno chcesz to zrobić?</p>
+            <button class="btn btn-outline-danger adminButton" type="submit {{ order.id}}" value="confirm">Tak - usuń</button>
+            <a class="btn btn-outline-secondary adminButton" href="{% url 'page-items-list' order.id %}">Anuluj</a>
+        </div>
+    </form>
+    <br>
+</div>
+<br>
+{% endblock content %}
