@@ -1,4 +1,43 @@
 {% extends 'base.html' %} 
 {% block content %}
-<h1> Hello Admin Page</h1>
+<h1> Zarządzanie Użytkownikami</h1>
+
+<a class="btn btn-success" href="{% url 'page-register' %}">Utwórz Nowych Użytkowników</a>
+<br>
+<br>
+
+<div>
+    <table class="table table-bordered">
+      <thead class="table-active">
+        <tr>
+          {% comment %} <th scope="col">Lp</th> {% endcomment %}
+          <th scope="col">Id Użytkownika</th>
+          <th scope="col">Nazwa Użytkownika</th>
+          <th scope="col">Email Użytkownika</th>
+          <th scope="col">Ostatnie Logowanie</th>
+          <th scope="col">Typ Użytkownika</th>
+          <th scope="col">Usuń Użytkownika</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        {% for user in users %}
+          {% comment %} {% if order.isDone == False %} {% endcomment %}
+          <tr>
+            {% comment %} <td>{{ forloop.counter }}</td> {% endcomment %}
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.last_login}}</td>
+            <td>{{ user. }} </td>
+            <td>
+            <a class="btn btn-danger" href="#">Usuń</a>
+            </td>
+          </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
 {% endblock %}
