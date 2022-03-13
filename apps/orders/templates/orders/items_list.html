@@ -6,6 +6,7 @@
 <h4> Nakład: {{order.orderQuantity}} szt </h4>
 {% if order.isDone == False %}
   <a class="btn btn-info" href="{% url 'page-item-create' order.id %}">Dodaj cięcie</a>
+  <a href="{% url 'pdf' order.id%}" class="btn btn-danger">PDF</a>
 {% endif %}
 <p></p>
 

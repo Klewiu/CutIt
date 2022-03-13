@@ -1,14 +1,18 @@
 from urllib import request
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DeleteView, RedirectView
-
 from apps import orders
 from .models import Order, Item
 from django.shortcuts import  get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.urls import reverse_lazy
+
+# IMPORTS FOR PDF #
+from datetime import datetime
+from xhtml2pdf import pisa
+from django.http import HttpResponse
+from django.template.loader import get_template
 
 # Create your views here.
 
@@ -96,6 +100,33 @@ class ItemDeleteView(DeleteView):
   success_url = '/orders_list/'
 
 
+### ADITIONAL FUNCTIONALITY ####
+
+# PDF VIEWS#
+def render_pdf_view(request, pk):
+    template_path = 'orders/pdf.html'
+    obj = get_object_or_404(Order, pk=pk)
+    obj2= Item.objects.filter(itemOrder=obj)
+    obj3 = datetime.now()
+
+    context = {
+      'obj': obj,
+      'obj2': obj2,
+      'obj3': obj3
+    }
+
+    response = HttpResponse(content_type='orders/pdf')
+    response['Content-Disposition'] = 'filename="Zlecenie {} w PDF.pdf"'.format(obj.orderNumber)
+    template = get_template(template_path)
+    html = template.render(context)
+    
+    pisa_status = pisa.CreatePDF(
+        html, dest=response)
+
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
 
 
 #HOME VIEW#
@@ -105,11 +136,4 @@ def home(request):
         'title':'Strona startowa programu',
       }
     return render (request,'orders/home.html', context )
-
-# #ORDERS VIEW#
-# def orders_list(request):
-#     context = {
-#         'title':'Lista zleceń',
-#       }
-#     return render (request,'orders/orders_list.html', context )
 

@@ -10,6 +10,7 @@ from .views import (
     ItemListView ,
     ItemCreateView,
     ItemDeleteView,
+    render_pdf_view,
 )
 from cutIt_app import settings
 from django.conf.urls.static import static
@@ -27,6 +28,7 @@ urlpatterns = [
     path('items_list/<int:pk_order>/', ItemListView.as_view(), name='page-items-list'), 
     path('items/<int:pk_order>/item_create', ItemCreateView.as_view(), name='page-item-create'), 
     path('items/<int:pk>/delete/', ItemDeleteView.as_view(), name='page-items-delete'),
+    path('items_list/<int:pk>/pdf/', render_pdf_view, name='pdf'),
 ]
 
 if settings.DEBUG:
