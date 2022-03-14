@@ -5,7 +5,7 @@ from django.urls import reverse
 
 def admin_required(view_func):
         def wrap(request,*args, **kwargs):
-            if request.user.is_admin:
+            if request.user.is_admin or request.user.is_superuser:
                 return view_func (request, *args, **kwargs)
             else:
                 return HttpResponseRedirect(reverse('page-home'))
@@ -13,7 +13,7 @@ def admin_required(view_func):
 
 def manager_required(view_func):
         def wrap(request,*args, **kwargs):
-            if request.user.is_manager:
+            if request.user.is_manager or request.user.is_superuser:
                 return view_func (request, *args, **kwargs)
             else:
                 return HttpResponseRedirect(reverse('page-home'))
@@ -22,7 +22,7 @@ def manager_required(view_func):
 
 def operator_required(view_func):
         def wrap(request,*args, **kwargs):
-            if request.user.is_operator:
+            if request.user.is_operator or request.user.is_superuser:
                 return view_func (request, *args, **kwargs)
             else:
                 return HttpResponseRedirect(reverse('page-home'))
