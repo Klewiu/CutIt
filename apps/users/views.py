@@ -6,12 +6,11 @@ from django.contrib.auth.decorators import login_required
 from .decorators import admin_required
 from .models import User
 
-# USERS VIEW#
-# def users(request):
-#     context = {
-#         "title": "Lista użytkowników",
-#     }
-#     return render(request, "users/users_list.html", context)
+
+def delete_view(request, pk):
+    event = User.objects.get(pk=pk)
+    event.delete()
+    return redirect('page-admin')
 
 
 @login_required
@@ -41,6 +40,7 @@ def admin_page(request):
         
     }
     return render(request, "users/adminpage.html", context)
+
 
 
 
