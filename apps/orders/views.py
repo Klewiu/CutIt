@@ -6,6 +6,8 @@ from apps import orders
 from .models import Order, Item
 from django.shortcuts import  get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from apps.users.decorators import admin_required, manager_required, operator_required
+from django.utils.decorators import method_decorator
 from django.contrib import messages
 
 # IMPORTS FOR PDF #
@@ -19,6 +21,7 @@ from django.template.loader import get_template
 ###ORDER VIEWS####
 
 # CLASS - ORDER CREATE VIEW#
+@method_decorator(login_required, name='dispatch')
 class OrderCreateView (CreateView):
   model = Order
   fields = ['orderNumber','orderName', 'orderQuantity', 'orderManager','orderNotes']
@@ -29,12 +32,15 @@ class OrderCreateView (CreateView):
     return super().form_valid(form)
 
 # CLASS - ORDER LIST VIEW#
+@method_decorator(login_required, name='dispatch')
+@method_decorator(admin_required, name='dispatch')
 class OrderListView (ListView):
   model = Order # model to be used
   template_name = 'orders/orders_list.html'
   ordering = ['-orderDate']
 
 #CLASS - ORDER FINISH VIEW#
+@method_decorator(login_required, name='dispatch')
 class OrderFinishView(RedirectView):
   success_url = "/orders_list/" # Redirect user to the list of orders
 
@@ -47,6 +53,7 @@ class OrderFinishView(RedirectView):
       return redirect(self.success_url) #Redirect to the list of orders
 
 #CLASS - ORDER RESTORE VIEW#
+@method_decorator(login_required, name='dispatch')
 class OrderRestoreView(RedirectView):
   success_url = "/completed_orders_list/" # Redirect user to the list of completed orders
 
@@ -62,18 +69,21 @@ class OrderRestoreView(RedirectView):
       return redirect(self.success_url) #Redirect to the list of completed orders
 
 #CLASS - ORDER DELETE VIEW
+@method_decorator(login_required, name='dispatch')
 class OrderDeleteView(DeleteView):
   model=Order
   template_name = 'orders/orders_delete.html'
   success_url = '/orders_list/'
 
 #COMPLETED ORDERS VIEW#
+@method_decorator(login_required, name='dispatch')
 class OrderCompletedListView (OrderListView):
   template_name = 'orders/completed_orders_list.html'
 
 ###ITEM VIEWS####
 
 #CLASS - ITEM LIST VIEW
+@method_decorator(login_required, name='dispatch')
 class ItemListView (ListView):
   model = Item # model to be used
   template_name = 'orders/items_list.html' # template to be used
@@ -84,6 +94,7 @@ class ItemListView (ListView):
     return context # Return the context
 
 #CLASS - ITEM CREATE VIEW
+@method_decorator(login_required, name='dispatch')
 class ItemCreateView (CreateView):
   model=Item
   template_name = 'orders/items_create.html'
@@ -94,6 +105,7 @@ class ItemCreateView (CreateView):
       return super(ItemCreateView, self).form_valid(form)
 
 #CLASS - ITEM DELETE VIEW
+@method_decorator(login_required, name='dispatch')
 class ItemDeleteView(DeleteView):
   model=Item
   template_name = 'orders/items_delete.html'
@@ -103,6 +115,7 @@ class ItemDeleteView(DeleteView):
 ### ADITIONAL FUNCTIONALITY ####
 
 # PDF VIEWS#
+@login_required
 def render_pdf_view(request, pk):
     template_path = 'orders/pdf.html'
     obj = get_object_or_404(Order, pk=pk)

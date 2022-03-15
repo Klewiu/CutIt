@@ -42,13 +42,17 @@
                 
             </td>
             <td>
-            <a class="btn btn-danger" href="#">Usuń</a>
+            <a class="btn btn-danger" href="{% url 'delete-users' user.pk %}">Usuń</a>
             </td>
           </tr>
+          
+
 
         {% endfor %}
       </tbody>
     </table>
   </div>
+
+
 
 {% endblock %}
