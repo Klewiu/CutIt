@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% block content %}
+<div id="users-list">
 <h1> Zarządzanie Użytkownikami</h1>
 
 <a class="btn btn-success" href="{% url 'page-register' %}">Utwórz Nowych Użytkowników</a>
@@ -42,17 +43,23 @@
                 
             </td>
             <td>
-            <a class="btn btn-danger" href="{% url 'delete-users' user.pk %}">Usuń</a>
+              {% comment %} htmx dynamic request {% endcomment %}
+            <a class="btn btn-danger" style="cursor: pointer;"
+               hx-delete="{% url 'delete-users' user.pk %}"
+               hx-target ='#users-list'
+               hx-confirm = "Czy chcesz usunąć {{user.username}} ?"
+               >Usuń</a>
             </td>
           </tr>
-          
+    
+
 
 
         {% endfor %}
       </tbody>
     </table>
   </div>
-
+</div>
 
 
 {% endblock %}
