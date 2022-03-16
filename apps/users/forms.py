@@ -10,6 +10,14 @@ class CustomUserCreationForm (UserCreationForm):
 
 
 class SignUpForm(UserCreationForm):
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data['is_admin'] == False and cleaned_data['is_manager'] == False and cleaned_data['is_operator'] == False:
+            raise forms.ValidationError("Użytkownik musi mieć status Admin lub Manager lub Operator")
+        
+        
+
+
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
