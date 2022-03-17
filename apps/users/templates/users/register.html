@@ -4,72 +4,31 @@
 
 <h1> Rejestracja Użytkowników</h1>
 <br>
-<div class="content">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6 contents">
-          <div class="row justify-content-center">
-            <div class="col-md-12">
-              <div class="form-block">
-                  <div class="mb-4">
-                      {% comment %} <h3>Zarejestruj Nowego Użytkownika</h3> {% endcomment %}
-                </div>
-                   <span class="mb-0 text-muted">
-                {% if msg %}
-                    {{ msg | safe }}
-                {% else %}
-                    Zarejestruj Nowego Użytkownika
-                {% endif %}
-              </span> 
-                <form  method="post">
-                    {% csrf_token %}
-                  <div class="form-group first">
-                    <label for="username">Nazwa Użytkownika</label>
-                      {{ form.username }}
-                  </div>
-                  <div class="form-group first">
-                    <label for="email">Email</label>
-                      {{ form.email}}
-                  </div>
-                  <div class="form-group last mb-4">
-                    <label for="password">Hasło</label>
-                      {{ form.password1 }}
-                  </div>
-                  <div class="form-group last mb-4">
-                    <label for="password">Potwierdź Hasło</label>
-                      {{ form.password2 }}
-                  </div>
-                  <div class="form-group last mb-4"> Typ Uzytkownika: </div>
-                  <div class="d-flex mb-2 align-items-center">
-                    <label class="control control--checkbox mb-0"><span class="caption">Admin</span>
-                        {{ form.is_admin }}
-                      <div class="control__indicator"></div>
-                    </label>
-                  </div>
-                  <div class="d-flex mb-2 align-items-center">
-                    <label class="control control--checkbox mb-0"><span class="caption">Manager</span>
-                        {{ form.is_manager }}
-                      <div class="control__indicator"></div>
-                    </label>
-                  </div>
-                  <div class="d-flex mb-2 align-items-center">
-                    <label class="control control--checkbox mb-0"><span class="caption">Operator</span>
-                        {{ form.is_operator }}
-                      <div class="control__indicator"></div>
-                    </label>
-                  </div>
-                    <span class="text-error">{{ form.errors }}</span>
-                    <br>
-                  <input type="submit"  value="Zarejestruj" class="btn btn-pill text-white btn-block btn-primary">
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
 
+<body  style="padding-top: 60px;background-color: #f5f7f8 !important;">
+  <div class="container">
+  <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+      <h4>Formularz</h4>
+           <form action="" method="post"><input type='hidden'/>
+           {%csrf_token %}
+
+              {{ form|crispy }}
+            <div class="form-group">
+              <br>
+              <button type="submit" class="btn btn-info ">
+                Rejestruj
+              </button>
+
+                </div>
+
+              </form>
       </div>
-    </div>
   </div>
+</div>
+
+</body>
+
 
 
 

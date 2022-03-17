@@ -3,8 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    is_admin= models.BooleanField('Is admin', default=False)
-    is_manager = models.BooleanField('Is manager', default=False)
-    is_operator = models.BooleanField('Is operator', default=False)
+    is_admin= models.BooleanField('Admin', default=False)
+    is_manager = models.BooleanField('Manager', default=False)
+    is_operator = models.BooleanField('Operator', default=False)
 
 # Create your models here.
