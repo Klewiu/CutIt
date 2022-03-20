@@ -1,3 +1,6 @@
+from base64 import encode
+from locale import normalize
+import unicodedata
 from django.db import models
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -5,10 +8,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
-orderStatus_choices = (
-    ('W REALIZACJI', 'W REALIZACJI'), ('NOWE ZLECENIE', 'NOWE ZLECENIE'),
-    ('ZAKOŃCZONO', 'ZAKOŃCZONO'), ('BŁĘDY W ZLECENIU', 'BŁĘDY W ZLECENIU'), 
-)
+
 
 class Order(models.Model):
     orderNumber= models.CharField(max_length=30, verbose_name='Numer zlecenia')
@@ -29,14 +29,18 @@ class Order(models.Model):
     def get_absolute_url(self):
         return reverse('page-orders-list')
 
+itemBander_choices = (
+    ('BEZ OKLEJANIA', 'BEZ OKLEJANIA'), ('OKLEJANIE 1 STR', 'OKLEJANIE 1 STR'),
+    ('OKLEJANIE 2 STR', 'OKLEJANIE 2 STR'), 
+)
        
 class Item(models.Model):
     itemMaterial= models.CharField(max_length=200, verbose_name='Materiał')
     itemQuantity = models.IntegerField(verbose_name='Ilość sztuk')
     itemDimmension1= models.CharField(max_length=200, verbose_name='Wymiar 1')
-    itemBander= models.CharField(max_length=200, verbose_name='Oklejanie 1')
+    itemBander= models.CharField(choices=itemBander_choices, max_length=200, verbose_name='Oklejanie wymiaru 1', default='BEZ OKLEJANIA')
     itemDimmension2= models.CharField(max_length=200, verbose_name='Wymiar 2')
-    itemBander2= models.CharField(max_length=200, verbose_name='Oklejanie 2')
+    itemBander2= models.CharField(choices=itemBander_choices, max_length=200, verbose_name='Oklejanie wymiaru 2', default='BEZ OKLEJANIA')
     itemName= models.CharField(max_length=200, verbose_name='Nazwa części')
     itemOrder = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Zlecenie')
 

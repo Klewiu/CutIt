@@ -10,17 +10,25 @@
         table { -pdf-keep-with-next: true; }
         p { margin: 0; -pdf-keep-with-next: true; }
         p.separator { -pdf-keep-with-next: false; font-size: 6pt; }
+        body{
+            font-family: 'Helvetica', sans-serif;
+            font-size: 13px;
+        }
+        .bander{
+            color:brown; 
+            font-size:13pt;
+        }
     </style>
 
 </head>
 
 <body>
     <img src="media/logo.jpg" style="height:60px;">
-    <h2> Plan ciecia wybranego zlecenia: </h2>
+    <h2> PLAN ROZKROJU ZLECENIA: </h2>
     <h1 style="color:#997207;">{{obj.orderNumber}} {{obj.orderName}}</h3>
         <h2> Naklad: {{obj.orderQuantity}} szt </h2>
-        <h3> Data utworzenia wydruku: {{obj3}} </h3>
-
+        <h4> Data utworzenia wydruku: {{obj3}} </h4>
+        
         <div>
             <table class="table table-bordered" style="text-align: center; padding: 5px;" border="0.2">
                 <thead class="table-active">
@@ -28,9 +36,7 @@
                         <th scope="col">Nazwa materialu</th>
                         <th scope="col">Ilosc</th>
                         <th scope="col">Wymiar</th>
-                        <th scope="col">Oklejanie</th>
                         <th scope="col">Wymiar2</th>
-                        <th scope="col">Oklejanie</th>
                         <th scope="col">Nazwa czesci</th>
                     </tr>
                 </thead>
@@ -39,18 +45,32 @@
                     {% for item in obj2 %}
                     <tr>
                         <td>{{ item.itemMaterial }}</td>
-                        <td>{{ item.itemQuantity }}</td>
-                        <td>{{ item.itemDimmension1}}</td>
-                        <td>{{ item.itemBander }}</td>
-                        <td>{{ item.itemDimmension2 }}</td>
-                        <td>{{ item.itemBander2 }}</td>
+                        <td>{{ item.itemQuantity }} szt</td>
+                        {% if item.itemBander == 'OKLEJANIE 1 STR' %}
+                            <td class="text-center"><b class="bander">*</b> {{ item.itemDimmension1 }}</td>
+                        {% elif item.itemBander == 'OKLEJANIE 2 STR' %}
+                            <td class="text-center"><b class="bander">*</b> {{ item.itemDimmension1 }} <b class="bander">*</b></td>
+                        {% else %}
+                            <td class="text-center">{{ item.itemDimmension1 }}</td>
+                        {% endif %}
+
+                         {% if item.itemBander2 == 'OKLEJANIE 1 STR' %}
+                            <td class="text-center"><b class="bander">*</b> {{ item.itemDimmension2 }}</td>
+                        {% elif item.itemBander2 == 'OKLEJANIE 2 STR' %}
+                            <td class="text-center"><b class="bander">*</b> {{ item.itemDimmension2 }} <b class="bander">*</b></td>
+                        {% else %}
+                            <td class="text-center">{{ item.itemDimmension2 }}</td>
+                        {% endif %}
+
                         <td>{{ item.itemName }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            
         </div>
+        <p></p>
+        <h6><i> LEGENDA:<b class="bander">*</b> wymiar - oklejanie 1-str // <b class="bander">*</b> wymiar <b class="bander">*</b> - oklejanie 2 str</i></h6>
+            
 </body>
 
 </html>

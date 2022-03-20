@@ -15,14 +15,12 @@
       <thead class="table-active">
         <tr>
           <th scope="col">Nazwa materiału</th>
-          <th scope="col">Ilość</th>
-          <th scope="col">Wymiar</th>
-          <th scope="col">Oklejanie</th>
-          <th scope="col">Wymiar2</th>
-          <th scope="col">Oklejanie</th>
-          <th scope="col">Nazwa części</th>
-          <th scope="col">Zlecenie numer</th>
-          <th scope="col">Akcje</th>
+          <th scope="col" class="text-center">Ilość</th>
+          <th scope="col" class="text-center">Wymiar</th>
+          <th scope="col" class="text-center">Wymiar2</th>
+          <th scope="col" class="text-center">Nazwa części</th>
+          <th scope="col" class="text-center">Zlecenie numer</th>
+          <th scope="col" class="text-center">Akcje</th>
         </tr>
       </thead>
       
@@ -31,14 +29,37 @@
             {% if item.itemOrder.orderNumber == order.orderNumber%}
               <tr>
                   <td>{{ item.itemMaterial }}</td>
-                  <td>{{ item.itemQuantity }}</td>
-                  <td>{{ item.itemDimmension1}}</td>
-                  <td>{{ item.itemBander }}</td>
-                  <td>{{ item.itemDimmension2 }}</td>
-                  <td>{{ item.itemBander2 }}</td>
-                  <td>{{ item.itemName }}</td>
-                  <td>{{ item.itemOrder.orderNumber }}</td>
-                  <td>
+                  <td class="text-center">{{ item.itemQuantity }} szt </td>
+                  
+                  {% comment %} Dimension 1 show with bander option {% endcomment %}
+                  {% if item.itemBander == 'OKLEJANIE 1 STR' %}
+                    <td class="text-center" 
+                    style="text-decoration: underline; text-decoration-thickness:4px; text-decoration-color:#997207;">
+                    {{ item.itemDimmension1 }}</td>
+                  {% elif item.itemBander == 'OKLEJANIE 2 STR' %}
+                    <td class="text-center" 
+                    style="text-decoration: underline; text-decoration-style: double; text-decoration-thickness:4px; text-decoration-color:#997207;">
+                    {{ item.itemDimmension1 }}</td>
+                  {% else %}
+                    <td class="text-center">{{ item.itemDimmension1 }}</td>
+                  {% endif %}
+                  
+                  {% comment %} Dimension 2 show with bander option {% endcomment %}
+                  {% if item.itemBander2 == 'OKLEJANIE 1 STR' %}
+                    <td class="text-center" 
+                    style="text-decoration: underline; text-decoration-thickness:4px; text-decoration-color:#997207;">
+                    {{ item.itemDimmension2 }}</td>
+                  {% elif item.itemBander2 == 'OKLEJANIE 2 STR' %}
+                    <td class="text-center" 
+                    style="text-decoration: underline; text-decoration-style: double; text-decoration-thickness:4px; text-decoration-color:#997207;">
+                    {{ item.itemDimmension2 }}</td>
+                  {% else %}
+                    <td class="text-center">{{ item.itemDimmension2 }}</td>
+                  {% endif %}
+                  
+                  <td class="text-center" >{{ item.itemName }}</td>
+                  <td class="text-center" >{{ item.itemOrder.orderNumber }}</td>
+                  <td class="text-center">
                     {% if order.isDone == False %}
                       {% comment %} Delete the item {% endcomment %}
                       <a class="btn btn-danger" href="{% url 'page-items-delete' item.id %}">Usuń pozycję</a>

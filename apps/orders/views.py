@@ -10,6 +10,7 @@ from apps.users.decorators import admin_required, manager_required, operator_req
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 
+
 # IMPORTS FOR PDF #
 from datetime import datetime
 from xhtml2pdf import pisa

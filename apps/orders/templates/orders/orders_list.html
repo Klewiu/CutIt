@@ -27,7 +27,7 @@
             <td>{{ order.orderQuantity }}</td>
             <td>{{ order.orderManager }}</td>
             <td>{{ order.orderDate |date:"M d, Y"}}</td>
-            <td>{{ order.orderNotes }}</td>
+            <td style="color:darkred;">{{ order.orderNotes }}</td>
             <td>
               {% comment %} Order detail with items {% endcomment %}
               <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Szczegóły</a>
