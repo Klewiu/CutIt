@@ -34,7 +34,7 @@
               {% comment %} Complete the order button {% endcomment %}
               <a class="btn btn-success" href="{% url 'page-order-finish' order.id %}">Zrealizuj</a>
               {% comment %} Delete the order {% endcomment %}
-              <a class="btn btn-danger" href="{% url 'page-order-delete' order.id %}">Usuń</a>
+              <a class="btn btn-danger" href="{% url 'page-order-delete' order.id %}">Usuń zlecenie</a>
             </td>
           </tr>
           {% endif %}

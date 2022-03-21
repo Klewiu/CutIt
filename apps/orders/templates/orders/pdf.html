@@ -35,9 +35,10 @@
                     <tr>
                         <th scope="col">Nazwa materialu</th>
                         <th scope="col">Ilosc</th>
-                        <th scope="col">Wymiar</th>
-                        <th scope="col">Wymiar2</th>
                         <th scope="col">Nazwa czesci</th>
+                        <th scope="col">Wymiar (mm)</th>
+                        <th scope="col">Wymiar 2 (mm)</th>
+                        
                     </tr>
                 </thead>
 
@@ -46,6 +47,7 @@
                     <tr>
                         <td>{{ item.itemMaterial }}</td>
                         <td>{{ item.itemQuantity }} szt</td>
+                        <td>{{ item.itemName }}</td>
                         {% if item.itemBander == 'OKLEJANIE 1 STR' %}
                             <td class="text-center"><b class="bander">*</b> {{ item.itemDimmension1 }}</td>
                         {% elif item.itemBander == 'OKLEJANIE 2 STR' %}
@@ -62,7 +64,6 @@
                             <td class="text-center">{{ item.itemDimmension2 }}</td>
                         {% endif %}
 
-                        <td>{{ item.itemName }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

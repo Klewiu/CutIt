@@ -32,9 +32,9 @@
               {% comment %} Order detail with items {% endcomment %}
               <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Szczegóły</a>
               {% comment %} Restore the order button {% endcomment %}
-              <a class="btn btn-warning" href="{% url 'page-order-restore' order.id %}">Przywróć</a>
+              <a class="btn btn-warning" href="{% url 'page-order-restore' order.id %}">Przywróć do realizacji</a>
               {% comment %} Delete the order {% endcomment %}
-              <a class="btn btn-danger adminButton" href="{% url 'page-order-delete' order.id %}">Usuń</a>
+              <a class="btn btn-danger adminButton" href="{% url 'page-order-delete' order.id %}">Usuń zlecenie</a>
             </td>
           </tr>
         {% endif %}

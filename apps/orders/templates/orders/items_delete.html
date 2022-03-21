@@ -10,9 +10,9 @@
             {{form|crispy}}
         </fieldset>
         <div class="form-group">
-            <p>Element {{item.itemName}} z zlecenie {{order.orderNumber}} zostanie skasowany. Czy na pewno chcesz to zrobić?</p>
+            <p>Element {{item.itemName}} o wymiarach: {{item.itemDimmension1}}x{{item.itemDimmension2}} (mm) z zlecenia {{item.itemOrder.orderNumber}} zostanie skasowany. Czy na pewno chcesz to zrobić?</p>
             <button class="btn btn-outline-danger adminButton" type="submit" value="confirm">Tak - usuń</button>
-            <a class="btn btn-outline-secondary adminButton" href="{% url 'page-orders-list'  %}">Anuluj</a>
+            <input class="btn btn-outline-secondary adminButton" type=button value="Anuluj" onClick="javascript:history.go(-1);">
         </div>
     </form>
     <br>

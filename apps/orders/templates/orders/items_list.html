@@ -8,6 +8,7 @@
   <a class="btn btn-info" href="{% url 'page-item-create' order.id %}">Dodaj cięcie</a>
 {% endif %}
   <a href="{% url 'pdf' order.id%}" class="btn btn-danger">PDF</a>
+  <input class="btn btn-outline-secondary adminButton" type=button value="Powrót" onClick="javascript:history.go(-1);">
 <p></p>
 
 <div>
@@ -16,9 +17,9 @@
         <tr>
           <th scope="col">Nazwa materiału</th>
           <th scope="col" class="text-center">Ilość</th>
-          <th scope="col" class="text-center">Wymiar</th>
-          <th scope="col" class="text-center">Wymiar2</th>
           <th scope="col" class="text-center">Nazwa części</th>
+          <th scope="col" class="text-center">Wymiar (mm)</th>
+          <th scope="col" class="text-center">Wymiar 2 (mm)</th>
           <th scope="col" class="text-center">Zlecenie numer</th>
           <th scope="col" class="text-center">Akcje</th>
         </tr>
@@ -30,7 +31,7 @@
               <tr>
                   <td>{{ item.itemMaterial }}</td>
                   <td class="text-center">{{ item.itemQuantity }} szt </td>
-                  
+                  <td class="text-center" >{{ item.itemName }}</td>
                   {% comment %} Dimension 1 show with bander option {% endcomment %}
                   {% if item.itemBander == 'OKLEJANIE 1 STR' %}
                     <td class="text-center" 
@@ -57,12 +58,11 @@
                     <td class="text-center">{{ item.itemDimmension2 }}</td>
                   {% endif %}
                   
-                  <td class="text-center" >{{ item.itemName }}</td>
                   <td class="text-center" >{{ item.itemOrder.orderNumber }}</td>
                   <td class="text-center">
                     {% if order.isDone == False %}
                       {% comment %} Delete the item {% endcomment %}
-                      <a class="btn btn-danger" href="{% url 'page-items-delete' item.id %}">Usuń pozycję</a>
+                      <a class="btn btn-danger" href="{% url 'page-items-delete' order.id item.id %}">Usuń pozycję</a>
                     {% else %}
                       X
                     {% endif %}

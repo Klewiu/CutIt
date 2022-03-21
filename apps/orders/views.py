@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from apps.users.decorators import admin_required, manager_required, operator_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 
 # IMPORTS FOR PDF #
@@ -110,8 +111,11 @@ class ItemCreateView (CreateView):
 class ItemDeleteView(DeleteView):
   model=Item
   template_name = 'orders/items_delete.html'
-  success_url = '/orders_list/'
-
+  
+  def get_success_url(self):
+    item = get_object_or_404(Item, pk=self.kwargs['pk']) # Get the item object
+    messages.info(self.request, f'USNIĘTO POZYCJĘ CIĘCIA - {item.itemName} o wymiarach {item.itemDimmension1} x {item.itemDimmension2} mm') # show a success message
+    return reverse_lazy('page-items-list', kwargs={'pk_order': self.kwargs['pk_order']})
 
 ### ADITIONAL FUNCTIONALITY ####
 

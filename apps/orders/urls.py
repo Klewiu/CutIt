@@ -27,7 +27,7 @@ urlpatterns = [
     path('orders/<int:pk_order>/restore', OrderRestoreView.as_view(), name='page-order-restore'), 
     path('items_list/<int:pk_order>/', ItemListView.as_view(), name='page-items-list'), 
     path('items/<int:pk_order>/item_create', ItemCreateView.as_view(), name='page-item-create'), 
-    path('items/<int:pk>/delete/', ItemDeleteView.as_view(), name='page-items-delete'),
+    path('items_list/<int:pk_order>/<int:pk>/delete/', ItemDeleteView.as_view(), name='page-items-delete'),
     path('items_list/<int:pk>/pdf/', render_pdf_view, name='pdf'),
 ]
 
