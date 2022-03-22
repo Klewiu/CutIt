@@ -8,7 +8,7 @@
   <a class="btn btn-info" href="{% url 'page-item-create' order.id %}">Dodaj cięcie</a>
 {% endif %}
   <a href="{% url 'pdf' order.id%}" class="btn btn-danger">PDF</a>
-  <input class="btn btn-outline-secondary adminButton" type=button value="Powrót" onClick="javascript:history.go(-1);">
+  <a href="{% url 'page-orders-list' %}" class="btn btn-secondary">Wróć do zleceń</a>
 <p></p>
 
 <div>
@@ -63,6 +63,7 @@
                     {% if order.isDone == False %}
                       {% comment %} Delete the item {% endcomment %}
                       <a class="btn btn-danger" href="{% url 'page-items-delete' order.id item.id %}">Usuń pozycję</a>
+                      <a class="btn btn-secondary" href="{% url 'page-item-update' item.id %}">Popraw</a>
                     {% else %}
                       X
                     {% endif %}

@@ -11,7 +11,7 @@
           <th scope="col">Nazwa zlecenia</th>
           <th scope="col">Nakład</th>
           <th scope="col">Manager</th>
-          <th scope="col">Data zlecenia</th>
+          <th scope="col">Data dodania</th>
           <th scope="col">Uwagi</th>
           <th scope="col">Akcje</th>
         </tr>
@@ -27,14 +27,18 @@
             <td>{{ order.orderQuantity }}</td>
             <td>{{ order.orderManager }}</td>
             <td>{{ order.orderDate |date:"M d, Y"}}</td>
-            <td style="color:darkred;">{{ order.orderNotes }}</td>
+            <td>{{ order.orderNotes }}</td>
             <td>
               {% comment %} Order detail with items {% endcomment %}
-              <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Szczegóły</a>
+              <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Plan cięcia</a>
+              {% comment %} Order update {% endcomment %}
+              <a class="btn btn-secondary" href="{% url 'page-order-update' order.id %}">Popraw</a>
               {% comment %} Complete the order button {% endcomment %}
               <a class="btn btn-success" href="{% url 'page-order-finish' order.id %}">Zrealizuj</a>
               {% comment %} Delete the order {% endcomment %}
               <a class="btn btn-danger" href="{% url 'page-order-delete' order.id %}">Usuń zlecenie</a>
+              
+              
             </td>
           </tr>
           {% endif %}
