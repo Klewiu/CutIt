@@ -1,7 +1,7 @@
 from urllib import request
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, DeleteView, RedirectView
+from django.views.generic import CreateView, ListView, DeleteView, RedirectView, UpdateView
 from apps import orders
 from .models import Order, Item
 from django.shortcuts import  get_object_or_404, redirect
@@ -51,7 +51,9 @@ class OrderFinishView(RedirectView):
       order = get_object_or_404(Order, pk=order_id) # Get the order object
       order.isDone = True # Set the order to done
       order.save() # Save the order
-      messages.success(request, 'POTWIERDZENIE - Zlecenie #{} {} zostało wykonane.'.format(order.orderNumber, order.orderName)) # show a success message
+      messages.success(
+        request, 'POTWIERDZENIE - Zlecenie #{} {} zostało wykonane.'.format(order.orderNumber, order.orderName)
+        ) # show a success message
       return redirect(self.success_url) #Redirect to the list of orders
 
 #CLASS - ORDER RESTORE VIEW#
@@ -82,6 +84,13 @@ class OrderDeleteView(DeleteView):
 class OrderCompletedListView (OrderListView):
   template_name = 'orders/completed_orders_list.html'
 
+#ORDER UPDATE VIEW#
+class OrderUpdateView(UpdateView):
+  model = Order
+  fields = ['orderNumber','orderName', 'orderQuantity','orderNotes']
+  template_name = 'orders/orders_create.html'
+
+
 ###ITEM VIEWS####
 
 #CLASS - ITEM LIST VIEW
@@ -103,8 +112,8 @@ class ItemCreateView (CreateView):
   fields = ['itemMaterial', 'itemName', 'itemQuantity', 'itemDimmension1', 'itemBander', 'itemDimmension2', 'itemBander2']
   
   def form_valid(self, form):
-      form.instance.itemOrder = get_object_or_404(Order, pk=self.kwargs['pk_order']) # Get the order object
-      return super(ItemCreateView, self).form_valid(form)
+    form.instance.itemOrder = get_object_or_404(Order, pk=self.kwargs['pk_order']) # Get the order object
+    return super(ItemCreateView, self).form_valid(form) # Return the form valid
 
 #CLASS - ITEM DELETE VIEW
 @method_decorator(login_required, name='dispatch')
@@ -112,10 +121,20 @@ class ItemDeleteView(DeleteView):
   model=Item
   template_name = 'orders/items_delete.html'
   
-  def get_success_url(self):
-    item = get_object_or_404(Item, pk=self.kwargs['pk']) # Get the item object
-    messages.info(self.request, f'USNIĘTO POZYCJĘ CIĘCIA - {item.itemName} o wymiarach {item.itemDimmension1} x {item.itemDimmension2} mm') # show a success message
+  def get_success_url(self): # Redirect user to the list of items
+    item = get_object_or_404(Item, pk=self.kwargs['pk']) # Get the item object for message purpose
+    messages.info (
+      self.request, 
+      f'USNIĘTO POZYCJĘ CIĘCIA - {item.itemName} o wymiarach {item.itemDimmension1} x {item.itemDimmension2} mm'
+    ) # show a success message
     return reverse_lazy('page-items-list', kwargs={'pk_order': self.kwargs['pk_order']})
+
+#CLASS - ITEM UPDATE VIEW
+class ItemUpdateView(UpdateView):
+  model=Item
+  template_name = 'orders/items_create.html'
+  fields = ['itemMaterial', 'itemName', 'itemQuantity', 'itemDimmension1', 'itemBander', 'itemDimmension2', 'itemBander2']
+
 
 ### ADITIONAL FUNCTIONALITY ####
 

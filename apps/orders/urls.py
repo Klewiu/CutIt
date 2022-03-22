@@ -11,6 +11,8 @@ from .views import (
     ItemCreateView,
     ItemDeleteView,
     render_pdf_view,
+    OrderUpdateView,
+    ItemUpdateView,
 )
 from cutIt_app import settings
 from django.conf.urls.static import static
@@ -23,10 +25,12 @@ urlpatterns = [
     path('completed_orders_list/', OrderCompletedListView.as_view(), name='page-completed-orders-list'),
     path('orders/order_create/', OrderCreateView.as_view(), name='page-order-create'),
     path('orders/<int:pk>/delete/', OrderDeleteView.as_view(), name='page-order-delete'),
+    path('orders/<int:pk>/update/', OrderUpdateView.as_view(), name='page-order-update'),
     path('orders/<int:pk_order>/finish', OrderFinishView.as_view(), name='page-order-finish'),
     path('orders/<int:pk_order>/restore', OrderRestoreView.as_view(), name='page-order-restore'), 
     path('items_list/<int:pk_order>/', ItemListView.as_view(), name='page-items-list'), 
-    path('items/<int:pk_order>/item_create', ItemCreateView.as_view(), name='page-item-create'), 
+    path('items/<int:pk_order>/item_create', ItemCreateView.as_view(), name='page-item-create'),
+    path('items/<int:pk>/item_update', ItemUpdateView.as_view(), name='page-item-update'), 
     path('items_list/<int:pk_order>/<int:pk>/delete/', ItemDeleteView.as_view(), name='page-items-delete'),
     path('items_list/<int:pk>/pdf/', render_pdf_view, name='pdf'),
 ]
