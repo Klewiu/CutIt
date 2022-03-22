@@ -1,7 +1,7 @@
 from urllib import request
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, DeleteView, RedirectView
+from django.views.generic import CreateView, ListView, DeleteView, RedirectView, FormView
 from apps import orders
 from .models import Order, Item
 from django.shortcuts import  get_object_or_404, redirect
@@ -10,7 +10,7 @@ from apps.users.decorators import admin_required, manager_required, operator_req
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.urls import reverse_lazy
-
+from .forms import OrderForm
 
 # IMPORTS FOR PDF #
 from datetime import datetime
@@ -20,18 +20,21 @@ from django.template.loader import get_template
 
 # Create your views here.
 
+#passing request to form
+class PassRequestToFormViewMixin:
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
 ###ORDER VIEWS####
 
 # CLASS - ORDER CREATE VIEW#
 @method_decorator(login_required, name='dispatch')
-class OrderCreateView (CreateView):
-  model = Order
-  fields = ['orderNumber','orderName', 'orderQuantity', 'orderManager','orderNotes']
+class OrderCreateView (PassRequestToFormViewMixin, CreateView):
   template_name = 'orders/orders_create.html'
+  form_class = OrderForm
+  
 
-  def form_valid(self, form):
-    form.instance.author = self.request.user
-    return super().form_valid(form)
 
 # CLASS - ORDER LIST VIEW#
 @method_decorator(login_required, name='dispatch')
