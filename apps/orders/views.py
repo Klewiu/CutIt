@@ -20,6 +20,7 @@ from django.template.loader import get_template
 
 # Create your views here.
 
+
 #passing request to form
 class PassRequestToFormViewMixin:
     def get_form_kwargs(self):
@@ -34,8 +35,6 @@ class OrderCreateView (PassRequestToFormViewMixin, CreateView):
   template_name = 'orders/orders_create.html'
   form_class = OrderForm
   
-
-
 # CLASS - ORDER LIST VIEW#
 @method_decorator(login_required, name='dispatch')
 @method_decorator(admin_required, name='dispatch')
@@ -93,7 +92,6 @@ class OrderUpdateView(UpdateView):
   fields = ['orderNumber','orderName', 'orderQuantity','orderNotes']
   template_name = 'orders/orders_create.html'
 
-
 ###ITEM VIEWS####
 
 #CLASS - ITEM LIST VIEW
@@ -138,7 +136,6 @@ class ItemUpdateView(UpdateView):
   template_name = 'orders/items_create.html'
   fields = ['itemMaterial', 'itemName', 'itemQuantity', 'itemDimmension1', 'itemBander', 'itemDimmension2', 'itemBander2']
 
-
 ### ADITIONAL FUNCTIONALITY ####
 
 # PDF VIEWS#
@@ -166,8 +163,6 @@ def render_pdf_view(request, pk):
     if pisa_status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-
-
 
 #HOME VIEW#
 @login_required
