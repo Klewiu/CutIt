@@ -5,6 +5,7 @@ from django.db import models
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.core.validators import MinValueValidator, MaxValueValidator
+from apps.users.models import User
 
 # Create your models here.
 
@@ -14,7 +15,7 @@ class Order(models.Model):
     orderNumber= models.CharField(max_length=30, verbose_name='Numer zlecenia')
     orderName= models.CharField(max_length=30, verbose_name='Nazwa zlecenia')
     orderQuantity = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100000)], verbose_name='Nakład')
-    orderManager = models.CharField(max_length=30, verbose_name='Kierownik zlecenia')
+    orderManager = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Kierownik zlecenia')
     orderDate = models.DateTimeField(auto_now=True, verbose_name='Data dodania')
     isDone = models.BooleanField(default=False, verbose_name='Zrealizowane')
     orderNotes = models.CharField(max_length=30, verbose_name='Uwagi', blank=True, default='Brak')
