@@ -38,9 +38,9 @@ itemBander_choices = (
 class Item(models.Model):
     itemMaterial= models.CharField(max_length=200, verbose_name='Materiał')
     itemQuantity = models.IntegerField(verbose_name='Ilość sztuk')
-    itemDimmension1= models.CharField(max_length=200, verbose_name='Wymiar 1 (mm)')
+    itemDimmension1= models.IntegerField(verbose_name='Wymiar 1 (mm)')
     itemBander= models.CharField(choices=itemBander_choices, max_length=200, verbose_name='Oklejanie wymiaru 1', default='BEZ OKLEJANIA')
-    itemDimmension2= models.CharField(max_length=200, verbose_name='Wymiar 2 (mm)')
+    itemDimmension2= models.IntegerField(verbose_name='Wymiar 2 (mm)')
     itemBander2= models.CharField(choices=itemBander_choices, max_length=200, verbose_name='Oklejanie wymiaru 2', default='BEZ OKLEJANIA')
     itemName= models.CharField(max_length=200, verbose_name='Nazwa części')
     itemOrder = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Zlecenie')
