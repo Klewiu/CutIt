@@ -7,10 +7,10 @@ from django.db.models import F
 @login_required
 def reports_list(request): 
     
-    def get_surface(boolean): #function to get surface of all items
+    def get_surface(boolean): #function to get surface of all items with a boolean value
       object_list = Item.objects.filter( itemOrder__isDone=boolean).annotate(
           result=F('itemDimmension1')/100 * F('itemDimmension2')/100 * F('itemQuantity')
-        ) #QS with F - function to get result of surface
+        ) #calculate surface of all items with a boolean value - items in order done or not done
       
       surface_counter = 0 #counter for sum of surfaces
       
