@@ -3,7 +3,7 @@
 
 {% block content %}
 <h1> Raporty </h1>
-<h3>Ilość m2 do pocięcia = {{ surface_counter_not_done }} m2</h3>
-<h3>Ilość m2 pociętych = {{ surface_counter_done }} m2</h3>
+<h3>Ilość m2 do pocięcia = {{ surface_counter_not_done |floatformat:2 }} m2</h3>
+<h3>Ilość m2 pociętych = {{ surface_counter_done|floatformat:2 }} m2</h3>
 
 {% endblock %}
