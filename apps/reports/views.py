@@ -11,6 +11,8 @@ def reports_list(request):
       object_list = Item.objects.filter( itemOrder__isDone=boolean).annotate(
           result=F('itemDimmension1')/100 * F('itemDimmension2')/100 * F('itemQuantity')
         ) #calculate surface of all items with a boolean value - items in order done or not done
+          #as filter pud underscores be used to access the values of the objects more on:
+          #https://docs.djangoproject.com/en/4.0/topics/db/queries/ #
       
       surface_counter = 0 #counter for sum of surfaces
       
