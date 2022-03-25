@@ -66,6 +66,7 @@ class OrderRestoreView(RedirectView):
   def get(self, request, *args, **kwargs):
       order_id = self.kwargs['pk_order']  # pk_order is the name of the argument in the URL
       order = get_object_or_404(Order, pk=order_id) # Get the order object
+      # order.pk = None # Set the order to done - will clone order
       order.isDone = False # Set the order to not done
       order.save() # Save the order
       messages.warning(
