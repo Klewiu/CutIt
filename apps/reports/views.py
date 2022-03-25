@@ -5,11 +5,11 @@ from django.db.models import F
 
 #HOME VIEW#
 @login_required
-def reports_list(request): 
+def reports_list(request): # /reports/
     
     def get_surface(boolean): #function to get surface of all items with a boolean value
       object_list = Item.objects.filter( itemOrder__isDone=boolean).annotate(
-          result=F('itemDimmension1')/100 * F('itemDimmension2')/100 * F('itemQuantity')
+          result=F('itemDimmension1')/1000 * F('itemDimmension2')/1000 * F('itemQuantity')
         ) #calculate surface of all items with a boolean value - items in order done or not done
           #as filter pud underscores be used to access the values of the objects more on:
           #https://docs.djangoproject.com/en/4.0/topics/db/queries/ #
@@ -19,7 +19,6 @@ def reports_list(request):
       for i in object_list: #loop to sum surfaces
         surface_counter+=i.result #add surface to counter
       return surface_counter #return sum of surfaces
-
 
     context = {
       'title':'Raporty',
