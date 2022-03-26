@@ -12,9 +12,9 @@ class OrderForm(forms.ModelForm):
         fields = ['orderNumber','orderName', 'orderQuantity', 'orderManager','orderNotes']
     
     def __init__(self, *args, **kwargs):
-        # override the get_form_kwargs
+        # override the get_form_kwargs for request
         self.request = kwargs.pop("request")
-        super().__init__(*args, **kwargs)
+        # super().__init__(*args, **kwargs)
         super(OrderForm, self).__init__(*args, **kwargs)
         self.fields['orderManager'].queryset = User.objects.filter(username= self.request.user)
     
