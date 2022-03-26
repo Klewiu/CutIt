@@ -2,7 +2,7 @@ from urllib import request
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DeleteView, RedirectView, UpdateView
-from apps import orders
+from apps import orders, users
 from .models import Order, Item
 from django.shortcuts import  get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
@@ -168,8 +168,10 @@ def render_pdf_view(request, pk):
 #HOME VIEW#
 @login_required
 def home(request):
+    
     context = {
         'title':'Strona startowa programu',
+        'orders': Order.objects.all().filter(orderManager=request.user).order_by('-orderDate')[:15],
       }
     return render (request,'orders/home.html', context )
 
