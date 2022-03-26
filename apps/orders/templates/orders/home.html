@@ -5,15 +5,19 @@
 <h2> Witaj {{user.username}}  w programie CutIt </h2>
 <br>
     <h4>Status realizacji Twoich ostatnich zleceń:</h4>
-    {% for order in orders %}
     
-        <h6>{% if order.isDone == False %}
-                <i class="bi bi-x-circle" style="font-size: 1.5rem; color: red;"></i>
-            {% elif order.isDone == True %}
-                <i class="bi bi-check-circle" style="font-size: 1.5rem; color: green;"></i>
-            {% endif %}
-            Zlecenie {{order.orderNumber}} o nazwie {{order.orderName}}
-        </h6> 
-    {% endfor %}
+    {% if orders %}
+        {% for order in orders %}
+            <h6>{% if order.isDone == False %}
+                    <i class="bi bi-x-circle" style="font-size: 1.5rem; color: red;"></i>
+                {% elif order.isDone == True %}
+                    <i class="bi bi-check-circle" style="font-size: 1.5rem; color: green;"></i>
+                {% endif %}
+                Zlecenie {{order.orderNumber}} o nazwie {{order.orderName}}
+            </h6> 
+        {% endfor %}
+    {% else %}
+        <p><i>Ups! Nie założyłeś żadnych zleceń cięcia</i></p>
+    {% endif %}
 
 {% endblock %}
