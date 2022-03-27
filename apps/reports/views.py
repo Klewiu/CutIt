@@ -1,11 +1,32 @@
+from operator import contains
+from re import search
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from apps.orders.models import Item
-from django.db.models import F
+from apps.orders.models import Item, Order
+from django.db.models import F, Q
+from .forms import ChartSearchForm
+import random
+
 
 #HOME VIEW#
 @login_required
 def reports_list(request): # /reports/
+    search_form = ChartSearchForm(request.POST or None)
+    search=''
+    if request.method == 'POST':
+      search=request.POST['search']
+    
+    labels = []
+    data = []
+    
+
+    qs = Item.objects.filter(itemOrder__isDone=False,itemMaterial__regex=search).annotate(
+          result=F('itemDimmension1')/1000 * F('itemDimmension2')/1000 * F('itemQuantity'))
+
+    for item in qs:
+        if item.result > 10:
+          labels.append(item.itemOrder.orderName+'-'+item.itemName+'-'+item.itemMaterial)
+          data.append(round(item.result,2))
     
     def get_surface(boolean): #function to get surface of all items with a boolean value
       object_list = Item.objects.filter( itemOrder__isDone=boolean).annotate(
@@ -24,5 +45,8 @@ def reports_list(request): # /reports/
       'title':'Raporty',
       'surface_counter_done':get_surface(True),
       'surface_counter_not_done':get_surface(False),
+      'labels':labels,
+      'data':data,
+      'search_form':search_form,
       } #context for template
     return render (request,'reports/reports_list.html', context )

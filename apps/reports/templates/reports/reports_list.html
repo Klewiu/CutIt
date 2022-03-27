@@ -1,9 +1,67 @@
 {% extends 'base.html' %} 
+{% load crispy_forms_tags %}
 
 
 {% block content %}
 <h1> Raporty </h1>
-<h3>Ilość m2 do pocięcia = {{ surface_counter_not_done |floatformat:2 }} m2</h3>
-<h3>Ilość m2 pociętych = {{ surface_counter_done|floatformat:2 }} m2</h3>
+<h5><u>Statystyki:</u></h5>
+<p>Ilość m2 do pocięcia = {{ surface_counter_not_done |floatformat:2 }} m2</p>
+<p>Ilość m2 pociętych = {{ surface_counter_done|floatformat:2 }} m2</p>
+<br>
+
+<h5><u>Wykresy:</u></h5>
+<p><b style='font-size:1.2rem'>Wykres 1</b> - Ilość m2 poszczególnych pozycji do wycięcia
+    (tylko pozycję o powierzchni pow. 10 m2)
+</p>
+<form action="" method="POST" class="form-inline m-1">
+    {% csrf_token %}
+    <div class="col-4">
+        {{ search_form|crispy}} 
+        <button type="submit" class="btn btn-primary mt-3" style="flex">Szukaj</button>
+    </div>
+</form>
+<div class="container-lg">
+    <canvas id="pie-chart"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script>
+    var config = {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: {{ data|safe }},
+          backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)',
+                'rgba(205, 199, 12, 0.6)',
+                'rgba(54, 2, 25, 0.6)',
+                'rgba(55, 206, 6, 0.6)',
+                'rgba(75, 76, 75, 0.6)',
+                'rgba(53, 22, 55, 0.6)',
+                'rgba(100, 100, 100, 0.6)'
+        ],
+          
+        }],
+        labels: {{ labels|safe }}
+      },
+      options: {
+        responsive: true
+      }
+      
+    };
+
+    window.onload = function() {
+      var ctx = document.getElementById('pie-chart').getContext('2d');
+      window.myPie = new Chart(ctx, config);
+    };
+
+  </script>
+
+
 
 {% endblock %}
