@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .forms import OrderForm
-
+from django.core.mail import send_mail
 # IMPORTS FOR PDF #
 from datetime import datetime
 from xhtml2pdf import pisa
@@ -49,6 +49,9 @@ class OrderFinishView(RedirectView):
   success_url = "/orders_list/" # Redirect user to the list of orders
 
   def get(self, request, *args, **kwargs):
+      user_email = Order.objects.get(pk=kwargs['pk_order']).orderManager.email
+      order_name = Order.objects.get(pk=kwargs['pk_order']).orderName
+      order_number = Order.objects.get(pk=kwargs['pk_order']).orderNumber
       order_id = self.kwargs['pk_order']  # pk_order is the name of the argument in the URL
       order = get_object_or_404(Order, pk=order_id) # Get the order object
       order.isDone = True # Set the order to done
@@ -56,6 +59,8 @@ class OrderFinishView(RedirectView):
       messages.success(
         request, 'POTWIERDZENIE - Zlecenie #{} {} zostało wykonane.'.format(order.orderNumber, order.orderName)
         ) # show a success message
+      send_mail(f'Realizacja Zlecenia {order_number} w CutIt', f' Zlecenie o nazwie: "{order_name}" oraz numerze: "{order_number}", założone w CutIt przez {user_email}, zostało zakończone.','cutit.app.mail@gmail.com',
+                [f'{user_email}'], fail_silently=False)
       return redirect(self.success_url) #Redirect to the list of orders
 
 #CLASS - ORDER RESTORE VIEW#
