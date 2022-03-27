@@ -45,7 +45,6 @@ def reports_list(request): # /reports/
         surface_counter+=i.result #add surface to counter
       return surface_counter #return sum of surfaces
 
-    print(color)
     context = {
       'title':'Raporty',
       'surface_counter_done':get_surface(True),
