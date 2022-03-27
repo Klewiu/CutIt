@@ -3,9 +3,11 @@ from re import search
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from apps.orders.models import Item, Order
+from apps.users.models import User
 from django.db.models import F, Q
 from .forms import ChartSearchForm
 import random
+from django.db.models import Count
 
 
 #HOME VIEW#
@@ -13,8 +15,11 @@ import random
 def reports_list(request): # /reports/
     # declare variables
     labels = []
+    labels2=[]
     data = []
+    data2 = []
     color = []
+    counter_list=[]
     # get all fields fron input form
     search_form = ChartSearchForm(request.POST or None)
     search=''
@@ -26,10 +31,26 @@ def reports_list(request): # /reports/
           result=F('itemDimmension1')/1000 * F('itemDimmension2')/1000 * F('itemQuantity'))
     # pass qs to label and data for chart - Wykres 1
     for item in qs:
-        if item.result > 1:
+        if item.result > 0:
           labels.append(item.itemOrder.orderName+'-'+item.itemName+'-'+item.itemMaterial) #labels for chart
           data.append(round(item.result,2)) #data for chart with rounded values
           color.append('#%06x' % random.randint(0, 0xFFFFFF)) #random color for chart
+     
+    qs2 = Order.objects.all()
+    qs3 = User.objects.all()
+
+    for user in qs3:
+      labels2.append(str(user.username))
+    
+    counter = 0
+    for user in labels2:
+      for order in qs2:
+        if user == order.orderManager.username:
+          counter+=1
+      counter_list.append(counter)
+      counter=0
+    
+    data2 = counter_list
 
     # qs for counters
     def get_surface(boolean): #function to get surface of all items with a boolean value
@@ -44,13 +65,15 @@ def reports_list(request): # /reports/
       for i in object_list: #loop to sum surfaces
         surface_counter+=i.result #add surface to counter
       return surface_counter #return sum of surfaces
-
+    
     context = {
       'title':'Raporty',
       'surface_counter_done':get_surface(True),
       'surface_counter_not_done':get_surface(False),
       'labels':labels,
+      'labels2':labels2,
       'data':data,
+      'data2':data2,
       'search_form':search_form,
       'color':color,
       } #context for template
