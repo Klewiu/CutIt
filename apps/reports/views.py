@@ -20,9 +20,10 @@ def reports_list(request): # /reports/
     data2 = []
     color = []
     counter_list=[]
-    # get all fields fron input form
-    search_form = ChartSearchForm(request.POST or None)
     search=''
+    counter = 0
+    # get search value fron input form
+    search_form = ChartSearchForm(request.POST or None)
     if request.method == 'POST':
       search=request.POST['search']
 
@@ -35,24 +36,27 @@ def reports_list(request): # /reports/
           labels.append(item.itemOrder.orderName+'-'+item.itemName+'-'+item.itemMaterial) #labels for chart
           data.append(round(item.result,2)) #data for chart with rounded values
           color.append('#%06x' % random.randint(0, 0xFFFFFF)) #random color for chart
-     
+    
+    # get qs for chart - Wykres 2. 
     qs2 = Order.objects.all()
     qs3 = User.objects.all()
 
+    # prepare labels list for chart - Wykres 2
     for user in qs3:
       labels2.append(str(user.username))
     
-    counter = 0
+    # prepare data list for chart - Wykres 2
     for user in labels2:
       for order in qs2:
-        if user == order.orderManager.username:
+        if user == order.orderManager.username: #check if user is manager of order
           counter+=1
-      counter_list.append(counter)
-      counter=0
+      counter_list.append(counter) # count for first user then second user etc.
+      counter=0 # reset counter for next user
     
+    #finally data for chart - Wykres 2
     data2 = counter_list
 
-    # qs for counters
+    # qs for statistic counters
     def get_surface(boolean): #function to get surface of all items with a boolean value
       surface_counter = 0 #counter for sum of surfaces
       
