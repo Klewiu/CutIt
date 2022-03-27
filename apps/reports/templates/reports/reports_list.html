@@ -1,35 +1,57 @@
 {% extends 'base.html' %} 
 {% load crispy_forms_tags %}
 
-
 {% block content %}
 <h1> Raporty </h1>
 <h5><u>Statystyki:</u></h5>
 <p>Ilość m2 do pocięcia = {{ surface_counter_not_done |floatformat:2 }} m2</p>
 <p>Ilość m2 pociętych = {{ surface_counter_done|floatformat:2 }} m2</p>
 <br>
-<div class = "row">
+
 <h5><u>Wykresy:</u></h5>
-<p><b style='font-size:1.2rem'>Wykres 1</b> - Ilość m2 poszczególnych pozycji do wycięcia
-    (tylko pozycję o pow > 1 m2)
-</p>
-<form action="" method="POST" class="form-inline m-1">
-    {% csrf_token %}
-    <div class="col-md">
-        {{ search_form|crispy}} 
-        <button type="submit" class="btn btn-primary mt-3" style="flex">Szukaj</button>
-    </div>
+<p><b style='font-size:1.2rem'>Wykres 1</b> - Ilość m2 poszczególnych pozycji do wycięcia</p>
+<form action="" method="POST">
+  {% csrf_token %}
+  <div class="col-md-6">
+      {{ search_form|crispy}} 
+      <button type="submit" class="btn btn-primary mt-3" style="flex">Szukaj</button>
+  </div>
 </form>
-<div class="row">
-    <canvas id="pie-chart"></canvas>
+<br>
+{% comment %} WYKRES 1 {% endcomment %}
+
+<div class="col-md-6">
+  <canvas id="pie-chart" width="400" height="400"></canvas>
 </div>
+ 
+{% comment %} WYKRES 2 {% endcomment %}
+<div class="row">
+  <br>
+  <br>
+  <br>
+</div>
+<p><b style='font-size:1.2rem;'>Wykres 2</b> - Ilość zleceń założonych przez Managerów</p>
+<div class="col-md-6">
+  <canvas id="bar-chart" height="200"></canvas>
 </div>
 
+  {% comment %} CHARTS ADDITIONAL SCRIPTS {% endcomment %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-  <script>
+  {% comment %} CHARTS MAIN SCRIPTS {% endcomment %}
+  <script> 
+    let window_width = $(document).width();
     let colorchart=[]; 
     colorchart = {{ color|safe }};
 
+    if (window_width < 500) {
+      Chart.defaults.global.legend.display = false;
+      }
+      else {
+        Chart.defaults.global.legend.display = true;
+      };
+
+    
     var config = {
       type: 'pie',
       data: {
@@ -41,21 +63,40 @@
         labels: {{ labels|safe }}
       },
       options: {
-        responsive: true
+        responsive: true,
       }
+      
+    };
+
+    var config2 = {
+      type: 'bar',
+      data: {
+        datasets: [{
+          data: {{ data2|safe }},
+          backgroundColor: colorchart,
+        }],
+        labels: {{ labels2|safe }}
+      },
+      options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
       
     };
 
     window.onload = function() {
       var ctx = document.getElementById('pie-chart').getContext('2d');
       window.myPie = new Chart(ctx, config);
+      var ctx2 = document.getElementById('bar-chart').getContext('2d');
+      window.myPie2 = new Chart(ctx2, config2);
     };
 
-
-    
-    
-
-
-  </script>
+  </script> 
 
 {% endblock %}

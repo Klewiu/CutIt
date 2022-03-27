@@ -1,6 +1,4 @@
-from base64 import encode
-from locale import normalize
-import unicodedata
+
 from django.db import models
 from django.shortcuts import redirect
 from django.urls import reverse
