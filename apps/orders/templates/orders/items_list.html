@@ -62,7 +62,7 @@
                   <td class="text-center">
                     {% if order.isDone == False %}
                       {% comment %} Delete the item {% endcomment %}
-                      <a class="btn btn-danger" href="{% url 'page-items-delete' order.id item.id %}">Usuń pozycję</a>
+                      <a class="btn btn-danger" href="{% url 'page-items-delete' order.id item.id %}">Usuń</a>
                       <a class="btn btn-secondary" href="{% url 'page-item-update' item.id %}">Popraw</a>
                     {% else %}
                       X

@@ -9,7 +9,7 @@
 <br>
 
 <h5><u>Wykresy:</u></h5>
-<p><b style='font-size:1.2rem'>Wykres 1</b> - Ilość m2 poszczególnych pozycji do wycięcia</p>
+<p><b style='font-size:1.2rem'>Wykres 1</b> - Ilość w m2 materiałów do wycięcia z wszystkich planów </p>
 <form action="" method="POST">
   {% csrf_token %}
   <div class="col-md-6">
@@ -43,7 +43,6 @@
     let window_width = $(document).width();
     let colorchart=[]; 
     colorchart = {{ color|safe }};
-
     if (window_width < 500) {
       Chart.defaults.global.legend.display = false;
       }
@@ -77,7 +76,8 @@
         }],
         labels: {{ labels2|safe }}
       },
-      options: {
+      options: { 
+        legend: { display: false },
         responsive: true,
         scales: {
             yAxes: [{
@@ -96,6 +96,7 @@
       var ctx2 = document.getElementById('bar-chart').getContext('2d');
       window.myPie2 = new Chart(ctx2, config2);
     };
+  
 
   </script> 
 

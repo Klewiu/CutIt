@@ -30,7 +30,7 @@
             <td>{{ order.orderNotes }}</td>
             <td>
               {% comment %} Order detail with items {% endcomment %}
-              <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Plan cięcia</a>
+              <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Plan</a>
               {% comment %} Order update {% endcomment %}
               <a class="btn btn-secondary" href="{% url 'page-order-update' order.id %}">Popraw</a>
               {% comment %} Complete the order button {% endcomment %}
