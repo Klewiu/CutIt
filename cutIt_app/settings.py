@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "apps.reports",
     # 3rd party apps
     "crispy_forms",
+    'django_filters',
 ]
 
 MIDDLEWARE = [

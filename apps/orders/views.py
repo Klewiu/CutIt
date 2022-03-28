@@ -2,6 +2,8 @@ from urllib import request
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DeleteView, RedirectView, UpdateView
+from django_filters.views import FilterView
+from .filters import OrderFilter
 from apps import orders, users
 from .models import Order, Item
 from django.shortcuts import  get_object_or_404, redirect
@@ -18,6 +20,7 @@ from xhtml2pdf import pisa
 from django.http import HttpResponse
 from django.template.loader import get_template
 
+
 # Create your views here.
 
 
@@ -31,13 +34,14 @@ class PassRequestToFormViewMixin:
 
 # CLASS - ORDER CREATE VIEW#
 @method_decorator(login_required, name='dispatch')
+@method_decorator(admin_required, name='dispatch')
+@method_decorator(manager_required, name='dispatch')
 class OrderCreateView (PassRequestToFormViewMixin, CreateView):
   template_name = 'orders/orders_create.html'
   form_class = OrderForm
   
 # CLASS - ORDER LIST VIEW#
 @method_decorator(login_required, name='dispatch')
-@method_decorator(admin_required, name='dispatch')
 class OrderListView (ListView):
   model = Order # model to be used
   template_name = 'orders/orders_list.html'
@@ -65,6 +69,8 @@ class OrderFinishView(RedirectView):
 
 #CLASS - ORDER RESTORE VIEW#
 @method_decorator(login_required, name='dispatch')
+@method_decorator(admin_required, name='dispatch')
+@method_decorator(manager_required, name='dispatch')
 class OrderRestoreView(RedirectView):
   success_url = "/completed_orders_list/" # Redirect user to the list of completed orders
 
@@ -82,17 +88,30 @@ class OrderRestoreView(RedirectView):
 
 #CLASS - ORDER DELETE VIEW
 @method_decorator(login_required, name='dispatch')
+@method_decorator(admin_required, name='dispatch')
+@method_decorator(manager_required, name='dispatch')
 class OrderDeleteView(DeleteView):
   model=Order
   template_name = 'orders/orders_delete.html'
   success_url = '/orders_list/'
 
+
 #COMPLETED ORDERS VIEW#
 @method_decorator(login_required, name='dispatch')
-class OrderCompletedListView (OrderListView):
+class OrderCompletedListView (FilterView):
+  model = Order # model to be used
   template_name = 'orders/completed_orders_list.html'
+  filterset_class = OrderFilter
+  # query_set for dajango-filter
+  def get_queryset(self):
+    qs = self.model.objects.filter(isDone=True)
+    search = OrderFilter(self.request.GET, queryset=qs)
+    return search.qs
 
 #ORDER UPDATE VIEW#
+@method_decorator(login_required, name='dispatch')
+@method_decorator(admin_required, name='dispatch')
+@method_decorator(manager_required, name='dispatch')
 class OrderUpdateView(UpdateView):
   model = Order
   fields = ['orderNumber','orderName', 'orderQuantity','orderNotes']
@@ -113,6 +132,8 @@ class ItemListView (ListView):
 
 #CLASS - ITEM CREATE VIEW
 @method_decorator(login_required, name='dispatch')
+@method_decorator(admin_required, name='dispatch')
+@method_decorator(manager_required, name='dispatch')
 class ItemCreateView (CreateView):
   model=Item
   template_name = 'orders/items_create.html'
@@ -124,6 +145,8 @@ class ItemCreateView (CreateView):
 
 #CLASS - ITEM DELETE VIEW
 @method_decorator(login_required, name='dispatch')
+@method_decorator(admin_required, name='dispatch')
+@method_decorator(manager_required, name='dispatch')
 class ItemDeleteView(DeleteView):
   model=Item
   template_name = 'orders/items_delete.html'
@@ -137,6 +160,8 @@ class ItemDeleteView(DeleteView):
     return reverse_lazy('page-items-list', kwargs={'pk_order': self.kwargs['pk_order']})
 
 #CLASS - ITEM UPDATE VIEW
+@method_decorator(admin_required, name='dispatch')
+@method_decorator(manager_required, name='dispatch')
 class ItemUpdateView(UpdateView):
   model=Item
   template_name = 'orders/items_create.html'
@@ -146,6 +171,8 @@ class ItemUpdateView(UpdateView):
 
 # PDF VIEWS#
 @login_required
+@admin_required
+@manager_required
 def render_pdf_view(request, pk):
     template_path = 'orders/pdf.html'
     obj = get_object_or_404(Order, pk=pk)
