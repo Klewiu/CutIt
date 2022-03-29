@@ -193,9 +193,9 @@ a {
 /* LOGIN PAGE STYLE */
 .nav_logo-login {
     font-family: 'Monoton', cursive;
-    font-size: medium;
+    font-size: xx-large;
     color: var(--black-color);
-    font-weight: 80;
+    font-weight: 1000;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black
     
 }
@@ -254,6 +254,7 @@ a {
   .copy{
     font: italic;
     font-size: 70%;
+    margin-right: 25px;
   }
 
   .nav_logo-footer {
