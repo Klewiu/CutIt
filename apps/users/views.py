@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 from .decorators import admin_required
 from .models import User
 
-
+@login_required
+@admin_required
 def delete_view(request, pk):
     event = User.objects.get(pk=pk)
     event.delete()

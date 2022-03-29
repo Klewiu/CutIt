@@ -1,5 +1,7 @@
 {% extends 'base.html' %} 
 {% block content %}
+{% load crispy_forms_tags%}
+
 <h1> Lista zleceń zakończonych </h1>
 
 <div>
@@ -37,10 +39,23 @@
               <a class="btn btn-danger adminButton" href="{% url 'page-order-delete' order.id %}">Usuń zlecenie</a>
             </td>
           </tr>
+          
         {% endif %}
         {% endfor %}
       </tbody>
     </table>
   </div>
+  
+  <br>
+  <br>
+  <h4>Wyszukaj zrealizowane zlecenia:</h4>
+  <div class="col-sm-5">
+    <form action="" method="get" autocomplete="off">
+        {{ filter.form|crispy }}
+        <p></p><button class="btn btn-success" type="submit">Szukaj</button>
+    </form>
+    <br>
+</div>
+
 
 {% endblock %}
