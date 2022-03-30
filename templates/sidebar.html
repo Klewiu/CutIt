@@ -6,6 +6,27 @@
 {% url 'page-admin' as adminList %}
 {% url 'logout' as logout %}
 
+<!-- LOGOUT MODAL -->
+
+<div class="modal fade left" id="exampleModal" aria-labelledby="exampleModalLabel" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Wyloguj z CutIt</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Chcesz się wylogować z   <span class="nav_logo-footer">CutIt</span> ?
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Wróć</button>
+        <a class="btn btn-danger" href="{% url 'logout' %}">Wyloguj</a></li>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <div class="l-navbar" id="nav-bar">
@@ -28,7 +49,7 @@
           href="{% url 'page-completed-orders-list' %}" ><i class='bx bxs-select-multiple nav_icon'></i>
           <span class="nav_name">ZAKOŃCZONE</span> 
           </a>
-
+          
           {% comment %} Użytkownicy {% endcomment %}
           {% comment %} <a class="nav_link {% if request.path == usersList %} active {% endif %}" 
           href="{% url 'page-users-list' %}" ><i class='bx bxs-user nav_icon'></i>
@@ -46,12 +67,17 @@
           <span class="nav_name">UŻYTKOWNICY</span> 
           </a> 
 
-        </div>
+        
+      
+
+       <!-- Button trigger LOGOUT modal -->
       
       {% comment %} SIDEBAR BOTTOM SECTION - SIGNOUT {% endcomment %}
       <a class="nav_link {% if request.path == logout %} active {% endif %}"
-      </div> <a href="{% url 'logout' %}" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
+      href="{% url 'logout' %}" class="nav_link" data-bs-toggle="modal" data-bs-target="#exampleModal"> <i class='bx bx-log-out nav_icon'></i> <span
           class="nav_name">WYLOGUJ</span> </a>
 
+        </div>
+        
     </nav>
   </div>
