@@ -27,7 +27,7 @@
           <tr>
             <td>{{ user.id }}</td>
             <td>{{ user.username }}</td>
-            <td>{{ user.email }}</td>
+            <td><a href="mailto:{{ user.email}};">{{ user.email }}</td>
             <td>{{ user.last_login}}</td>
             <td>
                {% if user.is_admin == True %}
