@@ -4,6 +4,16 @@
 
 <h1> Lista zleceń zakończonych </h1>
 
+<h4>Wyszukaj zrealizowane zlecenia:</h4>
+<div class="col-sm-5">
+  <form action="" method="get" autocomplete="off">
+      {{ filter.form|crispy }}
+      <p></p><button class="btn btn-success" type="submit">Szukaj</button>
+      <a  class="btn btn-warning" href="{% url 'page-completed-orders-list' %}">Wyczyść Wyszukiwanie</a>
+  </form>
+  <br>
+</div>
+
 <div>
     <table class="table table-bordered">
       <thead class="table-active">
@@ -45,18 +55,6 @@
       </tbody>
     </table>
   </div>
-  
-  <br>
-  <br>
-  <h4>Wyszukaj zrealizowane zlecenia:</h4>
-  <div class="col-sm-5">
-    <form action="" method="get" autocomplete="off">
-        {{ filter.form|crispy }}
-        <p></p><button class="btn btn-success" type="submit">Szukaj</button>
-        <a  class="btn btn-warning" href="{% url 'page-completed-orders-list' %}">Wyczyść Wyszukiwanie</a>
-    </form>
-    <br>
-</div>
 
 
 {% endblock %}
