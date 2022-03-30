@@ -10,24 +10,29 @@
 
 <h5><u>Wykresy:</u></h5>
 <p><b style='font-size:1.2rem'>Wykres 1</b> - Ilość w m2 materiałów do wycięcia z wszystkich planów </p>
-<form action="" method="POST">
-  {% csrf_token %}
-  <div class="col-md-6">
-      {{ search_form|crispy}} 
-      <button type="submit" class="btn btn-primary mt-3" style="flex">Szukaj</button>
-  </div>
-</form>
-<br>
-{% comment %} WYKRES 1 {% endcomment %}
+{% if data|length > 0 %}
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="col-md-6">
+          {{ search_form|crispy}} 
+          <button type="submit" class="btn btn-primary mt-3" style="flex">Szukaj</button>
+      </div>
+    </form>
+    <br>
+    {% comment %} WYKRES 1 {% endcomment %}
 
-<div class="col-md-6">
-  <canvas id="pie-chart" width="400" height="400"></canvas>
-</div>
+    <div class="col-md-6">
+      <canvas id="pie-chart" width="400" height="400"></canvas>
+    </div>
+{% else %}
+    <p style = "color:#997207;"><i>Ops!Brak danych do wyświetlenia...</i></p>
+    <p style = "color:#997207;"><i>Dodaj pozycję do planu cięcia w zleceniach ! </i></p>
+{% endif%}
+
  
 {% comment %} WYKRES 2 {% endcomment %}
+
 <div class="row">
-  <br>
-  <br>
   <br>
 </div>
 <p><b style='font-size:1.2rem;'>Wykres 2</b> - Ilość zleceń założonych przez Managerów</p>
@@ -91,10 +96,11 @@
     };
 
     window.onload = function() {
-      var ctx = document.getElementById('pie-chart').getContext('2d');
-      window.myPie = new Chart(ctx, config);
       var ctx2 = document.getElementById('bar-chart').getContext('2d');
       window.myPie2 = new Chart(ctx2, config2);
+      var ctx = document.getElementById('pie-chart').getContext('2d');
+      window.myPie = new Chart(ctx, config);
+      
     };
   
 

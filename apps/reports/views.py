@@ -18,7 +18,7 @@ def reports_list(request):  # /reports/
     labels2 = []
     data = []
     data2 = []
-    color = []
+    color = ['#FFD700',	'#3CB371', '#48D1CC', '#778899', '#BA55D3']
     counter_list = []
     search = ""
     counter = 0
@@ -39,7 +39,7 @@ def reports_list(request):  # /reports/
     )
     # pass qs to label and data for chart - Wykres 1
     for item in qs:
-        if item.result > 0:
+        if item.result > 0.001:
             labels.append(
                 item.itemOrder.orderName + "-" + item.itemName + "-" + item.itemMaterial
             )  # labels for chart
@@ -47,6 +47,7 @@ def reports_list(request):  # /reports/
             color.append(
                 "#%06x" % random.randint(0, 0xFFFFFF)
             )  # random color for chart
+            
 
     # get qs for chart - Wykres 2.
     qs2 = Order.objects.all()
