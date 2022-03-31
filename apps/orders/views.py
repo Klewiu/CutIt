@@ -64,7 +64,10 @@ class OrderFinishView(RedirectView):
     success_url = "/orders_list/"  # Redirect user to the list of orders
 
     def get(self, request, *args, **kwargs):
+        admin_email = User.objects.filter(is_admin=True).values_list("email", flat=True) # gets all admin emails
+        admin_email2 =admin_email[::1] # gets a list from querryset
         user_email = Order.objects.get(pk=kwargs["pk_order"]).orderManager.email
+        maillist = admin_email2 + [user_email] #getting a list of all admin emails and manager email to one list
         order_name = Order.objects.get(pk=kwargs["pk_order"]).orderName
         order_number = Order.objects.get(pk=kwargs["pk_order"]).orderNumber
         order_id = self.kwargs[
@@ -83,8 +86,7 @@ class OrderFinishView(RedirectView):
             f"Realizacja Zlecenia {order_number} w CutIt",
             f' Zlecenie o nazwie: "{order_name}" oraz numerze: "{order_number}", założone w CutIt przez {user_email}, zostało zakończone.',
             "cutit.app.mail@gmail.com",
-            [f"{user_email}"],
-            fail_silently=False,
+            maillist, fail_silently=False,
         )
         return redirect(self.success_url)  # Redirect to the list of orders
 
