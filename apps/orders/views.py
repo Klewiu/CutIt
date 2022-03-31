@@ -9,6 +9,8 @@ from django.views.generic import (
     UpdateView,
 )
 from django_filters.views import FilterView
+
+from apps.users.models import User
 from .filters import OrderFilter
 from apps import orders, users
 from .models import Order, Item
@@ -117,6 +119,7 @@ class OrderDeleteView(DeleteView):
     model = Order
     template_name = "orders/orders_delete.html"
     success_url = "/orders_list/"
+    usertype = User.objects.values("is_admin", "is_manager", "is_operator", "is_superuser")
 
 
 # COMPLETED ORDERS VIEW#
