@@ -10,7 +10,7 @@ from apps.users.models import User
 
 
 class Order(models.Model):
-    orderNumber= models.CharField(max_length=30, verbose_name='Numer zlecenia')
+    orderNumber= models.CharField(max_length=30, verbose_name='Numer zlecenia', unique=True)
     orderName= models.CharField(max_length=30, verbose_name='Nazwa zlecenia')
     orderQuantity = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100000)], verbose_name='Nakład')
     orderManager = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Kierownik zlecenia', default=1)

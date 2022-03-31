@@ -18,7 +18,7 @@ def reports_list(request):  # /reports/
     labels2 = []
     data = []
     data2 = []
-    color = ['#FFD700',	'#3CB371', '#48D1CC', '#778899', '#BA55D3']
+    color = ['#FFD700',	'#3CB371', '#48D1CC', '#778899', '#ff4d4d','#ffff00']
     counter_list = []
     search = ""
     counter = 0
