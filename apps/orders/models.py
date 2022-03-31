@@ -8,12 +8,11 @@ from apps.users.models import User
 # Create your models here.
 
 
-
 class Order(models.Model):
     orderNumber= models.CharField(max_length=30, verbose_name='Numer zlecenia')
     orderName= models.CharField(max_length=30, verbose_name='Nazwa zlecenia')
     orderQuantity = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100000)], verbose_name='Nakład')
-    orderManager = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Kierownik zlecenia', default=1)
+    orderManager = models.ForeignKey(User, on_delete= models.SET_DEFAULT, verbose_name='Kierownik zlecenia', default=1)
     orderDate = models.DateTimeField(auto_now=True, verbose_name='Data dodania')
     isDone = models.BooleanField(default=False, verbose_name='Zrealizowane')
     orderNotes = models.CharField(max_length=30, verbose_name='Uwagi', blank=True, default='Brak')
@@ -27,6 +26,8 @@ class Order(models.Model):
     
     def get_absolute_url(self):
         return reverse('page-orders-list')
+
+    
 
 itemBander_choices = (
     ('BEZ OKLEJANIA', 'BEZ OKLEJANIA'), ('OKLEJANIE 1 STR', 'OKLEJANIE 1 STR'),

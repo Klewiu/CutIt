@@ -142,7 +142,7 @@ class OrderCompletedListView(FilterView):
 @method_decorator(admin_or_manager_required, name="dispatch")
 class OrderUpdateView(UpdateView):
     model = Order
-    fields = ["orderNumber", "orderName", "orderQuantity", "orderNotes"]
+    fields = ["orderNumber", "orderName", "orderQuantity", 'orderManager', "orderNotes"]
     template_name = "orders/orders_create.html"
 
 
