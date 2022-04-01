@@ -31,13 +31,21 @@
             <td>
               {% comment %} Order detail with items {% endcomment %}
               <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Plan</a>
-              {% comment %} Order update {% endcomment %}
-              <a class="btn btn-secondary" href="{% url 'page-order-update' order.id %}">Popraw</a>
-              {% comment %} Complete the order button {% endcomment %}
-              <a class="btn btn-success" href="{% url 'page-order-finish' order.id %}">Zrealizuj</a>
-              {% comment %} Delete the order {% endcomment %}
-              <a class="btn btn-danger" href="{% url 'page-order-delete' order.id %}">Usuń</a>
               
+              {% comment %} Order update {% endcomment %}
+              {% if user.is_manager or user.is_admin or user.is_superuser%}
+              <a class="btn btn-secondary" href="{% url 'page-order-update' order.id %}">Popraw</a>
+              {% endif %}
+              
+              {% comment %} Complete the order button {% endcomment %}
+              {% if user.is_operator or user.is_admin or user.is_superuser%}
+              <a class="btn btn-success" href="{% url 'page-order-finish' order.id %}">Zrealizuj</a>
+              {% endif %}
+
+              {% comment %} Delete the order {% endcomment %}
+              {% if user.is_manager or user.is_admin or user.is_superuser%}
+              <a class="btn btn-danger" href="{% url 'page-order-delete' order.id %}">Usuń</a>
+              {% endif %}
               
             </td>
           </tr>
