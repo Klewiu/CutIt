@@ -16,7 +16,7 @@ from apps import orders, users
 from .models import Order, Item
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from apps.users.decorators import admin_required, manager_required, operator_required, admin_or_manager_required
+from apps.users.decorators import admin_required, manager_required, operator_required, admin_or_manager_required, admin_or_operator_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -60,16 +60,19 @@ class OrderListView(ListView):
 
 # CLASS - ORDER FINISH VIEW#
 @method_decorator(login_required, name="dispatch")
+@method_decorator(admin_or_operator_required, name="dispatch")
 class OrderFinishView(RedirectView):
     success_url = "/orders_list/"  # Redirect user to the list of orders
 
     def get(self, request, *args, **kwargs):
+        #mailist setup
         admin_email = User.objects.filter(is_admin=True).values_list("email", flat=True) # gets all admin emails
         admin_email2 =admin_email[::1] # gets a list from querryset
         user_email = Order.objects.get(pk=kwargs["pk_order"]).orderManager.email
         maillist = admin_email2 + [user_email] #getting a list of all admin emails and manager email to one list
         order_name = Order.objects.get(pk=kwargs["pk_order"]).orderName
         order_number = Order.objects.get(pk=kwargs["pk_order"]).orderNumber
+
         order_id = self.kwargs[
             "pk_order"
         ]  # pk_order is the name of the argument in the URL
@@ -82,6 +85,7 @@ class OrderFinishView(RedirectView):
                 order.orderNumber, order.orderName
             ),
         )  # show a success message
+        #sending email
         send_mail(
             f"Realizacja Zlecenia {order_number} w CutIt",
             f' Zlecenie o nazwie: "{order_name}" oraz numerze: "{order_number}", założone w CutIt przez {user_email}, zostało zakończone.',
@@ -121,7 +125,7 @@ class OrderDeleteView(DeleteView):
     model = Order
     template_name = "orders/orders_delete.html"
     success_url = "/orders_list/"
-    usertype = User.objects.values("is_admin", "is_manager", "is_operator", "is_superuser")
+    # usertype = User.objects.values("is_admin", "is_manager", "is_operator", "is_superuser")
 
 
 # COMPLETED ORDERS VIEW#
@@ -166,7 +170,6 @@ class ItemListView(ListView):
 
 # CLASS - ITEM CREATE VIEW
 @method_decorator(login_required, name="dispatch")
-@method_decorator(admin_or_manager_required, name="dispatch")
 class ItemCreateView(CreateView):
     model = Item
     template_name = "orders/items_create.html"
