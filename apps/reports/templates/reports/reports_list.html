@@ -3,12 +3,12 @@
 
 {% block content %}
 <h1> Raporty </h1>
-<h5><u>Statystyki:</u></h5>
+<h5><u>1) Statystyki:</u></h5>
 <p>Ilość m2 do pocięcia = {{ surface_counter_not_done |floatformat:2 }} m2</p>
 <p>Ilość m2 pociętych = {{ surface_counter_done|floatformat:2 }} m2</p>
 <br>
 
-<h5><u>Wykresy:</u></h5>
+<h5><u>2) Wykresy:</u></h5>
 <p><b style='font-size:1.2rem'>Wykres 1</b> - Ilość w m2 materiałów do wycięcia z wszystkich planów </p>
 {% if data|length > 0 %}
     <form action="" method="POST">
@@ -39,6 +39,14 @@
 <div class="col-md-6">
   <canvas id="bar-chart" height="200"></canvas>
 </div>
+
+<h5><u>3) Export listy materiałów:</u></h5>
+<p></p>
+<a href="{% url 'page-export' 'xlsx' %}" class="btn btn-success">Eksportuj do Excel</a>
+<a href="{% url 'page-export' 'html' %}" class="btn btn-dark">Eksportuj do Html</a>
+
+
+
 
   {% comment %} CHARTS ADDITIONAL SCRIPTS {% endcomment %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>

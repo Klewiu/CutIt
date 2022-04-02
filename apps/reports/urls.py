@@ -3,9 +3,13 @@ from . import views
 from cutIt_app import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from .views import export
+
+
 
 urlpatterns = [
     path('reports_list/', views.reports_list, name='page-reports-list'),
+    path('<str:format>/', views.export, name='page-export'),
 ]
 
 if settings.DEBUG:

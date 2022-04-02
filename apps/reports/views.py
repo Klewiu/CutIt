@@ -4,11 +4,11 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from apps.orders.models import Item, Order
 from apps.users.models import User
-from django.db.models import F, Q
+from django.db.models import F
 from .forms import ChartSearchForm
 import random
-from django.db.models import Count
-
+from apps.orders.admin import ItemResource
+from django.http import HttpResponse
 
 # HOME VIEW#
 @login_required
@@ -100,3 +100,18 @@ def reports_list(request):  # /reports/
         "color": color,
     }  # context for template
     return render(request, "reports/reports_list.html", context)
+
+# EXPORT TO EXCEL#
+def export(request, format):
+    item_resource = ItemResource()
+    dataset = item_resource.export()
+    if format == "xlsx":
+        dataset_format = dataset.xlsx
+    else:
+        dataset_format = dataset.html
+    response = HttpResponse(dataset_format, content_type=f'text/{format}')
+    response['Content-Disposition'] = f'attachment; filename="export.{format}"'
+    return response
+
+
+
