@@ -55,7 +55,8 @@ def reports_list(request):  # /reports/
 
     # prepare labels list for chart - Wykres 2
     for user in qs3:
-        labels2.append(str(user.username))
+        if user.is_manager or user.is_admin or user.is_superuser:
+            labels2.append(str(user.username))
 
     # prepare data list for chart - Wykres 2
     for user in labels2:
