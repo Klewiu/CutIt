@@ -23,8 +23,8 @@
           <th scope="col">Nazwa zlecenia</th>
           <th scope="col">Nakład</th>
           <th scope="col">Manager</th>
-          <th scope="col">Data dodania</th>
-          <th scope="col">Uwagi</th>
+          <th scope="col">Data realizacji</th>
+          <th scope="col">Zrealizował</th>
           <th scope="col">Akcje</th>
         </tr>
       </thead>
@@ -38,8 +38,8 @@
             <td>{{ order.orderName }}</td>
             <td>{{ order.orderQuantity }}</td>
             <td>{{ order.orderManager }}</td>
-            <td>{{ order.orderDate |date:"M d, Y"}}</td>
-            <td>{{ order.orderNotes }}</td>
+            <td>{{ order.finishedDate|date:"M d, Y"}}</td>
+            <td>{{ order.finishedBy }}</td>
             <td>
               {% comment %} Order detail with items {% endcomment %}
               <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Szczegóły</a>

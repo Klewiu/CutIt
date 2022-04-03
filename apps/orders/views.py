@@ -77,6 +77,8 @@ class OrderFinishView(RedirectView):
             "pk_order"
         ]  # pk_order is the name of the argument in the URL
         order = get_object_or_404(Order, pk=order_id)  # Get the order object
+        order.finishedBy = str(request.user)
+        order.finishedDate = datetime.now()
         order.isDone = True  # Set the order to done
         order.save()  # Save the order
         

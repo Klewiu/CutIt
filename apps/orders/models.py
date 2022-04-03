@@ -16,6 +16,8 @@ class Order(models.Model):
     orderDate = models.DateTimeField(auto_now=True, verbose_name='Data dodania')
     isDone = models.BooleanField(default=False, verbose_name='Zrealizowane')
     orderNotes = models.CharField(max_length=30, verbose_name='Uwagi', blank=True, default='Brak')
+    finishedBy= models.CharField(max_length=30, verbose_name='Zrealizowane przez', blank=True, default='Brak')
+    finishedDate = models.DateTimeField(auto_now=True, verbose_name='Data zakończenia')
     
     class Meta:
         verbose_name = ("Zlecenie")
