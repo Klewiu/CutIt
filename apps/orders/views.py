@@ -79,6 +79,14 @@ class OrderFinishView(RedirectView):
         order = get_object_or_404(Order, pk=order_id)  # Get the order object
         order.isDone = True  # Set the order to done
         order.save()  # Save the order
+        
+        # realize items for finished order, change isDone status to finished
+        items = get_object_or_404(Order, pk=order_id).item_set.all()
+
+        for item in items:
+            item.isDone = True
+            item.save()
+        
         messages.success(
             request,
             "POTWIERDZENIE - Zlecenie #{} {} zostało wykonane.".format(
@@ -110,7 +118,16 @@ class OrderRestoreView(RedirectView):
         order = get_object_or_404(Order, pk=order_id)  # Get the order object
         # order.pk = None # Set the order to done - will clone order
         order.isDone = False  # Set the order to not done
-        order.save()  # Save the order
+        order.save()
+    
+        # change items status for  restored order, change isDone status to false
+        items = get_object_or_404(Order, pk=order_id).item_set.all()
+
+        for item in items:
+            item.isDone = False
+            item.save()
+        
+          # Save the order
         messages.warning(
             request,
             f"UWAGA - Zlecenie # {order.orderNumber} {order.orderName} zostało przywrócone do planu cięcia.",

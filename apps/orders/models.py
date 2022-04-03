@@ -43,6 +43,7 @@ class Item(models.Model):
     itemBander2= models.CharField(choices=itemBander_choices, max_length=200, verbose_name='Oklejanie wymiaru 2', default='BEZ OKLEJANIA')
     itemName= models.CharField(max_length=200, verbose_name='Nazwa części')
     itemOrder = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='Zlecenie')
+    isDone = models.BooleanField(default=False, verbose_name='Zrealizowane')
 
     class Meta:
         verbose_name = ("Element do cięcia")
