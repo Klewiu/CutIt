@@ -66,10 +66,10 @@ class OrderFinishView(RedirectView):
 
     def get(self, request, *args, **kwargs):
         #mailist setup
-        admin_email = User.objects.filter(is_admin=True).values_list("email", flat=True) # gets all admin emails
-        admin_email2 =admin_email[::1] # gets a list from querryset
+        admin_email = User.objects.filter(is_admin=True).values_list("email", flat=True) # gets all registered admin emails
+        admin_email2 =admin_email[::1] # converts querryset into a list
         user_email = Order.objects.get(pk=kwargs["pk_order"]).orderManager.email
-        maillist = admin_email2 + [user_email] #getting a list of all admin emails and manager email to one list
+        maillist = admin_email2 + [user_email] #joins in one list all admin emails and order manager email
         order_name = Order.objects.get(pk=kwargs["pk_order"]).orderName
         order_number = Order.objects.get(pk=kwargs["pk_order"]).orderNumber
 
@@ -100,7 +100,7 @@ class OrderFinishView(RedirectView):
             f"Realizacja Zlecenia {order_number} w CutIt",
             f' Zlecenie o nazwie: "{order_name}" oraz numerze: "{order_number}", założone w CutIt przez {user_email}, zostało zakończone.',
             "cutit.app.mail@gmail.com",
-            maillist, fail_silently=False,
+            maillist, fail_silently=True,
         )
         return redirect(self.success_url)  # Redirect to the list of orders
 
@@ -143,7 +143,7 @@ class OrderRestoreView(RedirectView):
 class OrderDeleteView(DeleteView):
     model = Order
     template_name = "orders/orders_delete.html"
-    success_url = "/orders_list/"
+    success_url = "/completed_orders_list/"
     # usertype = User.objects.values("is_admin", "is_manager", "is_operator", "is_superuser")
 
 
@@ -189,6 +189,7 @@ class ItemListView(ListView):
 
 # CLASS - ITEM CREATE VIEW
 @method_decorator(login_required, name="dispatch")
+@method_decorator(admin_or_manager_required, name="dispatch")
 class ItemCreateView(CreateView):
     model = Item
     template_name = "orders/items_create.html"

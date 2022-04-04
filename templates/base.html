@@ -20,7 +20,7 @@
   {% comment %} HTMX {% endcomment %}
   <script src="https://unpkg.com/htmx.org@1.7.0"></script>
 
-  <title>Hello, world!</title>
+  <title>CutIt</title>
 
 </head>
 
@@ -73,7 +73,7 @@
       document.body.addEventListener('htmx:configRequest', (event) => {
           event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
       })
-      </script>
+    </script>
 
  
       <footer class="mt-auto">
