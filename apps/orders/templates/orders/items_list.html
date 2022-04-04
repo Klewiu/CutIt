@@ -5,7 +5,9 @@
 <h3 style="color:#997207;">{{order.orderNumber}} {{order.orderName}}</h3>
 <h4> Nakład: {{order.orderQuantity}} szt </h4>
 {% if order.isDone == False %}
+  {% if user.is_manager or user.is_admin or user.is_superuser%}
   <a class="btn btn-info" href="{% url 'page-item-create' order.id %}">Dodaj cięcie</a>
+  {% endif %}
 {% endif %}
   <a href="{% url 'pdf' order.id%}" class="btn btn-danger">PDF</a>
   <a href="{% url 'page-orders-list' %}" class="btn btn-secondary">Wróć do zleceń</a>
