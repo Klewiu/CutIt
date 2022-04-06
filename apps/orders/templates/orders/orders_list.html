@@ -2,17 +2,17 @@
 {% block content %}
 <h1> Lista zleceń <span style="color:#997207"> do wykonania</span></h1>
 
-<div>
+<div class="table-responsive">
     <table class="table table-bordered">
       <thead class="table-active">
         <tr>
           {% comment %} <th scope="col">Lp</th> {% endcomment %}
           <th scope="col">Numer zlecenia</th>
           <th scope="col">Nazwa zlecenia</th>
-          <th scope="col">Nakład</th>
-          <th scope="col">Manager</th>
-          <th scope="col">Data dodania</th>
-          <th scope="col">Uwagi</th>
+          <th class="hide_in_mobile" scope="col">Nakład</th>
+          <th class="hide_in_mobile" scope="col">Manager</th>
+          <th class="hide_in_mobile" scope="col">Data dodania</th>
+          <th class="hide_in_mobile" scope="col">Uwagi</th>
           <th scope="col">Akcje</th>
         </tr>
       </thead>
@@ -24,10 +24,10 @@
             {% comment %} <td>{{ forloop.counter }}</td> {% endcomment %}
             <td>{{ order.orderNumber }}</td>
             <td>{{ order.orderName }}</td>
-            <td>{{ order.orderQuantity }}</td>
-            <td>{{ order.orderManager }}</td>
-            <td>{{ order.orderDate |date:"M d, Y"}}</td>
-            <td>{{ order.orderNotes }}</td>
+            <td class="hide_in_mobile">{{ order.orderQuantity }}</td>
+            <td class="hide_in_mobile">{{ order.orderManager }}</td>
+            <td class="hide_in_mobile">{{ order.orderDate |date:"M d, Y"}}</td>
+            <td class="hide_in_mobile">{{ order.orderNotes }}</td>
             <td>
               {% comment %} Order detail with items {% endcomment %}
               <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Plan</a>
