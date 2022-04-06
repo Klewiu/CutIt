@@ -14,17 +14,17 @@
   <br>
 </div>
 
-<div>
+<div class="table-responsive">
     <table class="table table-bordered">
       <thead class="table-active">
         <tr>
           {% comment %} <th scope="col">Lp</th> {% endcomment %}
           <th scope="col">Numer zlecenia</th>
           <th scope="col">Nazwa zlecenia</th>
-          <th scope="col">Nakład</th>
-          <th scope="col">Manager</th>
-          <th scope="col">Data realizacji</th>
-          <th scope="col">Zrealizował</th>
+          <th class="hide_in_mobile" scope="col">Nakład</th>
+          <th class="hide_in_mobile" scope="col">Manager</th>
+          <th class="hide_in_mobile" scope="col">Data realizacji</th>
+          <th class="hide_in_mobile" scope="col">Zrealizował</th>
           <th scope="col">Akcje</th>
         </tr>
       </thead>
@@ -36,10 +36,10 @@
             {% comment %} <td>{{ forloop.counter }}</td> {% endcomment %}
             <td>{{ order.orderNumber }}</td>
             <td>{{ order.orderName }}</td>
-            <td>{{ order.orderQuantity }}</td>
-            <td>{{ order.orderManager }}</td>
-            <td>{{ order.finishedDate|date:"M d, Y"}}</td>
-            <td>{{ order.finishedBy }}</td>
+            <td class="hide_in_mobile">{{ order.orderQuantity }}</td>
+            <td class="hide_in_mobile">{{ order.orderManager }}</td>
+            <td class="hide_in_mobile">{{ order.finishedDate|date:"M d, Y"}}</td>
+            <td class="hide_in_mobile">{{ order.finishedBy }}</td>
             <td>
               {% comment %} Order detail with items {% endcomment %}
               <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Szczegóły</a>
@@ -51,7 +51,7 @@
 
               {% comment %} Delete the order {% endcomment %}
               {% if user.is_manager or user.is_admin or user.is_superuser%}
-              <a class="btn btn-danger adminButton" href="{% url 'page-order-delete' order.id %}">Usuń zlecenie</a>
+              <a class="btn btn-danger adminButton" href="{% url 'page-order-delete' order.id %}">Usuń</a>
               {% endif %}
 
             </td>

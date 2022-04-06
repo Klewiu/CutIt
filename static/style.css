@@ -549,5 +549,9 @@ font-weight: 700;
     left: -8px;
     background-color: #000;
   }
-    
-    
+
+  @media screen and (max-width: 580px) {
+    .hide_in_mobile {
+      display: none;
+    }
+     }
