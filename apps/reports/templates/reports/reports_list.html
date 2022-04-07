@@ -10,7 +10,6 @@
 
 <h5><u>2) Wykresy:</u></h5>
 <p><b style='font-size:1.2rem'>Wykres 1</b> - Ilość w m2 materiałów do wycięcia z wszystkich planów </p>
-{% if data|length > 0 %}
     <form action="" method="POST">
       {% csrf_token %}
       <div class="col-md-6">
@@ -20,7 +19,7 @@
     </form>
     <br>
     {% comment %} WYKRES 1 {% endcomment %}
-
+{% if data|length > 0 %}
     <div class="col-md-6">
       <canvas id="pie-chart" width="400" height="400"></canvas>
     </div>
@@ -40,17 +39,15 @@
   <canvas id="bar-chart" height="200"></canvas>
 </div>
 
-<h5><u>3) Export wszystich cięć</u></h5>
+<h5><u>3) Export wszystich cięć:</u></h5>
 <p></p>
 <a href="{% url 'page-export' 'xlsx' %}" class="btn btn-success">Eksportuj do Excel</a>
 <a href="{% url 'page-export' 'html' %}" class="btn btn-dark">Eksportuj do Html</a>
 
-
-
-
   {% comment %} CHARTS ADDITIONAL SCRIPTS {% endcomment %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
   {% comment %} CHARTS MAIN SCRIPTS {% endcomment %}
   <script> 
     let window_width = $(document).width();

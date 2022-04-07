@@ -41,7 +41,7 @@ def reports_list(request):  # /reports/
     for item in qs:
         if item.result > 0.001:
             labels.append(
-                item.itemOrder.orderName + "-" + item.itemName + "-" + item.itemMaterial
+                item.itemMaterial + "-" + item.itemName + "-" + item.itemOrder.orderNumber 
             )  # labels for chart
             data.append(round(item.result, 2))  # data for chart with rounded values
             color.append(

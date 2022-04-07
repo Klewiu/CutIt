@@ -42,7 +42,7 @@
             <td class="hide_in_mobile">{{ order.finishedBy }}</td>
             <td>
               {% comment %} Order detail with items {% endcomment %}
-              <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Szczegóły</a>
+              <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Plan</a>
 
               {% comment %} Restore the order button {% endcomment %}
               {% if user.is_manager or user.is_admin or user.is_superuser%}             

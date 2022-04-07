@@ -143,7 +143,7 @@ class OrderRestoreView(RedirectView):
 class OrderDeleteView(DeleteView):
     model = Order
     template_name = "orders/orders_delete.html"
-    success_url = "/completed_orders_list/"
+    success_url = "/orders_list/"
     # usertype = User.objects.values("is_admin", "is_manager", "is_operator", "is_superuser")
 
 

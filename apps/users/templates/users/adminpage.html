@@ -7,17 +7,17 @@
 <br>
 <br>
 
-<div>
+<div class="table-responsive">
     <table class="table table-bordered">
       <thead class="table-active">
         <tr>
           {% comment %} <th scope="col">Lp</th> {% endcomment %}
-          <th scope="col">Id Użytkownika</th>
-          <th scope="col">Nazwa Użytkownika</th>
-          <th scope="col">Email Użytkownika</th>
-          <th scope="col">Ostatnie Logowanie</th>
-          <th scope="col">Typ Użytkownika</th>
-          <th scope="col">Usuń Użytkownika</th>
+          <th class="hide_in_mobile" scope="col">Id</th>
+          <th scope="col">Nazwa</th>
+          <th class="hide_in_mobile" scope="col">Email</th>
+          <th class="hide_in_mobile" scope="col">Ostatnie Logowanie</th>
+          <th scope="col">Typ</th>
+          <th scope="col">Akcje</th>
         </tr>
       </thead>
   
@@ -25,10 +25,10 @@
        {% for user in users %}
          
           <tr>
-            <td>{{ user.id }}</td>
+            <td class="hide_in_mobile">{{ user.id }}</td>
             <td>{{ user.username }}</td>
-            <td><a href="mailto:{{ user.email}};">{{ user.email }}</td>
-            <td>{{ user.last_login}}</td>
+            <td class="hide_in_mobile"><a href="mailto:{{ user.email}};">{{ user.email }}</td>
+            <td class="hide_in_mobile">{{ user.last_login}}</td>
             <td>
                {% if user.is_admin == True %}
                Admin
