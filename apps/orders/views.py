@@ -24,10 +24,13 @@ from .forms import OrderForm
 from django.core.mail import send_mail
 
 # IMPORTS FOR PDF #
-from datetime import datetime
+from datetime import date, datetime
 from xhtml2pdf import pisa
 from django.http import HttpResponse
 from django.template.loader import get_template
+
+from django.views.generic import TemplateView
+from hardcopy.views import PDFViewMixin, PNGViewMixin
 
 
 # Create your views here.
@@ -250,28 +253,49 @@ class ItemUpdateView(UpdateView):
 ### ADITIONAL FUNCTIONALITY ####
 
 # PDF VIEWS#
-@login_required
-@admin_or_manager_required
-def render_pdf_view(request, pk):
-    template_path = "orders/pdf.html"
-    obj = get_object_or_404(Order, pk=pk)
-    obj2 = Item.objects.filter(itemOrder=obj)
-    obj3 = datetime.now()
+class MyPDFView(PDFViewMixin, TemplateView):
+    model = Item
+    template_name = "orders/pdf.html"
 
-    context = {"obj": obj, "obj2": obj2, "obj3": obj3}
+    def get_filename(self):
+        return "Zlecenie{}.pdf".format(date.today())
 
-    response = HttpResponse(content_type="orders/pdf")
-    response["Content-Disposition"] = 'filename="Zlecenie {} w PDF.pdf"'.format(
-        obj.orderNumber
-    )
-    template = get_template(template_path)
-    html = template.render(context)
+    def get_context_data(self, **kwargs):
+        obj = get_object_or_404(Order, pk=self.kwargs["pk"])
+        obj2 = Item.objects.filter(itemOrder=obj)
+        obj3 = datetime.now()
+        context = super().get_context_data(**kwargs)
+           
+        context["obj"] = obj
+        context["obj2"] = obj2
+        context["obj3"] = obj3
+        return context 
 
-    pisa_status = pisa.CreatePDF(html, dest=response)
 
-    if pisa_status.err:
-        return HttpResponse("We had some errors <pre>" + html + "</pre>")
-    return response
+
+
+# @login_required
+# @admin_or_manager_required
+# def render_pdf_view(request, pk):
+#     template_path = "orders/pdf.html"
+#     obj = get_object_or_404(Order, pk=pk)
+#     obj2 = Item.objects.filter(itemOrder=obj)
+#     obj3 = datetime.now()
+
+#     context = {"obj": obj, "obj2": obj2, "obj3": obj3}
+
+#     response = HttpResponse(content_type="orders/pdf")
+#     response["Content-Disposition"] = 'filename="Zlecenie {} w PDF.pdf"'.format(
+#         obj.orderNumber
+#     )
+#     template = get_template(template_path)
+#     html = template.render(context)
+
+#     pisa_status = pisa.CreatePDF(html, dest=response)
+
+#     if pisa_status.err:
+#         return HttpResponse("We had some errors <pre>" + html + "</pre>")
+#     return response
 
 
 # HOME VIEW#
