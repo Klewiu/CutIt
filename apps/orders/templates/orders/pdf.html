@@ -18,24 +18,35 @@
             color:brown; 
             font-size:13pt;
         }
+        
+
+
     </style>
-
+    <link href="{% static 'static/style.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    
 </head>
-
 <body>
+
     <img src="media/logo.jpg" style="height:60px;">
-    <h2> PLAN ROZKROJU ZLECENIA: </h2>
-    <h1 style="color:#997207;">{{obj.orderNumber}} {{obj.orderName}}</h3>
-        <h2> Naklad: {{obj.orderQuantity}} szt </h2>
+
+    
+    <div class="w-50 mx-auto">
+    <h2> PLAN ROZKROJU ZLECENIA</h2>
+    </div>
+    <br>
+    <h1 style="color:#997207;">{{obj.orderNumber}} {{obj.orderName}}</h1>
+        <h2> Nakład: {{obj.orderQuantity}} szt </h2>
         <h4> Data utworzenia wydruku: {{obj3}} </h4>
         
         <div>
             <table class="table table-bordered" style="text-align: center; padding: 5px;" border="0.2">
                 <thead class="table-active">
                     <tr>
-                        <th scope="col">Nazwa materialu</th>
-                        <th scope="col">Ilosc</th>
-                        <th scope="col">Nazwa czesci</th>
+                        <th scope="col">Nazwa materiału</th>
+                        <th scope="col">Ilość</th>
+                        <th scope="col">Nazwa części</th>
                         <th scope="col">Wymiar (mm)</th>
                         <th scope="col">Wymiar 2 (mm)</th>
                         
