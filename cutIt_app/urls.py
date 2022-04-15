@@ -1,3 +1,7 @@
+from cutIt_app import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 """CutIt URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -22,3 +26,9 @@ urlpatterns = [
     path('', include('apps.users.urls')),
     path('', include('apps.reports.urls')),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    urlpatterns += staticfiles_urlpatterns()
