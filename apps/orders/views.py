@@ -265,10 +265,11 @@ class MyPDFView(PDFViewMixin, TemplateView):
         obj2 = Item.objects.filter(itemOrder=obj)
         obj3 = datetime.now()
         context = super().get_context_data(**kwargs)
-           
+        
         context["obj"] = obj
         context["obj2"] = obj2
         context["obj3"] = obj3
+        
         return context 
 
 
