@@ -1,98 +1,103 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
-   
     <meta charset="UTF-8">
     <title>PDF {{obj.orderNumber}}</title>
     <style>
-        
-        table { -pdf-keep-with-next: true; }
-        p { margin: 0; -pdf-keep-with-next: true; }
-        p.separator { -pdf-keep-with-next: false; font-size: 6pt; }
-        body{
+        table {
+            -pdf-keep-with-next: true;
+        }
+
+        p {
+            margin: 0;
+            -pdf-keep-with-next: true;
+        }
+
+        p.separator {
+            -pdf-keep-with-next: false;
+            font-size: 6pt;
+        }
+
+        body {
             font-family: 'Helvetica', sans-serif;
             font-size: 13px;
         }
-        .bander{
-            color:brown; 
-            font-size:13pt;
+
+        .bander {
+            color: brown;
+            font-size: 13pt;
         }
 
-        .img-fluid{
+        .img-fluid {
             max-width: 100%;
             height: auto;
         }
-        
-
-
     </style>
     <link href="{% static 'static/style.css' %}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
 </head>
+
 <body>
 
-    <img src="media\logo.jpg" class="img-fluid" alt="Responsive image">
-    
-<br>
-<br>
-
-
+    <img src="{% static '/logo.jpg' %}">
+    <br>
+    <br>
     <div class="w-50 mx-auto">
-    <h2> PLAN ROZKROJU ZLECENIA</h2>
+        <h2> PLAN ROZKROJU ZLECENIA</h2>
     </div>
     <br>
     <h1 style="color:#997207;">{{obj.orderNumber}} {{obj.orderName}}</h1>
-        <h2> Nakład: {{obj.orderQuantity}} szt </h2>
-        <h4> Data utworzenia wydruku: {{obj3}} </h4>
-        
-        <div>
-            <table class="table table-bordered" style="text-align: center; padding: 5px;" border="0.2">
-                <thead class="table-active">
-                    <tr>
-                        <th scope="col">Nazwa materiału</th>
-                        <th scope="col">Ilość</th>
-                        <th scope="col">Nazwa części</th>
-                        <th scope="col">Wymiar (mm)</th>
-                        <th scope="col">Wymiar 2 (mm)</th>
-                        
-                    </tr>
-                </thead>
+    <h2> Nakład: {{obj.orderQuantity}} szt </h2>
+    <h4> Data utworzenia wydruku: {{obj3}} </h4>
+    <div>
+        <table class="table table-bordered" style="text-align: center; padding: 5px;" border="0.2">
+            <thead class="table-active">
+                <tr>
+                    <th scope="col">Nazwa materiału</th>
+                    <th scope="col">Ilość</th>
+                    <th scope="col">Nazwa części</th>
+                    <th scope="col">Wymiar (mm)</th>
+                    <th scope="col">Wymiar 2 (mm)</th>
+                </tr>
+            </thead>
 
-                <tbody>
-                    {% for item in obj2 %}
-                    <tr>
-                        <td>{{ item.itemMaterial }}</td>
-                        <td>{{ item.itemQuantity }} szt</td>
-                        <td>{{ item.itemName }}</td>
-                        {% if item.itemBander == 'OKLEJANIE 1 STR' %}
-                            <td class="text-center"><b class="bander">*</b> {{ item.itemDimmension1 }}</td>
-                        {% elif item.itemBander == 'OKLEJANIE 2 STR' %}
-                            <td class="text-center"><b class="bander">*</b> {{ item.itemDimmension1 }} <b class="bander">*</b></td>
-                        {% else %}
-                            <td class="text-center">{{ item.itemDimmension1 }}</td>
-                        {% endif %}
+            <tbody>
+                {% for item in obj2 %}
+                <tr>
+                    <td>{{ item.itemMaterial }}</td>
+                    <td>{{ item.itemQuantity }} szt</td>
+                    <td>{{ item.itemName }}</td>
+                    {% if item.itemBander == 'OKLEJANIE 1 STR' %}
+                    <td class="text-center"
+                        style="text-decoration: underline; text-decoration-thickness:3px; text-decoration-color:#997207;">
+                        {{ item.itemDimmension1 }}</td>
+                    {% elif item.itemBander == 'OKLEJANIE 2 STR' %}
+                    <td class="text-center"
+                        style="text-decoration: underline; text-decoration-style: double; text-decoration-thickness:3px; text-decoration-color:#997207;">
+                        {{ item.itemDimmension1 }}</td>
+                    {% else %}
+                    <td class="text-center">{{ item.itemDimmension1 }}</td>
+                    {% endif %}
 
-                         {% if item.itemBander2 == 'OKLEJANIE 1 STR' %}
-                            <td class="text-center"><b class="bander">*</b> {{ item.itemDimmension2 }}</td>
-                        {% elif item.itemBander2 == 'OKLEJANIE 2 STR' %}
-                            <td class="text-center"><b class="bander">*</b> {{ item.itemDimmension2 }} <b class="bander">*</b></td>
-                        {% else %}
-                            <td class="text-center">{{ item.itemDimmension2 }}</td>
-                        {% endif %}
-
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <p></p>
-        <h6><i> LEGENDA:<b class="bander">*</b> wymiar - oklejanie 1-str // <b class="bander">*</b> wymiar <b class="bander">*</b> - oklejanie 2 str</i></h6>
-        
-        
+                    {% if item.itemBander2 == 'OKLEJANIE 1 STR' %}
+                    <td class="text-center"
+                        style="text-decoration: underline; text-decoration-thickness:3px; text-decoration-color:#997207;">
+                        {{ item.itemDimmension2 }}</td>
+                    {% elif item.itemBander2 == 'OKLEJANIE 2 STR' %}
+                    <td class="text-center"
+                        style="text-decoration: underline; text-decoration-style: double; text-decoration-thickness:3px; text-decoration-color:#997207;">
+                        {{ item.itemDimmension2 }}</td>
+                    {% else %}
+                    <td class="text-center">{{ item.itemDimmension2 }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
-
 </html>
