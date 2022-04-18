@@ -156,6 +156,7 @@ class OrderCompletedListView(FilterView):
     model = Order  # model to be used
     template_name = "orders/completed_orders_list.html"
     filterset_class = OrderFilter
+    paginate_by = 10
     # query_set for dajango-filter
     def get_queryset(self):
         qs = self.model.objects.filter(isDone=True)

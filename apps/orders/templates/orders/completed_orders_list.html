@@ -30,6 +30,8 @@
       </thead>
   
       <tbody>
+        {# site pagination import #}
+        {% include "orders/pagination.html" %} 
         {% for order in object_list %}
         {% if order.isDone == True %}
           <tr>
@@ -46,7 +48,7 @@
 
               {% comment %} Restore the order button {% endcomment %}
               {% if user.is_manager or user.is_admin or user.is_superuser%}             
-              <a class="btn btn-warning" href="{% url 'page-order-restore' order.id %}">Przywróć</a>
+              <a class="btn btn-warning" href="{% url 'page-order-restore' order.id %}">Wznów</a>
               {% endif %}
 
               {% comment %} Delete the order {% endcomment %}
