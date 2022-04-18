@@ -26,10 +26,9 @@ def reports_list(request):  # /reports/
     search_form = ChartSearchForm(request.POST or None)
     if request.method == "POST":
         search = request.POST["search"]
-
     # get qs for chart - Wykres 1.
     qs = Item.objects.filter(
-        itemOrder__isDone=False, itemMaterial__regex=search
+        itemOrder__isDone=False, itemMaterial__iregex=search # add iregex so it is insensitive for case
     ).annotate(
         result=F("itemDimmension1")
         / 1000
