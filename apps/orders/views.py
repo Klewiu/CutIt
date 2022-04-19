@@ -156,6 +156,7 @@ class OrderCompletedListView(FilterView):
     model = Order  # model to be used
     template_name = "orders/completed_orders_list.html"
     filterset_class = OrderFilter
+    paginate_by = 10
     # query_set for dajango-filter
     def get_queryset(self):
         qs = self.model.objects.filter(isDone=True)
@@ -265,10 +266,11 @@ class MyPDFView(PDFViewMixin, TemplateView):
         obj2 = Item.objects.filter(itemOrder=obj)
         obj3 = datetime.now()
         context = super().get_context_data(**kwargs)
-           
+        
         context["obj"] = obj
         context["obj2"] = obj2
         context["obj3"] = obj3
+        
         return context 
 
 
