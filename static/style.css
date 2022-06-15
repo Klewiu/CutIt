@@ -201,7 +201,7 @@ a {
 }
 
 .jumbotron {
-    background-image: url("https://cutit-ats-files.s3.eu-west-1.amazonaws.com/login-bgnd.jpg?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDGV1LWNlbnRyYWwtMSJIMEYCIQC5vNtoW3JWljaHFmDNwr3asQzmkxJci73RLuxfvPdVwQIhAOV5PwPj60th9xWPS%2FgSFPsSi323erRdnJM%2FDIuNIHJSKu0CCKz%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQARoMNTA5ODc4NzY0Mjc1Igx%2F7BlWIzuLozTkxhAqwQKNH4%2BvbDJRNd9oE404mclWSQ5yfu0VkWudxPZ59WDC9xdZBgZiGwwQi%2FB98dNGhJn44%2FXLHV1dBA0OGPIePwVPZgn87B9JMnL80UlM1OUZ5gAUyCyKPhewrfBAuwCOV9q09wcefs9M86KbB3DhV0e%2B03janyAjsYEk1ZlgR2GqSo9iHilvkBgnuk5IidyZflTV3eqC2c%2FPo3RZoryL9W3qNoCRQz6kpMk2LBtRWTaxdyTI0VgQmp1NSMK1gKO5d%2FoGusu6cgywuLfZlwXxYm2Xv7CmlgGNE9FnvTvoO3Ob1fIY3egCTeTd3bR2z%2FGfsC%2FqRkojcMt7uP0a9FdelbsOROKHdi4GD%2FJBrIfMidptLMQs7q4xbjaNIdnyvH2fFz5m1nuWyiV8CwvcGWEXr0cZYf7y%2BcaTor%2FXm2ZpPIvNQ5kwveColQY6sgLeccTxomltaVC7O78h%2Fcio6JWjXNuZAyb2IElKbDt3YgBpuiibI5bYAU5Avt6fh9XlyrrikaMZK5sC1X2Dz7SGFvZoLGb6qE%2BsNloW5NvOjn9GOpL36AFLj7LQZaGdfavQdbI31EP19OBOPu40XqIC3zrArTSrM5iLy71DJd8dwvXyFyKwQOYh5Q5f0oQ4%2B1JzBMtxCKL175hGc%2F6fYqwYTN2NWUG56jgU9I7S8sX2EFT37k2DvoJC4vm2bbnIi3s%2FNndc4aP08PqSNUtXS9KoGH0crZvACSDja2Bxk0Ihv%2Fbx%2Bfu1nDvxWZMDcmTKZSiaBoEw3HzXrawGSHgjcSmlRB3pe0twSt4dCEfhDxULnbS0skq0FqI%2BDE7XD0gLltwJ4eA0uwdouVhyaAxECWWJ37Y%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220615T193021Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAXNNZEQLZ2FAFYIJ2%2F20220615%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Signature=c96990ed40bd4c74354f3da36322d1741c35f16784f285534fa5a7f19c6d1b2e");
+    background-image: url("https://cutit-ats-files.s3.eu-west-1.amazonaws.com/login-bgnd.jpg");
     background-size: cover;
     padding-top: 8%;
     padding-bottom: 8%;
@@ -223,7 +223,7 @@ a {
   }
 
 .jumbotron-reset {
- background-image: url("https://cutit-ats-files.s3.eu-west-1.amazonaws.com/psw%20reset.jpg?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDGV1LWNlbnRyYWwtMSJIMEYCIQC5vNtoW3JWljaHFmDNwr3asQzmkxJci73RLuxfvPdVwQIhAOV5PwPj60th9xWPS%2FgSFPsSi323erRdnJM%2FDIuNIHJSKu0CCKz%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQARoMNTA5ODc4NzY0Mjc1Igx%2F7BlWIzuLozTkxhAqwQKNH4%2BvbDJRNd9oE404mclWSQ5yfu0VkWudxPZ59WDC9xdZBgZiGwwQi%2FB98dNGhJn44%2FXLHV1dBA0OGPIePwVPZgn87B9JMnL80UlM1OUZ5gAUyCyKPhewrfBAuwCOV9q09wcefs9M86KbB3DhV0e%2B03janyAjsYEk1ZlgR2GqSo9iHilvkBgnuk5IidyZflTV3eqC2c%2FPo3RZoryL9W3qNoCRQz6kpMk2LBtRWTaxdyTI0VgQmp1NSMK1gKO5d%2FoGusu6cgywuLfZlwXxYm2Xv7CmlgGNE9FnvTvoO3Ob1fIY3egCTeTd3bR2z%2FGfsC%2FqRkojcMt7uP0a9FdelbsOROKHdi4GD%2FJBrIfMidptLMQs7q4xbjaNIdnyvH2fFz5m1nuWyiV8CwvcGWEXr0cZYf7y%2BcaTor%2FXm2ZpPIvNQ5kwveColQY6sgLeccTxomltaVC7O78h%2Fcio6JWjXNuZAyb2IElKbDt3YgBpuiibI5bYAU5Avt6fh9XlyrrikaMZK5sC1X2Dz7SGFvZoLGb6qE%2BsNloW5NvOjn9GOpL36AFLj7LQZaGdfavQdbI31EP19OBOPu40XqIC3zrArTSrM5iLy71DJd8dwvXyFyKwQOYh5Q5f0oQ4%2B1JzBMtxCKL175hGc%2F6fYqwYTN2NWUG56jgU9I7S8sX2EFT37k2DvoJC4vm2bbnIi3s%2FNndc4aP08PqSNUtXS9KoGH0crZvACSDja2Bxk0Ihv%2Fbx%2Bfu1nDvxWZMDcmTKZSiaBoEw3HzXrawGSHgjcSmlRB3pe0twSt4dCEfhDxULnbS0skq0FqI%2BDE7XD0gLltwJ4eA0uwdouVhyaAxECWWJ37Y%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20220615T194713Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAXNNZEQLZ2FAFYIJ2%2F20220615%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Signature=48762aaf5b235d826c4427308d2cc2e8d4a144554475fa4ff0dd989b525128f6");
+ background-image: url("https://cutit-ats-files.s3.eu-west-1.amazonaws.com/psw+reset.jpg");
  background-size: cover;
  padding-top: 8%;
  padding-bottom: 8%;
