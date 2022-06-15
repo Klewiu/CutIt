@@ -45,8 +45,10 @@ INSTALLED_APPS = [
     "apps.reports",
     # 3rd party apps
     "crispy_forms",
-    'django_filters',
-    'import_export',
+    "django_filters",
+    "import_export",
+    # aws apps
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -125,14 +127,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    BASE_DIR / "static",
 ]
 
-#media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# media files
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -152,5 +154,15 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "cutit.app.mail@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY_CUTIT")
 
-CHROME_PATH = "\"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe\""
-CHROME_WINDOW_SIZE = '800,600'
+# for development your local path to chrome.exe
+CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
+CHROME_WINDOW_SIZE = "800,600"
+
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_CUTIT_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_CUTIT_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME_CUTIT")
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+AWS_S3_REGION_NAME = 'eu-west-1'
