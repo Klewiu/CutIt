@@ -164,7 +164,7 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY_CUTIT")
 # CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
 CHROME_WINDOW_SIZE = "800,600"
 # CHROME_PATH = "google-chrome"
-CHROME_PATH = "/app/.apt/usr/bin/google-chrome"
+CHROME_PATH = "/app/.chromedriver/bin/chromedriver"
 
 
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_CUTIT_ID")
