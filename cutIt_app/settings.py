@@ -156,11 +156,14 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "cutit.app.mail@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY_CUTIT")
 
+
+PATH_TO_CHROME = "/app/vendor/chrome/bin/chrome"
 # for development your local path to chrome.exe
 # CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
 CHROME_WINDOW_SIZE = "800,600"
 # CHROME_PATH = "google-chrome"
 CHROME_PATH = PATH_TO_CHROME
+
 
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_CUTIT_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_CUTIT_KEY")
