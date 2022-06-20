@@ -157,7 +157,7 @@ EMAIL_HOST_USER = "cutit.app.mail@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY_CUTIT")
 
 
-PATH_TO_CHROME = "/app/vendor/chrome/bin/chrome"
+PATH_TO_CHROME = "vendor/chrome/bin/chrome"
 # for development your local path to chrome.exe
 # CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
 CHROME_WINDOW_SIZE = "800,600"
