@@ -157,12 +157,28 @@ EMAIL_HOST_USER = "cutit.app.mail@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY_CUTIT")
 
 
-PATH_TO_CHROME = "/app/.chromedriver/bin/chromedriver"
+#pdf headless chrome setup for development
+
+from selenium import webdriver
+import os
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+
+CHROMEDRIVER_PATH = /app/.chromedriver/bin/chromedriver
+GOOGLE_CHROME_BIN = /app/.apt/usr/bin/google-chrome 
+
+#hardcopy settings
+
 # for development your local path to chrome.exe
 # CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
 CHROME_WINDOW_SIZE = "800,600"
 # CHROME_PATH = "google-chrome"
-CHROME_PATH = PATH_TO_CHROME
+CHROME_PATH = CHROMEDRIVER_PATH
 
 
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_CUTIT_ID")
