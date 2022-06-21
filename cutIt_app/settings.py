@@ -26,8 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY_CUTIT")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get("DEBUG_VALUE") == "True"
-DEBUG = False
+DEBUG = (os.environ.get("DEBUG_VALUE") == "True")
+
 # DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
@@ -171,7 +171,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "cutit.app.mail@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY_CUTIT")
 
-'DIRS': [os.path.join(BASE_DIR, 'templates')]
+
 
 
 # hardcopy settings
@@ -195,4 +195,4 @@ CHROME_PATH = "/app/.apt/usr/bin/google-chrome"
 # AWS_LOCATION = "static"
 # STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
