@@ -195,4 +195,11 @@ CHROME_PATH = "/app/.apt/usr/bin/google-chrome"
 # AWS_LOCATION = "static"
 # STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
-django_heroku.settings(locals())
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+
+    if not DEBUG:
+        import django_heroku
+        django_heroku.settings(locals())
