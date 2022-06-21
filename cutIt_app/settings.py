@@ -26,9 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY_CUTIT")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
-DEBUG = True
-ALLOWED_HOSTS = ['cutit-ats.herokuapp.com', ".herokuapp.com"]
+# DEBUG = os.environ.get("DEBUG_VALUE") == "True"
+DEBUG = False
+# DEBUG = True
+ALLOWED_HOSTS = ["cutit-ats.herokuapp.com"]
 
 
 # Application definition
@@ -128,11 +129,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 # media files
 MEDIA_URL = "/media/"
@@ -163,8 +162,7 @@ EMAIL_HOST_USER = "cutit.app.mail@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY_CUTIT")
 
 
-
-#hardcopy settings
+# hardcopy settings
 
 # for development your local path to chrome.exe
 # CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
@@ -177,27 +175,12 @@ AWS_ACCESS_KEY_ID = os.environ.get("AWS_CUTIT_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_CUTIT_KEY")
 AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME_CUTIT")
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400",}
+AWS_S3_OBJECT_PARAMETERS = {
+    "CacheControl": "max-age=86400",
+}
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-AWS_LOCATION = 'static'
-#STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+AWS_LOCATION = "static"
+# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 django_heroku.settings(locals())
-
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-        },
-    },
-}
