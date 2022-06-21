@@ -180,16 +180,16 @@ CHROME_WINDOW_SIZE = "800,600"
 CHROME_PATH = "/app/.apt/usr/bin/google-chrome"
 
 
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_CUTIT_ID")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_CUTIT_KEY")
-AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME_CUTIT")
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-AWS_S3_OBJECT_PARAMETERS = {
-    "CacheControl": "max-age=86400",
-}
-AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-AWS_LOCATION = "static"
+# AWS_ACCESS_KEY_ID = os.environ.get("AWS_CUTIT_ID")
+# AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_CUTIT_KEY")
+# AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME_CUTIT")
+# AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+# AWS_S3_OBJECT_PARAMETERS = {
+#     "CacheControl": "max-age=86400",
+# }
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+# AWS_LOCATION = "static"
 # STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
