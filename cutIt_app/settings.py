@@ -168,7 +168,7 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY_CUTIT")
 # CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
 
 #development
-CHROME_PATH = os.environ.get("PATH_TO_CHROME")
+CHROME_PATH = os.environ.get("PATH_TO_CHROME") #variable set on heroku side
 CHROME_WINDOW_SIZE = "800,600"
 
 #optional AWS
