@@ -162,8 +162,13 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "cutit.app.mail@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY_CUTIT")
 
+
+#PDF SETUP FOR DJANGO-HARDCOPY
 # for development your local path to chrome.exe
-CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
+# CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
+
+#development
+CHROME_PATH = "/app/.apt/usr/bin/google-chrome"
 CHROME_WINDOW_SIZE = "800,600"
 
 #optional AWS
