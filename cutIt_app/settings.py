@@ -26,10 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY_CUTIT")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get("DEBUG_VALUE") == "True")
+DEBUG = True
 
-# DEBUG = True
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['cutit-ats.herokuapp.com']
 
 
 # Application definition
@@ -61,7 +60,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = "cutIt_app.urls"
@@ -130,28 +128,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATIC_URL = "static/"
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'static'),
-# )
+STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # media files
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
-WHITENOISE_USE_FINDERS = True
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-# STATIC_URL = '/static/'
-
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -171,35 +156,18 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "cutit.app.mail@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY_CUTIT")
 
-
-
-
-# hardcopy settings
-
 # for development your local path to chrome.exe
-# CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
+CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
 CHROME_WINDOW_SIZE = "800,600"
-# CHROME_PATH = "google-chrome"
-CHROME_PATH = "chrome.exe"
 
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_CUTIT_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_CUTIT_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME_CUTIT")
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400",}
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+AWS_LOCATION = 'static'
+#STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
-# AWS_ACCESS_KEY_ID = os.environ.get("AWS_CUTIT_ID")
-# AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_CUTIT_KEY")
-# AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_BUCKET_NAME_CUTIT")
-# AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-# AWS_S3_OBJECT_PARAMETERS = {
-#     "CacheControl": "max-age=86400",
-# }
-# AWS_DEFAULT_ACL = None
-# DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-# AWS_LOCATION = "static"
-# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-
-    if not DEBUG:
-        import django_heroku
-        django_heroku.settings(locals())
+django_heroku.settings(locals())
