@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY_CUTIT")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://ats-cutit.herokuapp.com/"]
+ALLOWED_HOSTS = ["https://ats-cutit.herokuapp.com"]
 
 
 # Application definition
@@ -145,7 +145,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "users.User"
 LOGIN_REDIRECT_URL = "page-home"
 LOGIN_URL = "login"
-
+CSRF_TRUSTED_ORIGINS = ["https://ats-cutit.herokuapp.com"]
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -167,5 +167,46 @@ AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400",}
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 #STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] '
+                       'pathname=%(pathname)s lineno=%(lineno)s '
+                       'funcname=%(funcName)s %(message)s'),
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        }
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    }
+
+
 
 django_heroku.settings(locals())
