@@ -1,0 +1,1 @@
+web: gunicorn cutIt_app.wsgi

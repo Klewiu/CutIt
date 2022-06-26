@@ -35,6 +35,13 @@
             max-width: 100%;
             height: auto;
         }
+        .flexbox {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0;
+            padding: 0;
+          }
     </style>
     <link href="{% static 'static/style.css' %}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -42,8 +49,10 @@
 </head>
 
 <body>
-
-    <img src="{% static '/logo.jpg' %}">
+    <div class="flexbox">
+        <img class="image1" src="https://cutit-ats-files.s3.eu-west-1.amazonaws.com/logo.jpg" height="50px" alt="A cool image">
+    </div>
+    
     <br>
     <br>
     <div class="w-50 mx-auto">
@@ -66,6 +75,7 @@
             </thead>
 
             <tbody>
+
                 {% for item in obj2 %}
                 <tr>
                     <td>{{ item.itemMaterial }}</td>
@@ -96,8 +106,10 @@
                     {% endif %}
                 </tr>
                 {% endfor %}
+                
             </tbody>
         </table>
+       
     </div>
 </body>
 </html>
