@@ -201,7 +201,7 @@ a {
 }
 
 .jumbotron {
-    background-image: url("https://cutit-ats-files.s3.eu-west-1.amazonaws.com/login-bgnd.jpg");
+    background-image: url("https://cutit-ats-files.s3.eu-west-1.amazonaws.com/login-bgnd1.jpg");
     background-size: cover;
     padding-top: 8%;
     padding-bottom: 8%;
@@ -223,7 +223,7 @@ a {
   }
 
 .jumbotron-reset {
- background-image: url("https://cutit-ats-files.s3.eu-west-1.amazonaws.com/psw+reset.jpg");
+ background-image: url("https://cutit-ats-files.s3.eu-west-1.amazonaws.com/psw%2Breset1.jpg");
  background-size: cover;
  padding-top: 8%;
  padding-bottom: 8%;
