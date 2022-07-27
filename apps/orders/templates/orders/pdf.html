@@ -43,10 +43,10 @@
             padding: 0;
           }
 
-          .center {
+          {% comment %} .center {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
             text-align: center;
-            }
+            } {% endcomment %}
 
     </style>
     <link href="{% static 'static/style.css' %}" rel="stylesheet" type="text/css" />
@@ -61,13 +61,16 @@
     
     <br>
     <br>
-    <div class="center">
-        <h2> PLAN ROZKROJU ZLECENIA</h2>
+    <div class="mx-auto">
+        <h6 style="text-decoration: underline;"> PLAN ROZKROJU ZLECENIA</h6>
     </div>
     <br>
-    <h1 style="color:#997207;">{{obj.orderNumber}} {{obj.orderName}}</h1>
+    <h5 style="color:#997207;">{{obj.orderNumber}} {{obj.orderName}}</h5>
     <h6> Nakład: {{obj.orderQuantity}} szt </h6>
-    <h6> Data utworzenia wydruku: {{obj3}} </h6>
+{% if obj.orderNotes != "Brak" %}
+    <h6 style="color:red;"> Uwagi: {{ obj.orderNotes }}</h6>
+{% endif %}
+    <small> Data utworzenia wydruku: {{obj3}} </small>
     <div>
         <table class="table table-bordered" style="text-align: center; padding: 5px;" border="0.2">
             <thead class="table-active">
