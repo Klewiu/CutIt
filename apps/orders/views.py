@@ -1,3 +1,4 @@
+from gc import get_objects
 from urllib import request
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
@@ -257,12 +258,14 @@ class ItemUpdateView(UpdateView):
 class MyPDFView(PDFViewMixin, TemplateView):
     model = Item
     template_name = "orders/pdf.html"
-
+    
     def get_filename(self):
-        return "Zlecenie{}.pdf".format(date.today())
+        pdf_order_number = get_object_or_404(Order, pk=self.kwargs["pk_order"]).orderNumber
+        return f'Plan zlecenia {pdf_order_number} w PDF.pdf'
+    
 
     def get_context_data(self, **kwargs):
-        obj = get_object_or_404(Order, pk=self.kwargs["pk"])
+        obj = get_object_or_404(Order, pk=self.kwargs["pk_order"])
         obj2 = Item.objects.filter(itemOrder=obj)
         obj3 = datetime.now()
         context = super().get_context_data(**kwargs)

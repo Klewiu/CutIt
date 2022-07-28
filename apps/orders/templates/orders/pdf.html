@@ -45,14 +45,15 @@
 
     <img src="{% static '/logo.jpg' %}">
     <br>
-    <br>
-    <div class="w-50 mx-auto">
-        <h2> PLAN ROZKROJU ZLECENIA</h2>
+    <div class="mx-auto">
+        <h6 style="text-decoration: underline;"> PLAN ROZKROJU ZLECENIA:</h6>
     </div>
-    <br>
-    <h1 style="color:#997207;">{{obj.orderNumber}} {{obj.orderName}}</h1>
-    <h2> Nakład: {{obj.orderQuantity}} szt </h2>
-    <h4> Data utworzenia wydruku: {{obj3}} </h4>
+    <h5 style="color:#997207;">{{obj.orderNumber}} {{obj.orderName}}</h5>
+    <h6> Nakład: {{obj.orderQuantity}} szt </h6>
+    {% if obj.orderNotes != "Brak" %}
+        <h6 style="color:red;"> Uwagi: {{ obj.orderNotes }}</h6>
+    {% endif %}
+    <small> Data utworzenia wydruku: {{obj3}} </small>
     <div>
         <table class="table table-bordered" style="text-align: center; padding: 5px;" border="0.2">
             <thead class="table-active">
