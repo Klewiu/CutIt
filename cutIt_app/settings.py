@@ -162,6 +162,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "cutit.app.mail@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_KEY_CUTIT")
 
+#LOGIN SESSION - AUTO LOG OUT
+SESSION_COOKIE_AGE = 60 * 60   # 60 min
 
 #PDF SETUP FOR DJANGO-HARDCOPY
 # for development your local path to chrome.exe

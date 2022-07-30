@@ -24,7 +24,7 @@
       <canvas id="pie-chart" width="400" height="400"></canvas>
     </div>
 {% else %}
-    <p style = "color:#997207;"><i>Ops!Brak danych do wyświetlenia...</i></p>
+    <p style = "color:#997207;"><i>Ups!Brak danych do wyświetlenia...</i></p>
     <p style = "color:#997207;"><i>Dodaj pozycję do planu cięcia w zleceniach ! </i></p>
 {% endif%}
 
@@ -73,6 +73,8 @@
       },
       options: {
         responsive: true,
+        legend: {maxHeight:100, maxWidth: 20, position: 'bottom'},
+        
       }
       
     };
