@@ -1,4 +1,3 @@
-from gc import get_objects
 from urllib import request
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
@@ -158,6 +157,7 @@ class OrderCompletedListView(FilterView):
     template_name = "orders/completed_orders_list.html"
     filterset_class = OrderFilter
     paginate_by = 10
+    ordering = ["-finishedDate"]
     # query_set for dajango-filter
     def get_queryset(self):
         qs = self.model.objects.filter(isDone=True)
