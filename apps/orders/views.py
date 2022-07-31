@@ -157,10 +157,10 @@ class OrderCompletedListView(FilterView):
     template_name = "orders/completed_orders_list.html"
     filterset_class = OrderFilter
     paginate_by = 10
-    ordering = ["-finishedDate"]
+   
     # query_set for dajango-filter
     def get_queryset(self):
-        qs = self.model.objects.filter(isDone=True)
+        qs = self.model.objects.filter(isDone=True).order_by('-finishedDate')
         search = OrderFilter(self.request.GET, queryset=qs)
         return search.qs
 
