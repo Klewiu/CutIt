@@ -68,6 +68,8 @@
                       {% if user.is_manager or user.is_admin or user.is_superuser%}
                         <a class="btn btn-danger" href="{% url 'page-items-delete' order.id item.id %}">Usuń</a>
                         <a class="btn btn-secondary" href="{% url 'page-item-update' item.id %}">Popraw</a>
+                      {% else %}
+                       X
                       {% endif %}
                     {% else %}
                       X
