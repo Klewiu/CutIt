@@ -32,7 +32,7 @@ urlpatterns = [
     path('items/<int:pk_order>/item_create', ItemCreateView.as_view(), name='page-item-create'),
     path('items/<int:pk>/item_update', ItemUpdateView.as_view(), name='page-item-update'), 
     path('items_list/<int:pk_order>/<int:pk>/delete/', ItemDeleteView.as_view(), name='page-items-delete'),
-    path('items_list/<int:pk>/pdf/', MyPDFView.as_view(), name='pdf'),
+    path('items_list/<int:pk_order>/pdf/', MyPDFView.as_view(), name='pdf'),
     # path('items_list/<int:pk>/pdf/', render_pdf_view, name='pdf'),
 ]
 

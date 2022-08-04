@@ -27,7 +27,11 @@
             <td class="hide_in_mobile">{{ order.orderQuantity }}</td>
             <td class="hide_in_mobile">{{ order.orderManager }}</td>
             <td class="hide_in_mobile">{{ order.orderDate |date:"M d, Y"}}</td>
-            <td class="hide_in_mobile">{{ order.orderNotes }}</td>
+            {% if order.orderNotes == "Brak" %}
+              <td class="hide_in_mobile">{{ order.orderNotes }}</td>
+              {% else %}
+                <td class="hide_in_mobile" style="color:red;">{{ order.orderNotes }}</td>
+            {% endif %}
             <td>
               {% comment %} Order detail with items {% endcomment %}
               <a class="btn btn-info" href="{% url 'page-items-list' order.id %}">Plan</a>

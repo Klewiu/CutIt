@@ -10,13 +10,15 @@
 
 <h5><u>2) Wykresy:</u></h5>
 <p><b style='font-size:1.2rem'>Wykres 1</b> - Ilość w m2 materiałów do wycięcia z wszystkich planów </p>
+<button class="btn btn-warning mb-2 btn-sm" id="hideLegend">Legenda +/-</button>
     <form action="" method="POST">
-      {% csrf_token %}
+      {% csrf_token %}  
       <div class="col-md-6">
           {{ search_form|crispy}} 
-          <button type="submit" class="btn btn-primary mt-3" style="flex">Szukaj</button>
+          <button  type="submit" class="btn btn-primary mt-3" style="flex">Szukaj</button>
       </div>
     </form>
+   
     <br>
     {% comment %} WYKRES 1 {% endcomment %}
 {% if data|length > 0 %}
@@ -24,7 +26,7 @@
       <canvas id="pie-chart" width="400" height="400"></canvas>
     </div>
 {% else %}
-    <p style = "color:#997207;"><i>Ops!Brak danych do wyświetlenia...</i></p>
+    <p style = "color:#997207;"><i>Ups!Brak danych do wyświetlenia...</i></p>
     <p style = "color:#997207;"><i>Dodaj pozycję do planu cięcia w zleceniach ! </i></p>
 {% endif%}
 
@@ -50,6 +52,7 @@
 
   {% comment %} CHARTS MAIN SCRIPTS {% endcomment %}
   <script> 
+
     let window_width = $(document).width();
     let colorchart=[]; 
     colorchart = {{ color|safe }};
@@ -73,6 +76,7 @@
       },
       options: {
         responsive: true,
+        legend: { display: false},  
       }
       
     };
@@ -107,7 +111,26 @@
       window.myPie = new Chart(ctx, config);
       
     };
-  
+    
+    function showLabels(chart) {
+      chart.options.legend.display = 'true';
+      chart.update();
+    };
+
+    function hideLabels(chart) {
+      chart.options.legend.display = 'false';
+      chart.update();
+      chart.options.legend.display = 'false';
+    };
+
+    document.getElementById('hideLegend').addEventListener('click', function() {
+      // toggle visibility of legend
+      var myLine = window.myPie
+      myLine.options.legend.display = !myLine.options.legend.display;
+      myLine.update();
+    });
+    
+   
 
   </script> 
 

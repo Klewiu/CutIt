@@ -157,9 +157,10 @@ class OrderCompletedListView(FilterView):
     template_name = "orders/completed_orders_list.html"
     filterset_class = OrderFilter
     paginate_by = 10
+   
     # query_set for dajango-filter
     def get_queryset(self):
-        qs = self.model.objects.filter(isDone=True)
+        qs = self.model.objects.filter(isDone=True).order_by('-finishedDate')
         search = OrderFilter(self.request.GET, queryset=qs)
         return search.qs
 
@@ -257,12 +258,14 @@ class ItemUpdateView(UpdateView):
 class MyPDFView(PDFViewMixin, TemplateView):
     model = Item
     template_name = "orders/pdf.html"
-
+    
     def get_filename(self):
-        return "Zlecenie{}.pdf".format(date.today())
+        pdf_order_number = get_object_or_404(Order, pk=self.kwargs["pk_order"]).orderNumber
+        return f'Plan zlecenia {pdf_order_number} w PDF.pdf'
+    
 
     def get_context_data(self, **kwargs):
-        obj = get_object_or_404(Order, pk=self.kwargs["pk"])
+        obj = get_object_or_404(Order, pk=self.kwargs["pk_order"])
         obj2 = Item.objects.filter(itemOrder=obj)
         obj3 = datetime.now()
         context = super().get_context_data(**kwargs)

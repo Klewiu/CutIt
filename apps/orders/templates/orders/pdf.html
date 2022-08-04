@@ -35,6 +35,19 @@
             max-width: 100%;
             height: auto;
         }
+        .flexbox {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0;
+            padding: 0;
+          }
+
+          {% comment %} .center {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
+            text-align: center;
+            } {% endcomment %}
+
     </style>
     <link href="{% static 'static/style.css' %}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -42,17 +55,22 @@
 </head>
 
 <body>
-
-    <img src="{% static '/logo.jpg' %}">
+    <div class="flexbox">
+        <img class="image1" src="https://cutit-ats-files.s3.eu-west-1.amazonaws.com/logo.jpg" height="50px" alt="A cool image">
+    </div>
+    
     <br>
     <br>
-    <div class="w-50 mx-auto">
-        <h2> PLAN ROZKROJU ZLECENIA</h2>
+    <div class="mx-auto">
+        <h6 style="text-decoration: underline;"> PLAN ROZKROJU ZLECENIA</h6>
     </div>
     <br>
-    <h1 style="color:#997207;">{{obj.orderNumber}} {{obj.orderName}}</h1>
-    <h2> Nakład: {{obj.orderQuantity}} szt </h2>
-    <h4> Data utworzenia wydruku: {{obj3}} </h4>
+    <h5 style="color:#997207;">{{obj.orderNumber}} {{obj.orderName}}</h5>
+    <h6> Nakład: {{obj.orderQuantity}} szt </h6>
+{% if obj.orderNotes != "Brak" %}
+    <h6 style="color:red;"> Uwagi: {{ obj.orderNotes }}</h6>
+{% endif %}
+    <small> Data utworzenia wydruku: {{obj3}} </small>
     <div>
         <table class="table table-bordered" style="text-align: center; padding: 5px;" border="0.2">
             <thead class="table-active">
@@ -66,6 +84,7 @@
             </thead>
 
             <tbody>
+
                 {% for item in obj2 %}
                 <tr>
                     <td>{{ item.itemMaterial }}</td>
@@ -96,8 +115,10 @@
                     {% endif %}
                 </tr>
                 {% endfor %}
+                
             </tbody>
         </table>
+       
     </div>
 </body>
 </html>

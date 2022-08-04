@@ -20,7 +20,7 @@
         <tr>
           <th scope="col">Nazwa materiału</th>
           <th scope="col" class="text-center">Ilość</th>
-          <th class="hide_in_mobile" scope="col" class="text-center">Nazwa części</th>
+          <th class="hide_in_mobile text-center" scope="col">Nazwa części</th>
           <th scope="col" class="text-center">Wymiar (mm)</th>
           <th scope="col" class="text-center">Wymiar 2 (mm)</th>
           <th class="hide_in_mobile"scope="col" class="text-center">Zlecenie numer</th>
@@ -66,10 +66,10 @@
                     {% if order.isDone == False %}
                       {% comment %} Delete the item {% endcomment %}
                       {% if user.is_manager or user.is_admin or user.is_superuser%}
-                      <a class="btn btn-danger" href="{% url 'page-items-delete' order.id item.id %}">Usuń</a>
-                      <a class="btn btn-secondary" href="{% url 'page-item-update' item.id %}">Popraw</a>
+                        <a class="btn btn-danger" href="{% url 'page-items-delete' order.id item.id %}">Usuń</a>
+                        <a class="btn btn-secondary" href="{% url 'page-item-update' item.id %}">Popraw</a>
                       {% else %}
-                      X
+                       X
                       {% endif %}
                     {% else %}
                       X

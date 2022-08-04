@@ -18,7 +18,10 @@ def reports_list(request):  # /reports/
     labels2 = []
     data = []
     data2 = []
-    color = ['#FFD700',	'#3CB371', '#48D1CC', '#778899', '#ff4d4d','#ffff00']
+    color = []
+    for user in User.objects.all():
+        color.append("#%06x" % random.randint(0, 0xFFFFFF))
+
     counter_list = []
     search = ""
     counter = 0
