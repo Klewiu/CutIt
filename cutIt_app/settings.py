@@ -26,9 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY_CUTIT")
 
 # SECURITY WARNING: don't run with debug turned on in production!
+#! CHANGE DEBUG TO TRUE WHEN DEVELOPING
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://ats-cutit.herokuapp.com", ".herokuapp.com"]
+
+ALLOWED_HOSTS = ["https://ats-cutit.herokuapp.com", ".herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
@@ -52,7 +54,8 @@ INSTALLED_APPS = [
     "storages",
 ]
 
-MIDDLEWARE = [
+if DEBUG == False:
+    MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -62,6 +65,19 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+else:
+    MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+
 
 ROOT_URLCONF = "cutIt_app.urls"
 
@@ -97,7 +113,8 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+if DEBUG == False:
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -167,11 +184,13 @@ SESSION_COOKIE_AGE = 60 * 60   # 60 min
 
 #PDF SETUP FOR DJANGO-HARDCOPY
 # for development your local path to chrome.exe
-# CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
+if DEBUG == True:
+    CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
+    CHROME_WINDOW_SIZE = "800,600"
+else:
+    CHROME_PATH = os.environ.get("PATH_TO_CHROME") # production settings / variable set on heroku side
+    CHROME_WINDOW_SIZE = "800,600"
 
-#development
-CHROME_PATH = os.environ.get("PATH_TO_CHROME") #variable set on heroku side
-CHROME_WINDOW_SIZE = "800,600"
 
 #optional AWS
 # AWS_ACCESS_KEY_ID = os.environ.get("AWS_CUTIT_ID")
