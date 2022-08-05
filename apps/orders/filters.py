@@ -1,5 +1,4 @@
 from logging import PlaceHolder
-from tkinter import Widget
 import django_filters
 from django import forms
 
