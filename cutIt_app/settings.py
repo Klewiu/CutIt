@@ -29,8 +29,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY_CUTIT")
 #! CHANGE DEBUG TO TRUE WHEN DEVELOPING
 DEBUG = False
 
-
-ALLOWED_HOSTS = ["https://ats-cutit.herokuapp.com", ".herokuapp.com", "127.0.0.1"]
+if DEBUG == False:
+    ALLOWED_HOSTS = ["https://ats-cutit.herokuapp.com", ".herokuapp.com"]
+else:
+    ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 # Application definition
