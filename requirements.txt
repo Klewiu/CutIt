@@ -5,4 +5,4 @@ django_hardcopy==0.1.4
 django_import_export==2.8.0
 hardcopy==0.1.0
 import_export==0.2.67.dev6
-xhtml2pdf==0.2.6
+
