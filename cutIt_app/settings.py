@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY_CUTIT")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://ats-cutit.herokuapp.com", ".herokuapp.com", '127.0.0.1:8000', '127.0.0.1']
+ALLOWED_HOSTS = ["https://klewiu.usermd.net/","klewiu.usermd.net/","https://ats-cutit.herokuapp.com", ".herokuapp.com", '127.0.0.1:8000', '127.0.0.1']
 
 
 # Application definition
@@ -98,6 +98,10 @@ DATABASES = {
 }
 if DEBUG==False:
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    # PRODUCTION settings
+    CSRF_COOKIE_SECURE=True
+    SECURE_SSL_REDIRECT=True
+    SESSION_COOKIE_SECURE=True
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -191,43 +195,43 @@ CHROME_WINDOW_SIZE = "800,600"
 
 
 #for tracking errors while DEBUG = False
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': ('%(asctime)s [%(process)d] [%(levelname)s] '
-                       'pathname=%(pathname)s lineno=%(lineno)s '
-                       'funcname=%(funcName)s %(message)s'),
-            'datefmt': '%Y-%m-%d %H:%M:%S'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        }
-    },
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'logging.NullHandler',
-        },
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
-    }
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': ('%(asctime)s [%(process)d] [%(levelname)s] '
+#                        'pathname=%(pathname)s lineno=%(lineno)s '
+#                        'funcname=%(funcName)s %(message)s'),
+#             'datefmt': '%Y-%m-%d %H:%M:%S'
+#         },
+#         'simple': {
+#             'format': '%(levelname)s %(message)s'
+#         }
+#     },
+#     'handlers': {
+#         'null': {
+#             'level': 'DEBUG',
+#             'class': 'logging.NullHandler',
+#         },
+#         'console': {
+#             'level': 'INFO',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'verbose'
+#         }
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#         'django.request': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': False,
+#         },
+#     }
+# }
 
 
