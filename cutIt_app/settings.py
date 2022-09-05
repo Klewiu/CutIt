@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "django_filters",
     "import_export",
+    "wkhtmltopdf",
     # aws apps
     # "storages",
 ]
@@ -179,9 +180,15 @@ SESSION_COOKIE_AGE = 60 * 60   # 60 min
 if DEBUG == False:
     CHROME_PATH = os.environ.get("PATH_TO_CHROME") #variable set on heroku side
 else:
-   CHROME_PATH = "\"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe\""
+   CHROME_PATH = "\"C:\Program Files (x86)\Google\Chrome\Application\chrome\""
    
 CHROME_WINDOW_SIZE = "800,600"
+
+WKHTMLTOPDF_CMD = "C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe"
+WKHTMLTOPDF_CMD_OPTIONS = {
+    'quiet': True,
+    'enable-local-file-access': True
+}
 
 #optional AWS
 # AWS_ACCESS_KEY_ID = os.environ.get("AWS_CUTIT_ID")

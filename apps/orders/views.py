@@ -30,8 +30,9 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 
 from django.views.generic import TemplateView
-from hardcopy.views import PDFViewMixin, PNGViewMixin
+#from hardcopy.views import PDFViewMixin, PNGViewMixin
 
+from wkhtmltopdf.views import PDFTemplateView
 
 # Create your views here.
 
@@ -255,9 +256,31 @@ class ItemUpdateView(UpdateView):
 ### ADITIONAL FUNCTIONALITY ####
 
 # PDF VIEWS#
-class MyPDFView(PDFViewMixin, TemplateView):
-    model = Item
+# class MyPDFView(PDFTemplateView):
+#     filename = 'my_pdf.pdf'
+#     template_name = "orders/pdf.html"
+#     #odel = Item
+#     #template_name = "orders/pdf.html"
+    
+#     def get_filename(self):
+#         pdf_order_number = get_object_or_404(Order, pk=self.kwargs["pk_order"]).orderNumber
+#         return f'Plan zlecenia {pdf_order_number} w PDF.pdf'
+    
+
+#     def get_context_data(self, **kwargs):
+#         obj = get_object_or_404(Order, pk=self.kwargs["pk_order"])
+#         obj2 = Item.objects.filter(itemOrder=obj)
+#         obj3 = datetime.now()
+#         context = super().get_context_data(**kwargs)
+        
+#         context["obj"] = obj
+#         context["obj2"] = obj2
+#         context["obj3"] = obj3
+        
+#         return context 
+class MyPDFView(PDFTemplateView):
     template_name = "orders/pdf.html"
+    model = Item
     
     def get_filename(self):
         pdf_order_number = get_object_or_404(Order, pk=self.kwargs["pk_order"]).orderNumber
@@ -274,8 +297,7 @@ class MyPDFView(PDFViewMixin, TemplateView):
         context["obj2"] = obj2
         context["obj3"] = obj3
         
-        return context 
-
+        return context  
 
 
 

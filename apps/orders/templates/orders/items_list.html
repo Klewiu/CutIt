@@ -10,6 +10,7 @@
   {% endif %}
 {% endif %}
   <a href="{% url 'pdf' order.id%}" class="btn btn-danger">PDF</a>
+  {% comment %} <a href="{% url 'pdf' %}" class="btn btn-danger">PDF</a> {% endcomment %}
   <a href="{% url 'page-orders-list' %}" class="btn btn-secondary">Realizacja</a>
   <a href="{% url 'page-completed-orders-list' %}" class="btn btn-secondary">Zakończone</a>
 <p></p>
