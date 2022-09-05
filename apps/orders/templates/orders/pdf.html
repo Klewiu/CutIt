@@ -42,6 +42,15 @@
             margin: 0;
             padding: 0;
           }
+          
+          
+          .oklejanie2{
+            border-top: solid 2px pink;
+          }
+        
+          .oklejanie1 {
+            border-bottom: solid 2px pink;
+          }
 
           {% comment %} .center {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
@@ -90,30 +99,25 @@
                     <td>{{ item.itemMaterial }}</td>
                     <td>{{ item.itemQuantity }} szt</td>
                     <td>{{ item.itemName }}</td>
+
                     {% if item.itemBander == 'OKLEJANIE 1 STR' %}
-                    <td class="text-center"
-                        style="text-decoration: underline; text-decoration-thickness:3px; text-decoration-color:#997207;">
-                        {{ item.itemDimmension1 }}</td>
+                        <td class="text-center"><span class="oklejanie1">{{ item.itemDimmension1 }}</td>
                     {% elif item.itemBander == 'OKLEJANIE 2 STR' %}
-                    <td class="text-center"
-                        style="text-decoration: underline; text-decoration-style: double; text-decoration-thickness:3px; text-decoration-color:#997207;">
-                        {{ item.itemDimmension1 }}</td>
+                        <td class="text-center"><span class="oklejanie1"><span class="oklejanie2">{{ item.itemDimmension1 }}</td>
                     {% else %}
-                    <td class="text-center">{{ item.itemDimmension1 }}</td>
+                        <td class="text-center">{{ item.itemDimmension1 }}</td>
                     {% endif %}
 
                     {% if item.itemBander2 == 'OKLEJANIE 1 STR' %}
-                    <td class="text-center"
-                        style="text-decoration: underline; text-decoration-thickness:3px; text-decoration-color:#997207;">
-                        {{ item.itemDimmension2 }}</td>
+                        <td class="text-center"><span class="oklejanie1">{{ item.itemDimmension2 }}</td>
                     {% elif item.itemBander2 == 'OKLEJANIE 2 STR' %}
-                    <td class="text-center"
-                        style="text-decoration: overline; text-decoration-thickness:3px; text-decoration-color:#997207;">
-                        {{ item.itemDimmension2 }}</td>
+                        <td class="text-center"><span class="oklejanie1"><span class="oklejanie2">{{ item.itemDimmension2 }}</td>
                     {% else %}
-                    <td class="text-center">{{ item.itemDimmension2 }}</td>
+                        <td class="text-center">{{ item.itemDimmension2 }}</td>
                     {% endif %}
+
                 </tr>
+
                 {% endfor %}
                 
             </tbody>
