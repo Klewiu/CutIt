@@ -193,7 +193,7 @@ a {
 /* LOGIN PAGE STYLE */
 .nav_logo-login {
     font-family: 'Monoton', cursive;
-    font-size: xx-large;
+    font-size: 80px;
     color: var(--black-color);
     font-weight: 1000;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black
@@ -203,45 +203,21 @@ a {
 .jumbotron {
     background-image: url("https://cutit-ats-files.s3.eu-west-1.amazonaws.com/login-bgnd1.jpg");
     background-size: cover;
-    padding-top: 8%;
-    padding-bottom: 8%;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
-    font-size: 18px;
-    font-weight: 200;
-    line-height: inherit;
-    outline-width: thin;
-    outline-style: solid;
-    border-radius: 6px;
-    outline-color: #eeeeee;
-    color: #eeeeee;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
+    height: auto;
+    width: 1000px;
+    border-radius: 15px;
+    padding-top: 3%;
+
+   
   }
 
 .jumbotron-reset {
  background-image: url("https://cutit-ats-files.s3.eu-west-1.amazonaws.com/psw%2Breset1.jpg");
  background-size: cover;
- padding-top: 8%;
- padding-bottom: 8%;
- margin-bottom: 10px;
- margin-top: 10px;
- margin-left: 5px;
- margin-right: 5px;
- font-size: 18px;
- font-weight: 200;
- line-height: inherit;
- outline-width: thin;
- outline-style: solid;
- border-radius: 6px;
- outline-color: #eeeeee;
- color: #eeeeee;
- -webkit-border-radius: 20px;
- -moz-border-radius: 20px;
- border-radius: 20px;
+ height: auto;
+ width: 1000px;
+ border-radius: 15px;
+ padding-top: 3%;
 }
 
 .text-muted{

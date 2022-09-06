@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django_filters",
     "import_export",
     "wkhtmltopdf",
+    'sortable_listview',
     # aws apps
     # "storages",
 ]

@@ -32,7 +32,11 @@ from django.template.loader import get_template
 from django.views.generic import TemplateView
 #from hardcopy.views import PDFViewMixin, PNGViewMixin
 
+# PDF with wkhtmltopdf
 from wkhtmltopdf.views import PDFTemplateView
+
+#Sortable ist for an ITEM LIST VIEW
+from sortable_listview import SortableListView
 
 # Create your views here.
 
@@ -179,9 +183,20 @@ class OrderUpdateView(UpdateView):
 
 # CLASS - ITEM LIST VIEW
 @method_decorator(login_required, name="dispatch")
-class ItemListView(ListView):
+class ItemListView(SortableListView):
     model = Item  # model to be used
+    allowed_sort_fields = {'id': {'default_direction': '-',
+                                     'verbose_name': 'Kolejność'},
+                           'itemQuantity': {'default_direction': '-',
+                                              'verbose_name': 'Ilość'},
+                            'itemMaterial': {'default_direction':'',
+                                              'verbose_name': 'Materiał'},
+                            'itemName': {'default_direction':'',
+                                              'verbose_name': 'Część'},                
+                                              }
+    default_sort_field = 'id'
     template_name = "orders/items_list.html"  # template to be used
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(
@@ -281,6 +296,7 @@ class ItemUpdateView(UpdateView):
 class MyPDFView(PDFTemplateView):
     template_name = "orders/pdf.html"
     model = Item
+    ordering=['itemMaterial']
     
     def get_filename(self):
         pdf_order_number = get_object_or_404(Order, pk=self.kwargs["pk_order"]).orderNumber
