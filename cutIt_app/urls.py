@@ -2,6 +2,7 @@ from cutIt_app import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+
 """CutIt URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:

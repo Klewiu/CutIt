@@ -26,13 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY_CUTIT")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#! CHANGE DEBUG TO TRUE WHEN DEVELOPING
-DEBUG = False
+DEBUG = True
 
-if DEBUG == False:
-    ALLOWED_HOSTS = ["https://ats-cutit.herokuapp.com", ".herokuapp.com"]
-else:
-    ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["https://klewiu.usermd.net/","klewiu.usermd.net/","https://ats-cutit.herokuapp.com", ".herokuapp.com", '127.0.0.1:8000', '127.0.0.1']
 
 
 # Application definition
@@ -52,8 +48,10 @@ INSTALLED_APPS = [
     "crispy_forms",
     "django_filters",
     "import_export",
+    "wkhtmltopdf",
+    'sortable_listview',
     # aws apps
-    "storages",
+    # "storages",
 ]
 
 if DEBUG == False:
@@ -114,9 +112,12 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
-if DEBUG == False:
+if DEBUG==False:
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    # PRODUCTION settings
+    CSRF_COOKIE_SECURE=True
+    SECURE_SSL_REDIRECT=True
+    SESSION_COOKIE_SECURE=True
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -152,7 +153,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')
+SESSION_COOKIE_AGE = 60 * 60   # 60 minut
+
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
@@ -193,6 +196,19 @@ else:
     CHROME_PATH = os.environ.get("PATH_TO_CHROME") # production settings / variable set on heroku side
     CHROME_WINDOW_SIZE = "800,600"
 
+#development
+if DEBUG == False:
+    CHROME_PATH = os.environ.get("PATH_TO_CHROME") #variable set on heroku side
+else:
+   CHROME_PATH = "\"C:\Program Files (x86)\Google\Chrome\Application\chrome\""
+   
+CHROME_WINDOW_SIZE = "800,600"
+
+WKHTMLTOPDF_CMD = "C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe"
+WKHTMLTOPDF_CMD_OPTIONS = {
+    'quiet': True,
+    'enable-local-file-access': True
+}
 
 #optional AWS
 # AWS_ACCESS_KEY_ID = os.environ.get("AWS_CUTIT_ID")
@@ -206,43 +222,43 @@ else:
 
 
 #for tracking errors while DEBUG = False
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': ('%(asctime)s [%(process)d] [%(levelname)s] '
-                       'pathname=%(pathname)s lineno=%(lineno)s '
-                       'funcname=%(funcName)s %(message)s'),
-            'datefmt': '%Y-%m-%d %H:%M:%S'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        }
-    },
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'logging.NullHandler',
-        },
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
-    }
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': ('%(asctime)s [%(process)d] [%(levelname)s] '
+#                        'pathname=%(pathname)s lineno=%(lineno)s '
+#                        'funcname=%(funcName)s %(message)s'),
+#             'datefmt': '%Y-%m-%d %H:%M:%S'
+#         },
+#         'simple': {
+#             'format': '%(levelname)s %(message)s'
+#         }
+#     },
+#     'handlers': {
+#         'null': {
+#             'level': 'DEBUG',
+#             'class': 'logging.NullHandler',
+#         },
+#         'console': {
+#             'level': 'INFO',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'verbose'
+#         }
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#         'django.request': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': False,
+#         },
+#     }
+# }
 
 

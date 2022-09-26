@@ -21,13 +21,14 @@
   
   </head>                         	
 <div class ="text-white" align='center'>
+<div class='container d-flex justify-content-center'>
     <div class="jumbotron jumbotron-fluid">
     <div class="nav_logo-login">CutIt</div>
     <br>
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group" autocomplete="off">
-            <div class="col-md-2">
+            <div class="col-md-4 p-4">
                 <legend class="boarder-bottom mb-4 p-2">Logowanie</legend>
                 {{form|crispy}}
             </div>
@@ -45,6 +46,7 @@
             </div>
         </div>  
     </form> 
+</div>
 </div> 
 
 
