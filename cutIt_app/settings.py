@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     # "storages",
 ]
 
-MIDDLEWARE = [
+if DEBUG == False:
+    MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -64,6 +65,19 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+else:
+    MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+
 
 ROOT_URLCONF = "cutIt_app.urls"
 
@@ -175,7 +189,12 @@ SESSION_COOKIE_AGE = 60 * 60   # 60 min
 
 #PDF SETUP FOR DJANGO-HARDCOPY
 # for development your local path to chrome.exe
-# CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
+if DEBUG == True:
+    CHROME_PATH = '"C:\Program Files\Google\Chrome\Application\chrome.exe"'
+    CHROME_WINDOW_SIZE = "800,600"
+else:
+    CHROME_PATH = os.environ.get("PATH_TO_CHROME") # production settings / variable set on heroku side
+    CHROME_WINDOW_SIZE = "800,600"
 
 #development
 if DEBUG == False:
