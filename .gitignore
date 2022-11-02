@@ -117,6 +117,8 @@ local_settings.py
 
 .env
 db.sqlite3
+latest.dump.3
+sqldrop.sql
 © 2022 GitHub, Inc.
 Terms
 Privacy
