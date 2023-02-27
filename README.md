@@ -2,7 +2,7 @@
 ![MyImage](https://github.com/Klewiu/CutIt/blob/main/static/CutIt_logo.JPG)
 #
 
-is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="16" height="16" align="center"/>  application that improves the operation of cutting processing in a production company dealing with:
+is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="17" height="17" align="center"/>  application that improves the operation of cutting processing in a production company dealing with:
 - carpentry, 
 - furniture, 
 - advertising displays 
