@@ -1,5 +1,5 @@
 
-# <img src="https://github.com/Klewiu/CutIt/blob/main/static/CutIt_logo.JPG" width="150" height="auto" align="center"/>
+# <img src="https://github.com/Klewiu/CutIt/blob/main/static/CutIt_logo.JPG" width="160" height="auto" align="center"/>
 
 
 is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="17" height="17" align="center"/>  fully responsive application that improves the operation of cutting processing in a production company dealing with:
