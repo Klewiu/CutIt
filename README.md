@@ -1,10 +1,10 @@
-## CutIt
+# CutIt
 is an DJANGO application that improves the operation of cutting processing in a company dealing with
 - carpentry, 
 - furniture, 
 - advertising displays 
 
-### Features:
+## Features:
 1. Users, depending on their access level, can create, delete and restore cutting orders. 
 2. In each of the orders, you can add subsequent cuts from different materials that create a cut list for the given order for the operator.
 3. In orders, you can mark which edges will be further processed on the edgebander
