@@ -24,6 +24,6 @@ is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="dj
 5. Creating charts with the help of chart.js showing the number of orders entered by a given manager
 
 ### Aplication Example View
+<img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_1.JPG" alt="django" width="auto" height="100" align="center"/>
 
-![report1](https://github.com/Klewiu/CutIt/blob/main/static/reports_details_1.JPG  width="17" height="17")
 ![report2](https://github.com/Klewiu/CutIt/blob/main/static/reports_details_2.JPG)
