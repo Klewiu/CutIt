@@ -2,18 +2,19 @@
 ![MyImage](https://github.com/Klewiu/CutIt/blob/main/static/CutIt_logo.JPG)
 #
 
-is an <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="18" height="18"/> application that improves the operation of cutting processing in a company dealing with
+is an <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="18" height="18"/> application that improves the operation of cutting processing in a company dealing with:
 - carpentry, 
 - furniture, 
 - advertising displays 
 
-## Features:
-1. Users, depending on their access level, can create, delete and restore cutting orders. 
+## Main features:
+1. Users, depending on their access level, can create, delete, finish and restore cutting orders. 
 2. In each of the orders, you can add subsequent cuts from different materials that create a cut list for the given order for the operator.
-3. In orders, you can mark which edges will be further processed on the edgebander
+3. In orders, you can mark which edges will be further processed on the edgebander.
 4. You can also add comments to the order for the operator
 5. Operators who can execute given cutting orders have separate accounts
-6. The program has the ability to search and sort orders and cutting plans
+6. The program has the ability to search and sort orders and cutting plans.
+7. You can add and delete users, plus change their access prermissions
 
 ## Reports:
 1. The application allows you to create PDFs of cutting plans
