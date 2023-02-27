@@ -1,5 +1,5 @@
 # CutIt
-[MyImage](https://github.com/Klewiu/CutIt/blob/main/static/CutIt%20logo.JPGG)
+[MyImage](https://github.com/Klewiu/CutIt/blob/195d353bf58e7a16639253e31e7ea442dba4ddd5/static/CutIt%20logo.JPG)
 
 
 is an DJANGO application that improves the operation of cutting processing in a company dealing with
