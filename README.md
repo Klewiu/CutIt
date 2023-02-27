@@ -1,5 +1,5 @@
 # CutIt
-[MyImage](static/CutIt logo.JPG)
+[MyImage](static/CutIt_logo.JPG)
 
 
 is an DJANGO application that improves the operation of cutting processing in a company dealing with
