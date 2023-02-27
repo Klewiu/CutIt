@@ -25,5 +25,5 @@ is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="dj
 
 ### Aplication Example View
 
-![report1](https://github.com/Klewiu/CutIt/blob/main/static/reports_details_1.JPG)
+![report1](https://github.com/Klewiu/CutIt/blob/main/static/reports_details_1.JPG  width="17" height="17")
 ![report2](https://github.com/Klewiu/CutIt/blob/main/static/reports_details_2.JPG)
