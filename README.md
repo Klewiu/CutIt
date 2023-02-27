@@ -2,7 +2,7 @@
 ![MyImage](https://github.com/Klewiu/CutIt/blob/main/static/CutIt_logo.JPG)
 #
 
-is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="17" height="17" align="center"/>  application that improves the operation of cutting processing in a production company dealing with:
+is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="17" height="17" align="center"/>  fully responsive application that improves the operation of cutting processing in a production company dealing with:
 - carpentry, 
 - furniture, 
 - advertising displays 
@@ -15,6 +15,8 @@ is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="dj
 5. Operators who can execute given cutting orders have separate accounts
 6. The program has the ability to search and sort orders and cutting plans.
 7. You can add and delete users, plus change their access prermissions
+8. The application is in Polish <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Flag_of_Poland_%28normative%29.svg/360px-Flag_of_Poland_%28normative%29.svg.png" width="17" height="17" align="center" />
+
 
 ## Reports:
 1. The application allows you to create PDFs of cutting plans
@@ -23,8 +25,8 @@ is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="dj
 4. Creating charts with the help of chart.js showing the share of individual materials in all cutting orders
 5. Creating charts with the help of chart.js showing the number of orders entered by a given manager
 
-### Aplication Example View
-<img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_1.JPG" alt="report1" width="auto" height="400" margin="5px" />&nbsp;&nbsp;<img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_3.JPG" alt="report3" width="auto" height="400" margin="5px"  />&nbsp;&nbsp;<img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_4.JPG" alt="report4" width="auto" height="400" margin="5px" />
+## Application view:
+<img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_1.JPG" alt="report1" width="auto" height="400" margin="5px" />&nbsp;&nbsp;&nbsp;<img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_3.JPG" alt="report3" width="auto" height="400" margin="5px"  />&nbsp;&nbsp;&nbsp;<img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_4.JPG" alt="report4" width="auto" height="400" margin="5px" />
 
 
 
