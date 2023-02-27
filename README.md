@@ -22,3 +22,8 @@ is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="dj
 3. View statistics on the amount of material to be cut and the amount of already cut material
 4. Creating charts with the help of chart.js showing the share of individual materials in all cutting orders
 5. Creating charts with the help of chart.js showing the number of orders entered by a given manager
+
+### Aplication Example View
+
+![report1](https://github.com/Klewiu/CutIt/blob/main/static/reports_details_1.JPG)
+![report2](https://github.com/Klewiu/CutIt/blob/main/static/reports_details_2.JPG)
