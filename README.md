@@ -25,7 +25,7 @@ is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="dj
 4. Creating charts with the help of chart.js showing the share of individual materials in all cutting orders
 5. Creating charts with the help of chart.js showing the number of orders entered by a given manager
 
-## Application view:
+## Application views:
 <img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_1.JPG" alt="report1" width="auto" height="400" margin="5px" />&nbsp;&nbsp;&nbsp;<img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_3.JPG" alt="report3" width="auto" height="400" margin="5px"  />&nbsp;&nbsp;&nbsp;<img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_4.JPG" alt="report4" width="auto" height="400" margin="5px" />
 
 If you are interesten in this project please contact kuba.klewicki@gmail.com or tomekklewicki@gmail.com
