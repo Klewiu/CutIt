@@ -23,7 +23,7 @@ is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="dj
 2. Export all cut list to excel file
 3. View statistics on the amount of material to be cut and the amount of already cut material
 4. Creating charts with the help of **chart.js**  <img src="https://www.chartjs.org/img/chartjs-logo.svg" alt="chartjs" width="20" height="20" align="center"/> showing the share of individual materials in all cutting orders
-5. Creating charts with the help of chart.js showing the number of orders entered by a given manager
+5. Creating charts with the help of **chart.js** showing the number of orders entered by a given manager
 
 ## Application views:
 <img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_1.JPG" alt="report1" width="auto" height="400" margin="5px" />&nbsp;&nbsp;&nbsp;<img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_3.JPG" alt="report3" width="auto" height="400" margin="5px"  />&nbsp;&nbsp;&nbsp;<img src="https://github.com/Klewiu/CutIt/blob/main/static/reports_details_4.JPG" alt="report4" width="auto" height="400" margin="5px" />
