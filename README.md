@@ -25,7 +25,7 @@ Application uses css framework Bootstrap <img src="https://upload.wikimedia.org/
 1. The application allows you to create PDFs of cutting plans
 2. Export all cut list to excel file
 3. View statistics on the amount of material to be cut and the amount of already cut material
-4. Creating charts with the help of **chart.js**  <img src="https://www.chartjs.org/img/chartjs-logo.svg" alt="chartjs" width="20" height="20" align="center"/> showing the share of individual materials in all cutting orders
+4. Creating charts with the help of **chart.js**  <img src="https://www.chartjs.org/img/chartjs-logo.svg" alt="chartjs" width="25" height="auto" align="center"/> showing the share of individual materials in all cutting orders
 5. Creating charts with the help of **chart.js** showing the number of orders entered by a given manager
 
 ## Application views:
