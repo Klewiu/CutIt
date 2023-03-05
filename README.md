@@ -7,6 +7,8 @@ is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="dj
 - furniture production, 
 - advertising displays, 
 
+Application uses css framework Bootstrap <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg"   alt="bootsrap" width="25" height="auto" align="center"/>
+
 ## Main features:
 1. Users, depending on their access level, can create, delete, finish and restore cutting orders. 
 2. In each of the orders, you can add subsequent cuts from different materials that create a cut list for the given order for the operator.
