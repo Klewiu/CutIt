@@ -18,7 +18,7 @@ Application uses css framework Bootstrap <img src="https://upload.wikimedia.org/
 5. Operators who can execute given cutting orders have separate accounts
 6. The program has the ability to search and sort orders and cutting plans.
 7. You can add and delete users, plus change their access prermissions
-8. The application is in Polish <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Flag_of_Poland_%28normative%29.svg/360px-Flag_of_Poland_%28normative%29.svg.png" width="17" height="17" align="center" />
+8. The application is in Polish <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Flag_of_Poland_%28normative%29.svg/360px-Flag_of_Poland_%28normative%29.svg.png" width="20" height="auto" align="center" />
 
 
 ## Reports:
