@@ -8,6 +8,7 @@ is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="dj
 - advertising displays, 
 
 Application uses css framework Bootstrap <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg"   alt="bootsrap" width="25" height="auto" align="center"/>
+It also uses dynamic user form created with HTMX
 
 ## Main features:
 1. Users, depending on their access level, can create, delete, finish and restore cutting orders. 
