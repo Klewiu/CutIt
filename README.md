@@ -7,7 +7,7 @@ is an DJANGO <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="dj
 - furniture production, 
 - advertising displays, 
 
-Application uses css framework Bootstrap <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg"   alt="bootsrap" width="25" height="auto" align="center"/>
+Application uses css framework Bootstrap <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg"   alt="bootsrap" width="25" height="auto" align="center"/><br />
 <a> It also uses dynamic user form created with HTMX  <img src="https://github.com/Klewiu/CutIt/blob/main/htmx_logo.webp"   alt="bootsrap" width="100" height="auto" align="center"/>
 
 ## Main features:
